@@ -262,4 +262,13 @@ document.getElementById('info-close').onclick = () => {
   document.getElementById('scene-info').classList.add('hidden');
 };
 
+/* ========== 侧边栏收起/展开 ========== */
+const sidebarToggle = document.getElementById('sidebar-toggle');
+sidebarToggle.onclick = () => {
+  const collapsed = document.body.classList.toggle('sidebar-collapsed');
+  sidebarToggle.textContent = collapsed ? '»' : '«';
+  sidebarToggle.title = collapsed ? '展开侧边栏' : '收起侧边栏';
+  setTimeout(() => map.invalidateSize(), 320); // 等动画结束后让地图自适应宽度
+};
+
 loadScenes();

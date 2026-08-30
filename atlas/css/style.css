@@ -17,6 +17,39 @@ body {
   padding: 20px;
   overflow-y: auto;
   z-index: 1000;
+  transition: margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed #sidebar {
+  margin-left: -320px;
+}
+
+/* 收起/展开按钮（固定在侧边栏右缘/屏幕左缘） */
+#sidebar-toggle {
+  position: fixed;
+  top: 50%;
+  left: 320px;
+  transform: translateY(-50%);
+  z-index: 1500;
+  width: 22px;
+  height: 48px;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: left 0.3s ease, background 0.2s;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+#sidebar-toggle:hover {
+  background: #334155;
+}
+
+body.sidebar-collapsed #sidebar-toggle {
+  left: 0;
+  border-radius: 0 8px 8px 0;
 }
 
 #sidebar h1 {
