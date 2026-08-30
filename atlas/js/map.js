@@ -277,7 +277,9 @@ function showSceneInfo(data, scene) {
 
 /** 解析坐标输入，如 "31.24, 121.49" / "121.49 31.24"（自动判断 lat/lng 顺序） */
 function parseCoord(str) {
-  const m = str.trim().match(/^(-?\d+(?:\.\d+)?)\s*[,，\s]\s*(-?\d+(?:\.\d+)?)$/);
+  // 清除零宽字符/全角空格/BOM 等不可见字符（手机复制坐标常带），统一转普通空格
+  const cleaned = String(str).replace(/[\u200b-\u200f\u2028\u2029\u00a0\u3000\ufeff]/g, ' ').trim();
+  const m = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*[,，\s]\s*(-?\d+(?:\.\d+)?)$/);
   if (!m) return null;
   const a = parseFloat(m[1]);
   const b = parseFloat(m[2]);
@@ -338,7 +340,12 @@ function searchPoi(keyword) {
   clearPoi();
   placeSearch.search(keyword, (status, result) => {
     if (status !== 'complete' || !result.poiList || !result.poiList.pois.length) {
-      alert(`未找到与「${keyword}」相关的地点`);
+      // 输入疑似坐标但没被识别 → 提示可能原因（旧缓存/格式问题）
+      if (/[-+]?\d+(?:\.\d+)?\s*[,，\s]\s*[-+]?\d+(?:\.\d+)?/.test(keyword)) {
+        alert(`「${keyword}」看起来是坐标，但没有被识别。\n请检查格式（如 31.24, 121.49）或刷新页面到最新版本后重试`);
+      } else {
+        alert(`未找到与「${keyword}」相关的地点`);
+      }
       return;
     }
     const pois = result.poiList.pois;
