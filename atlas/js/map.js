@@ -386,6 +386,75 @@ document.getElementById('coord-copy-wgs').onclick = function () {
   copyText(document.getElementById('coord-wgs').textContent, this);
 };
 
+/* ========== 定位我的位置 ========== */
+let geolocation = null;
+let geoMarker = null;
+let geoCircle = null;
+
+AMap.plugin(['AMap.Geolocation'], () => {
+  geolocation = new AMap.Geolocation({
+    enableHighAccuracy: true, // 高精度
+    timeout: 10000,           // 10s 超时
+    maximumAge: 0,            // 每次重新获取
+  });
+});
+
+function clearGeoMarker() {
+  if (geoMarker) { map.remove(geoMarker); geoMarker = null; }
+  if (geoCircle) { map.remove(geoCircle); geoCircle = null; }
+}
+
+document.getElementById('lc-locate').onclick = () => {
+  if (!geolocation) { alert('定位组件尚未就绪，请稍后再试'); return; }
+  geolocation.getCurrentPosition((status, result) => {
+    if (status !== 'complete' || !result.position) {
+      alert('定位失败：' + (result && result.message ? result.message : '请检查浏览器定位权限'));
+      return;
+    }
+
+    clearGeoMarker();
+    const pos = [result.position.getLng(), result.position.getLat()];
+    const wgs = gcj02ToWgs84(pos[1], pos[0]);
+
+    // 定位点（蓝点 + 白色描边，类似高德 app）
+    geoMarker = new AMap.Marker({
+      position: pos,
+      content: '<div style="width:18px;height:18px;background:#1e88e5;border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 2px #1e88e5, 0 2px 8px rgba(0,0,0,.4)"></div>',
+      anchor: 'center',
+      zIndex: 120,
+    });
+    map.add(geoMarker);
+
+    // 精度圈（浏览器定位的误差范围）
+    if (result.accuracy && result.accuracy > 0) {
+      geoCircle = new AMap.Circle({
+        center: pos,
+        radius: result.accuracy,
+        strokeColor: '#1e88e5',
+        strokeOpacity: 0.5,
+        strokeWeight: 1,
+        fillColor: '#1e88e5',
+        fillOpacity: 0.1,
+      });
+      map.add(geoCircle);
+    }
+
+    // 居中并保证足够级别
+    map.setZoomAndCenter(Math.max(map.getZoom(), 15), pos);
+
+    // 信息窗：定位方式 + 精度 + 两种坐标
+    const info = `<div style="font-size:13px;line-height:1.7;min-width:200px">
+      <b>📍 我的位置</b><br>
+      <span style="color:#888">方式：${result.locationType || '浏览器'} · 精度约 ${Math.round(result.accuracy || 0)}m</span><br>
+      <span style="color:#888">GCJ-02：</span>${pos[0].toFixed(6)}, ${pos[1].toFixed(6)}<br>
+      <span style="color:#888">WGS-84：</span>${wgs.lng.toFixed(6)}, ${wgs.lat.toFixed(6)}
+    </div>`;
+    if (!infoWindow) infoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
+    infoWindow.setContent(info);
+    infoWindow.open(map, pos);
+  });
+};
+
 /* ========== 侧边栏收起/展开 ========== */
 const sidebarToggle = document.getElementById('sidebar-toggle');
 sidebarToggle.onclick = () => {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>地图标记系统 · Atlas</title>
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
   <button id="sidebar-toggle" title="收起/展开侧边栏">«</button>
@@ -27,6 +27,7 @@
     <div id="layer-control">
       <button class="lc-btn active" data-mode="vector">🗺️ 矢量地图</button>
       <button class="lc-btn" data-mode="satellite">🛰️ 卫星影像</button>
+      <button class="lc-btn" id="lc-locate">📍 我的位置</button>
       <div class="lc-divider"></div>
       <button class="lc-btn lc-zoom" id="lc-zoom-in" title="放大">＋</button>
       <button class="lc-btn lc-zoom" id="lc-zoom-out" title="缩小">－</button>
@@ -60,6 +61,6 @@
     };
   </script>
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467"></script>
-  <script src="js/map.js?v=3"></script>
+  <script src="js/map.js?v=4"></script>
 </body>
 </html>
