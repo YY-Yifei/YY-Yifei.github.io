@@ -135,6 +135,60 @@
       "description": "哈萨克斯坦口岸，与霍尔果斯对应，无水港换装场"
     },
     {
+      "id": "aktogay",
+      "name": "阿克斗卡（哈）",
+      "lat": 46.9500,
+      "lng": 79.6667,
+      "type": "hub",
+      "typeLabel": "编组枢纽",
+      "description": "多斯特克以西首个大型编组站，阿拉木图与阿斯塔纳方向铁路在此分岔"
+    },
+    {
+      "id": "almaty",
+      "name": "阿拉木图",
+      "lat": 43.2380,
+      "lng": 76.8829,
+      "type": "hub",
+      "typeLabel": "哈最大城市",
+      "description": "哈萨克斯坦旧都、最大城市，中亚经济中心，班列在此换挂机车/补给"
+    },
+    {
+      "id": "shu",
+      "name": "楚城（哈）",
+      "lat": 43.6000,
+      "lng": 73.7667,
+      "type": "station",
+      "typeLabel": "铁路枢纽",
+      "description": "阿拉木图以北铁路枢纽，南北干线交汇，向西可通乌兹别克斯坦/塔吉克斯坦"
+    },
+    {
+      "id": "karaganda",
+      "name": "卡拉干达",
+      "lat": 49.8047,
+      "lng": 73.1094,
+      "type": "station",
+      "typeLabel": "中部枢纽",
+      "description": "哈萨克斯坦中部工业城市，煤矿与钢铁基地，铁路编组作业站"
+    },
+    {
+      "id": "astana",
+      "name": "阿斯塔纳",
+      "lat": 51.1694,
+      "lng": 71.4491,
+      "type": "station",
+      "typeLabel": "哈首都",
+      "description": "哈萨克斯坦首都，新亚欧大陆桥北线必经之地"
+    },
+    {
+      "id": "petropavl",
+      "name": "彼得罗巴甫尔（哈）",
+      "lat": 54.8750,
+      "lng": 69.1628,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "哈萨克斯坦北部边境城市，班列出哈境进入俄罗斯，沿西伯利亚大铁路西行"
+    },
+    {
       "id": "zamynuud",
       "name": "扎门乌德（蒙）",
       "lat": 43.7167,
@@ -151,6 +205,15 @@
       "type": "station",
       "typeLabel": "蒙古首都",
       "description": "蒙古国首都，中通道班列沿蒙古纵贯铁路北上进入俄罗斯"
+    },
+    {
+      "id": "sukhbaatar",
+      "name": "苏赫巴托尔（蒙）",
+      "lat": 50.2333,
+      "lng": 106.2000,
+      "type": "border",
+      "typeLabel": "蒙古口岸",
+      "description": "蒙古北部边境口岸城市，出境俄罗斯纳乌什基，接入西伯利亚大铁路"
     },
     {
       "id": "zabaykalsk",
@@ -203,22 +266,22 @@
       "id": "west-main",
       "name": "西通道·阿拉山口（渝新欧/长安号）",
       "color": "#c0392b",
-      "path": ["chongqing", "xian", "lanzhou", "urumqi", "alashankou", "dostyk", "malaszewicze", "duisburg"],
-      "description": "主力通道，经哈萨克斯坦—俄罗斯—白俄罗斯抵波兰，占中欧班列开行量约50%"
+      "path": ["chongqing", "xian", "lanzhou", "urumqi", "alashankou", "dostyk", "aktogay", "almaty", "shu", "karaganda", "astana", "petropavl", "malaszewicze", "duisburg"],
+      "description": "主力通道，经哈萨克斯坦北线（阿拉木图—阿斯塔纳）出境入俄，再经白俄罗斯抵波兰，占中欧班列开行量约50%"
     },
     {
       "id": "west-khorgos",
       "name": "西通道·霍尔果斯（蓉欧）",
       "color": "#e67e22",
-      "path": ["chengdu", "lanzhou", "urumqi", "khorgos", "altynkol", "malaszewicze"],
-      "description": "西部第二大口岸通道，2017年开通中欧班列乌鲁木齐集结中心后加密开行"
+      "path": ["chengdu", "lanzhou", "urumqi", "khorgos", "altynkol", "almaty", "shu", "karaganda", "astana", "petropavl", "malaszewicze"],
+      "description": "西部第二大口岸通道，经阿腾科里入境后在阿拉木图与西通道主线汇合北上"
     },
     {
       "id": "central",
       "name": "中通道·二连浩特",
       "color": "#2980b9",
-      "path": ["erlian", "zamynuud", "ulaanbaatar", "malaszewicze"],
-      "description": "经蒙古国纵贯铁路，接入俄罗斯西伯利亚大铁路西行，线路最短但冬季严寒"
+      "path": ["erlian", "zamynuud", "ulaanbaatar", "sukhbaatar", "malaszewicze"],
+      "description": "经蒙古纵贯铁路北上，苏赫巴托尔出境入俄，接入西伯利亚大铁路西行，线路最短但冬季严寒"
     },
     {
       "id": "east",
