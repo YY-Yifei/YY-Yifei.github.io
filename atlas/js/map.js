@@ -41,31 +41,37 @@ function wgs84ToGcj02(lat, lng) {
   return { lat: lat + dLat, lng: lng + dLng };
 }
 
-/* ========== 瓦片源配置 ========== */
+/* ========== 瓦片源配置（仅高德，全部 GCJ-02 坐标系） ==========
+ * 矢量：webrd 接口 style=8 标准矢量底图，最高 18 级（19 级由 18 级放大）
+ * 卫星：webst 接口 style=6 含路网标注 / style=7 纯影像，最高 20 级
+ * 不附加缓存版本号参数：瓦片新旧由高德 HTTP 缓存头自动管理，
+ * 真遇到旧图让用户强刷（Ctrl+Shift+R）即可
+ */
 const TILE_SOURCES = {
-  gaode: {
-    name: '高德地图',
+  gaode_vec: {
+    name: '高德矢量地图',
     url: 'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
     subdomains: '1234',
     attribution: '&copy; 高德地图',
     gcj: true,
-    maxZoom: 18,
-  },
-  osm: {
-    name: 'OpenStreetMap',
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    subdomains: 'abc',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    gcj: false,
     maxZoom: 19,
+    maxNativeZoom: 18,
   },
-  carto: {
-    name: 'CartoDB',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-    subdomains: 'abcd',
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-    gcj: false,
-    maxZoom: 19,
+  gaode_sat_label: {
+    name: '高德卫星·含路网标注',
+    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}',
+    subdomains: '1234',
+    attribution: '&copy; 高德地图',
+    gcj: true,
+    maxZoom: 20,
+  },
+  gaode_sat: {
+    name: '高德卫星·纯影像',
+    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}',
+    subdomains: '1234',
+    attribution: '&copy; 高德地图',
+    gcj: true,
+    maxZoom: 20,
   },
 };
 
@@ -79,25 +85,27 @@ const NODE_COLORS = {
   default:  '#64748b',
 };
 
-let currentTileSource = 'gaode';
+let currentTileSource = 'gaode_vec';
 let currentGcj = TILE_SOURCES[currentTileSource].gcj;
 
 const map = L.map('map').setView([24, 103], 5);
-const baseLayer = L.tileLayer(TILE_SOURCES.gaode.url, {
-  maxZoom: TILE_SOURCES.gaode.maxZoom,
-  subdomains: TILE_SOURCES.gaode.subdomains,
-  attribution: TILE_SOURCES.gaode.attribution,
-}).addTo(map);
+
+/** 按瓦片源配置创建图层（支持 maxNativeZoom：超出原生级别时放大显示而非留白） */
+function createTileLayer(src) {
+  return L.tileLayer(src.url, {
+    maxZoom: src.maxZoom,
+    maxNativeZoom: src.maxNativeZoom,
+    subdomains: src.subdomains,
+    attribution: src.attribution,
+  });
+}
+
+const baseLayer = createTileLayer(TILE_SOURCES.gaode_vec).addTo(map);
 
 // 图层切换控件（右上角）
 const baseMaps = {};
 Object.keys(TILE_SOURCES).forEach(key => {
-  const src = TILE_SOURCES[key];
-  baseMaps[src.name] = L.tileLayer(src.url, {
-    maxZoom: src.maxZoom,
-    subdomains: src.subdomains,
-    attribution: src.attribution,
-  });
+  baseMaps[TILE_SOURCES[key].name] = createTileLayer(TILE_SOURCES[key]);
 });
 L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
