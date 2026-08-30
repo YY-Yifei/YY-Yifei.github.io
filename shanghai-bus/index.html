@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>上海市公交线网 · BusMap</title>
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
   <button id="sidebar-toggle" title="收起/展开侧边栏">«</button>
@@ -31,7 +31,16 @@
     </div>
   </div>
 
-  <div id="map"></div>
+  <div id="map">
+    <!-- 视图控制（地图右下角） -->
+    <div id="view-control">
+      <button class="vc-btn" id="vc-locate" title="定位到当前位置，显示周边 5km 站点">📍 我的位置</button>
+      <button class="vc-btn" id="vc-all" title="显示全上海站点">🌐 全部站点</button>
+      <div class="vc-divider"></div>
+      <button class="vc-btn" id="vc-zoom-in" title="放大">＋</button>
+      <button class="vc-btn" id="vc-zoom-out" title="缩小">－</button>
+    </div>
+  </div>
 
   <!-- 信息提示 -->
   <div id="toast" class="hidden"></div>
@@ -47,7 +56,7 @@
       securityJsCode: "857f260bcf74959c13573ae5f0cf8ae0",
     };
   </script>
-  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467"></script>
-  <script src="js/app.js?v=1"></script>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467&plugin=AMap.Geolocation"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>

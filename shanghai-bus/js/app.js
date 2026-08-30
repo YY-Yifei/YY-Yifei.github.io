@@ -42,8 +42,8 @@
 
   /* ========== 状态 ========== */
   const state = {
-    routes: [],          // [{n, up[], down[], uCount, dCount}]
-    stops: [],           // [{n, lat, lng, rc}]
+    routes: [],          // [{n, up[], down[], upCount, downCount}]
+    stops: [],           // [{n, lat, lng, gLat, gLng, rc}] g* 为 GCJ-02 缓存
     stopIndex: new Map(),// 站名 -> [stops]
     map: null,
     massMarks: null,     // 全站点海量标记
@@ -52,6 +52,9 @@
     currentMarkers: [],
     currentInfoWindow: null,
     searchTerm: '',
+    currentMode: 'all',  // 'near' 周边5km | 'all' 全上海
+    currentCenter: null, // GCJ-02 [lng, lat]
+    radiusKm: 5,
   };
 
   const $ = (id) => document.getElementById(id);
@@ -83,6 +86,13 @@
       state.routes = routesData.routes || [];
       const uniqueStopCount = stopsData.count || new Set(state.stops.map((s) => s.n)).size;
 
+      // 预计算 GCJ-02 坐标（供筛选/渲染复用）
+      for (const s of state.stops) {
+        const g = toAMap(s.lat, s.lng);
+        s.gLng = g[0];
+        s.gLat = g[1];
+      }
+
       // 建索引（同名站多坐标）
       state.stopIndex.clear();
       for (const s of state.stops) {
@@ -94,38 +104,124 @@
       $('stat-routes').textContent = '线路 ' + state.routes.length;
 
       renderRouteList(state.routes);
-      renderAllStops();
-      fitShanghai();
+      initMassMarks();
+
+      // 默认定位到当前位置，渲染周边 5km；失败则全量
+      locateAndRender(5).then((ok) => {
+        if (!ok) {
+          state.currentMode = 'all';
+          renderStops(null);
+          fitShanghai();
+        }
+      });
     } catch (e) {
       $('route-list').innerHTML = '<p class="empty">⚠️ 数据加载失败：' + e.message + '</p>';
     }
   }
 
-  /* ========== 全站点散点（MassMarks） ========== */
-  function renderAllStops() {
-    if (!state.stops.length) return;
-    const points = state.stops.map((s) => ({
-      lnglat: toAMap(s.lat, s.lng),
-      name: s.n,
-      rc: s.rc || 0,
-    }));
-    const style = {
-      url: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><circle cx="4" cy="4" r="3" fill="rgba(10,125,52,0.55)"/></svg>'),
-      size: new AMap.Size(8, 8),
-      offset: new AMap.Pixel(-4, -4),
-    };
-    state.massMarks = new AMap.MassMarks(points, {
+  /* ========== 海量站点标记 ========== */
+  const MARK_STYLE = {
+    url: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><circle cx="4" cy="4" r="3" fill="rgba(10,125,52,0.55)"/></svg>'),
+    size: new AMap.Size(8, 8),
+    offset: new AMap.Pixel(-4, -4),
+  };
+
+  function initMassMarks() {
+    state.massMarks = new AMap.MassMarks([], {
       opacity: 0.8,
       zIndex: 5,
       cursor: 'pointer',
-      style: style,
+      style: MARK_STYLE,
     });
     state.massMarks.on('click', (e) => {
       const data = e.data;
       showStopInfo(data.lnglat, data.name, data.rc);
     });
     state.massMarks.setMap(state.map);
+  }
+
+  /** 渲染站点：center=null 渲染全部；否则渲染 center 周围 radiusKm 内 */
+  function renderStops(center) {
+    if (!state.massMarks) return;
+    let points;
+    if (center) {
+      const [clng, clat] = center;
+      const r2 = state.radiusKm * state.radiusKm;
+      points = [];
+      for (const s of state.stops) {
+        const d = haversineKm(clng, clat, s.gLng, s.gLat);
+        if (d <= state.radiusKm) {
+          points.push({ lnglat: [s.gLng, s.gLat], name: s.n, rc: s.rc || 0 });
+        }
+      }
+      $('stat-stops').textContent = '周边站点 ' + points.length;
+    } else {
+      points = state.stops.map((s) => ({
+        lnglat: [s.gLng, s.gLat],
+        name: s.n,
+        rc: s.rc || 0,
+      }));
+      $('stat-stops').textContent = '站点 ' + (state.stopIndex.size || points.length);
+    }
+    state.massMarks.setData(points);
+  }
+
+  /** 定位到当前位置并渲染周边站点；失败返回 false */
+  function locateAndRender(radiusKm) {
+    state.radiusKm = radiusKm || 5;
+    return new Promise((resolve) => {
+      let settled = false;
+      const finish = (ok) => { if (!settled) { settled = true; resolve(ok); } };
+
+      const onPos = (lnglatGcj) => {
+        state.currentCenter = [lnglatGcj[0], lnglatGcj[1]];
+        state.currentMode = 'near';
+        renderStops(state.currentCenter);
+        state.map.setZoomAndCenter(13, state.currentCenter);
+        showToast('📍 已定位，显示周边 ' + state.radiusKm + 'km 站点');
+        finish(true);
+      };
+
+      // 优先高德定位
+      if (typeof AMap.Geolocation !== 'undefined') {
+        const geolocation = new AMap.Geolocation({
+          enableHighAccuracy: true,
+          timeout: 8000,
+          maximumAge: 30000,
+        });
+        geolocation.getCurrentPosition((status, result) => {
+          if (status === 'complete' && result && result.position) {
+            onPos([result.position.getLng(), result.position.getLat()]);
+          } else {
+            fallbackLocate(onPos, finish);
+          }
+        });
+      } else {
+        fallbackLocate(onPos, finish);
+      }
+    });
+  }
+
+  /** 回退：HTML5 geolocation（返回 WGS-84，转 GCJ） */
+  function fallbackLocate(onPos, finish) {
+    if (!('geolocation' in navigator)) {
+      showToast('无法定位，已显示全上海站点');
+      finish(false);
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const wgs = [pos.coords.longitude, pos.coords.latitude];
+        const g = toAMap(wgs[1], wgs[0]);
+        onPos([g[0], g[1]]);
+      },
+      () => {
+        showToast('定位被拒绝，已显示全上海站点');
+        finish(false);
+      },
+      { timeout: 8000, maximumAge: 30000 }
+    );
   }
 
   /* ========== 站点信息窗体 ========== */
@@ -208,7 +304,7 @@
       const has = s && typeof s.lat === 'number';
       let tooFar = false;
       if (has && prevLatLng) {
-        tooFar = haversineKm(prevLatLng[1], prevLatLng[0], s.lng, s.lat) > 15;
+        tooFar = haversineKm(prevLatLng[0], prevLatLng[1], s.lng, s.lat) > 15;
       }
       if (!has || tooFar) {
         if (cur.length >= 2) segments.push(cur);
@@ -390,6 +486,23 @@
     clearRouteLayers();
     state.currentRoute = null;
     document.querySelectorAll('.route-item').forEach((el) => el.classList.remove('active'));
+  });
+
+  // 视图控制
+  $('vc-locate').addEventListener('click', () => {
+    locateAndRender(5);
+  });
+  $('vc-all').addEventListener('click', () => {
+    state.currentMode = 'all';
+    renderStops(null);
+    fitShanghai();
+    showToast('🌐 已显示全上海站点');
+  });
+  $('vc-zoom-in').addEventListener('click', () => {
+    state.map.zoomIn();
+  });
+  $('vc-zoom-out').addEventListener('click', () => {
+    state.map.zoomOut();
   });
 
   /* ========== 启动 ========== */
