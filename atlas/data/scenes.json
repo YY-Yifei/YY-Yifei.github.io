@@ -13,6 +13,13 @@
       "description": "崇明线：浦东金桥至崇明裕安，两次穿越长江",
       "dataFile": "data/scenes/shanghai-metro-line22.json",
       "tags": ["地铁", "上海", "越江"]
+    },
+    {
+      "id": "shanghai-metro-line20",
+      "name": "上海地铁20号线",
+      "description": "在建：普陀交通路至浦东北新园路，21站，串联真如、大宁、五角场、外高桥",
+      "dataFile": "data/scenes/shanghai-metro-line20.json",
+      "tags": ["地铁", "上海", "在建"]
     }
   ]
 }
