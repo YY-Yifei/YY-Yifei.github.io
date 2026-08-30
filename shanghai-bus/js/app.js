@@ -137,7 +137,11 @@
     });
     state.massMarks.on('click', (e) => {
       const data = e.data;
-      showStopInfo(data.lnglat, data.name, data.rc);
+      const ll = data && data.lnglat;
+      if (!ll) return;
+      const pos = Array.isArray(ll) ? [ll[0], ll[1]] : [ll.getLng(), ll.getLat()];
+      if (!Number.isFinite(pos[0]) || !Number.isFinite(pos[1])) return;
+      showStopInfo(pos, data.name, data.rc);
     });
     state.massMarks.setMap(state.map);
   }
@@ -148,9 +152,9 @@
     let points;
     if (center) {
       const [clng, clat] = center;
-      const r2 = state.radiusKm * state.radiusKm;
       points = [];
       for (const s of state.stops) {
+        if (!Number.isFinite(s.gLng) || !Number.isFinite(s.gLat)) continue;
         const d = haversineKm(clng, clat, s.gLng, s.gLat);
         if (d <= state.radiusKm) {
           points.push({ lnglat: [s.gLng, s.gLat], name: s.n, rc: s.rc || 0 });
@@ -158,11 +162,12 @@
       }
       $('stat-stops').textContent = '周边站点 ' + points.length;
     } else {
-      points = state.stops.map((s) => ({
-        lnglat: [s.gLng, s.gLat],
-        name: s.n,
-        rc: s.rc || 0,
-      }));
+      points = [];
+      for (const s of state.stops) {
+        if (Number.isFinite(s.gLng) && Number.isFinite(s.gLat)) {
+          points.push({ lnglat: [s.gLng, s.gLat], name: s.n, rc: s.rc || 0 });
+        }
+      }
       $('stat-stops').textContent = '站点 ' + (state.stopIndex.size || points.length);
     }
     state.massMarks.setData(points);
@@ -176,6 +181,10 @@
       const finish = (ok) => { if (!settled) { settled = true; resolve(ok); } };
 
       const onPos = (lnglatGcj) => {
+        if (!lnglatGcj || !Number.isFinite(lnglatGcj[0]) || !Number.isFinite(lnglatGcj[1])) {
+          finish(false);
+          return;
+        }
         state.currentCenter = [lnglatGcj[0], lnglatGcj[1]];
         state.currentMode = 'near';
         renderStops(state.currentCenter);
@@ -227,6 +236,7 @@
 
   /* ========== 站点信息窗体 ========== */
   function showStopInfo(lnglat, name, rc, label) {
+    if (!lnglat || !Number.isFinite(lnglat[0]) || !Number.isFinite(lnglat[1])) return;
     const content = document.createElement('div');
     content.innerHTML =
       '<div class="sname">🚏 ' + escapeHtml(name) + (label ? '<span class="slabel">' + escapeHtml(label) + '</span>' : '') + '</div>' +
@@ -397,16 +407,18 @@
 
     // 站点 marker
     stops.forEach((s, i) => {
-      if (!s || typeof s.lat !== 'number') return;
+      if (!s || typeof s.lat !== 'number' || !Number.isFinite(s.lat) || !Number.isFinite(s.lng)) return;
+      const pos = toAMap(s.lat, s.lng);
+      if (!Number.isFinite(pos[0]) || !Number.isFinite(pos[1])) return;
       const marker = new AMap.Marker({
-        position: toAMap(s.lat, s.lng),
+        position: pos,
         content: makeStopDot(i + 1, color, s.n),
         offset: new AMap.Pixel(-9, -9),
         zIndex: 30,
         title: s.n,
       });
       marker.on('click', () => {
-        showStopInfo(toAMap(s.lat, s.lng), s.n, stopRouteCount(s.n), dirLabel + ' 第' + (i + 1) + '站');
+        showStopInfo(pos, s.n, stopRouteCount(s.n), dirLabel + ' 第' + (i + 1) + '站');
       });
       marker.setMap(state.map);
       state.currentMarkers.push(marker);
@@ -475,7 +487,9 @@
         if (has) {
           row.style.cursor = 'pointer';
           row.addEventListener('click', () => {
+            if (!Number.isFinite(s.lat) || !Number.isFinite(s.lng)) return;
             const lnglat = toAMap(s.lat, s.lng);
+            if (!Number.isFinite(lnglat[0]) || !Number.isFinite(lnglat[1])) return;
             state.map.setZoomAndCenter(16, lnglat);
             showStopInfo(lnglat, s.n, stopRouteCount(s.n));
           });
@@ -508,13 +522,25 @@
     if (route.down) lists.push(route.down);
     for (const list of lists) {
       for (const s of list) {
-        if (s && typeof s.lat === 'number') pts.push(toAMap(s.lat, s.lng));
+        if (s && typeof s.lat === 'number' && Number.isFinite(s.lat) && Number.isFinite(s.lng)) {
+          pts.push(toAMap(s.lat, s.lng));
+        }
       }
     }
     if (pts.length >= 2) {
-      const bounds = new AMap.Bounds(pts[0], pts[0]);
-      for (const p of pts) bounds.extend(p);
-      state.map.setBounds(bounds, null, [40, 40, 40, 40]);
+      // Bounds 必须用 LngLat 实例构造（传数组会得到 LngLat(NaN, NaN)）
+      let minLng = pts[0][0], minLat = pts[0][1], maxLng = pts[0][0], maxLat = pts[0][1];
+      for (const p of pts) {
+        if (p[0] < minLng) minLng = p[0];
+        if (p[1] < minLat) minLat = p[1];
+        if (p[0] > maxLng) maxLng = p[0];
+        if (p[1] > maxLat) maxLat = p[1];
+      }
+      const bounds = new AMap.Bounds(
+        new AMap.LngLat(minLng, minLat),
+        new AMap.LngLat(maxLng, maxLat)
+      );
+      state.map.setBounds(bounds, false, { top: 40, right: 40, bottom: 40, left: 40 });
     }
   }
 
