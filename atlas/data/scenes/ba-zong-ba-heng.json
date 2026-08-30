@@ -1,0 +1,213 @@
+{
+  "id": "ba-zong-ba-heng",
+  "name": "八纵八横高铁网",
+  "type": "railway",
+  "description": "《中长期铁路网规划》(2016) 提出的全国高速铁路网骨架：八条南北纵向通道 + 八条东西横向通道，连接京津冀、长三角、珠三角、成渝四大城市群，截至2025年高铁运营里程超4.8万公里，居世界第一。",
+  "view": {
+    "center": [
+      34.5,
+      108
+    ],
+    "zoom": 4
+  },
+  "nodes": [
+    { "id": "beijing", "name": "北京", "lat": 39.9042, "lng": 116.4074, "type": "hub", "typeLabel": "枢纽·首都", "description": "京沪/京港台/京哈京港澳/京昆/京兰/京张等通道交汇，全国高铁网核心" },
+    { "id": "tianjin", "name": "天津", "lat": 39.0842, "lng": 117.201, "type": "hub", "typeLabel": "枢纽", "description": "沿海/京沪通道交汇，京沪高铁北端枢纽" },
+    { "id": "shijiazhuang", "name": "石家庄", "lat": 38.0428, "lng": 114.5149, "type": "hub", "typeLabel": "枢纽", "description": "京哈京港澳/青银通道交汇" },
+    { "id": "taiyuan", "name": "太原", "lat": 37.8706, "lng": 112.5489, "type": "hub", "typeLabel": "枢纽", "description": "呼南/京昆/青银通道交汇" },
+    { "id": "hohhot", "name": "呼和浩特", "lat": 40.8426, "lng": 111.7492, "type": "hub", "typeLabel": "枢纽", "description": "呼南/京兰通道交汇，呼张高铁直通北京" },
+    { "id": "shenyang", "name": "沈阳", "lat": 41.8057, "lng": 123.4315, "type": "hub", "typeLabel": "枢纽", "description": "京哈通道东北段核心枢纽" },
+    { "id": "changchun", "name": "长春", "lat": 43.8171, "lng": 125.3235, "type": "station", "typeLabel": "车站", "description": "京哈通道站点，哈大高铁途经" },
+    { "id": "harbin", "name": "哈尔滨", "lat": 45.8038, "lng": 126.535, "type": "terminal", "typeLabel": "终点", "description": "京哈通道北端终点，绥满通道交汇，哈大高铁起点" },
+    { "id": "qiqihar", "name": "齐齐哈尔", "lat": 47.3543, "lng": 123.9182, "type": "station", "typeLabel": "车站", "description": "绥满通道站点" },
+    { "id": "mudanjiang", "name": "牡丹江", "lat": 44.583, "lng": 129.5995, "type": "station", "typeLabel": "车站", "description": "绥满通道站点，哈牡客专终点" },
+    { "id": "suifenhe", "name": "绥芬河", "lat": 44.412, "lng": 131.151, "type": "border", "typeLabel": "口岸·终点", "description": "绥满通道东端终点，对俄铁路口岸" },
+    { "id": "manzhouli", "name": "满洲里", "lat": 49.5983, "lng": 117.379, "type": "border", "typeLabel": "口岸·终点", "description": "绥满通道西端终点，对俄铁路口岸" },
+    { "id": "dalian", "name": "大连", "lat": 38.914, "lng": 121.6147, "type": "terminal", "typeLabel": "终点", "description": "沿海通道北端终点，哈大高铁南端" },
+    { "id": "jinan", "name": "济南", "lat": 36.6512, "lng": 117.1201, "type": "hub", "typeLabel": "枢纽", "description": "京沪/青银通道交汇" },
+    { "id": "qingdao", "name": "青岛", "lat": 36.0671, "lng": 120.3826, "type": "terminal", "typeLabel": "终点", "description": "青银通道东端终点，沿海通道重要节点" },
+    { "id": "xuzhou", "name": "徐州", "lat": 34.205, "lng": 117.285, "type": "hub", "typeLabel": "枢纽", "description": "陆桥通道与京沪高铁交汇的十字枢纽" },
+    { "id": "lianyungang", "name": "连云港", "lat": 34.6, "lng": 119.222, "type": "terminal", "typeLabel": "终点", "description": "陆桥通道东端起点，沿海通道节点" },
+    { "id": "nanjing", "name": "南京", "lat": 32.0603, "lng": 118.7969, "type": "hub", "typeLabel": "枢纽", "description": "京沪/沿江通道交汇" },
+    { "id": "shanghai", "name": "上海", "lat": 31.2304, "lng": 121.4737, "type": "hub", "typeLabel": "枢纽·终点", "description": "京沪/沿海/沿江/沪昆通道交汇，全国高铁网东端核心" },
+    { "id": "hangzhou", "name": "杭州", "lat": 30.2741, "lng": 120.1551, "type": "hub", "typeLabel": "枢纽", "description": "沪昆通道重要枢纽，杭甬高铁连接宁波" },
+    { "id": "ningbo", "name": "宁波", "lat": 29.8683, "lng": 121.544, "type": "terminal", "typeLabel": "终点", "description": "沿海通道节点，杭甬高铁终点" },
+    { "id": "hefei", "name": "合肥", "lat": 31.8206, "lng": 117.2272, "type": "hub", "typeLabel": "枢纽", "description": "京港台/沿江通道交汇" },
+    { "id": "fuzhou", "name": "福州", "lat": 26.0745, "lng": 119.2965, "type": "hub", "typeLabel": "枢纽", "description": "沿海通道节点，京港台支线（合福高铁）终点" },
+    { "id": "xiamen", "name": "厦门", "lat": 24.4798, "lng": 118.0894, "type": "terminal", "typeLabel": "终点", "description": "沿海/厦渝通道交汇，东南沿海重要枢纽" },
+    { "id": "nanchang", "name": "南昌", "lat": 28.682, "lng": 115.8579, "type": "hub", "typeLabel": "枢纽", "description": "京港台/沪昆通道交汇" },
+    { "id": "zhengzhou", "name": "郑州", "lat": 34.7466, "lng": 113.6254, "type": "hub", "typeLabel": "枢纽", "description": "京广/徐兰/郑万/郑太等交汇，全国高铁『米』字形枢纽" },
+    { "id": "shangqiu", "name": "商丘", "lat": 34.4143, "lng": 115.6564, "type": "station", "typeLabel": "车站", "description": "京港台通道站点" },
+    { "id": "heze", "name": "菏泽", "lat": 35.233, "lng": 115.481, "type": "station", "typeLabel": "车站", "description": "京港台通道站点" },
+    { "id": "hengshui", "name": "衡水", "lat": 37.739, "lng": 115.67, "type": "station", "typeLabel": "车站", "description": "京港台通道站点，京雄商高铁途经" },
+    { "id": "fuyang", "name": "阜阳", "lat": 32.89, "lng": 115.814, "type": "station", "typeLabel": "车站", "description": "京港台通道站点" },
+    { "id": "xiangyang", "name": "襄阳", "lat": 32.009, "lng": 112.123, "type": "station", "typeLabel": "车站", "description": "呼南通道站点，郑万高铁途经" },
+    { "id": "wuhan", "name": "武汉", "lat": 30.5928, "lng": 114.3055, "type": "hub", "typeLabel": "枢纽", "description": "京广/沿江通道交汇，九省通衢" },
+    { "id": "yichang", "name": "宜昌", "lat": 30.692, "lng": 111.286, "type": "station", "typeLabel": "车站", "description": "沿江通道站点" },
+    { "id": "changsha", "name": "长沙", "lat": 28.2282, "lng": 112.9388, "type": "hub", "typeLabel": "枢纽", "description": "京广/沪昆/厦渝通道交汇" },
+    { "id": "changde", "name": "常德", "lat": 29.0316, "lng": 111.6985, "type": "station", "typeLabel": "车站", "description": "呼南/厦渝通道交汇" },
+    { "id": "yiyang", "name": "益阳", "lat": 28.554, "lng": 112.355, "type": "station", "typeLabel": "车站", "description": "呼南通道站点" },
+    { "id": "shaoyang", "name": "邵阳", "lat": 27.2389, "lng": 111.4677, "type": "station", "typeLabel": "车站", "description": "呼南通道站点" },
+    { "id": "yongzhou", "name": "永州", "lat": 26.42, "lng": 111.613, "type": "station", "typeLabel": "车站", "description": "呼南通道站点" },
+    { "id": "zhangjiajie", "name": "张家界", "lat": 29.117, "lng": 110.479, "type": "station", "typeLabel": "车站", "description": "厦渝通道站点" },
+    { "id": "guangzhou", "name": "广州", "lat": 23.1291, "lng": 113.2644, "type": "hub", "typeLabel": "枢纽·终点", "description": "京广/贵广/南广/沿海通道交汇，华南核心枢纽" },
+    { "id": "shenzhen", "name": "深圳", "lat": 22.5431, "lng": 114.0579, "type": "hub", "typeLabel": "枢纽", "description": "京港台/京港澳通道交汇，广深港高铁枢纽" },
+    { "id": "hongkong", "name": "香港", "lat": 22.32, "lng": 114.17, "type": "terminal", "typeLabel": "终点", "description": "京港/京港澳通道南端终点，西九龙站接入全国高铁网" },
+    { "id": "zhanjiang", "name": "湛江", "lat": 21.2707, "lng": 110.3594, "type": "station", "typeLabel": "车站", "description": "沿海通道站点" },
+    { "id": "beihai", "name": "北海", "lat": 21.481, "lng": 109.12, "type": "station", "typeLabel": "车站", "description": "沿海通道站点" },
+    { "id": "fangchenggang", "name": "防城港", "lat": 21.6869, "lng": 108.3538, "type": "terminal", "typeLabel": "终点", "description": "沿海通道南端终点，毗邻越南边境" },
+    { "id": "nanning", "name": "南宁", "lat": 22.817, "lng": 108.3665, "type": "hub", "typeLabel": "枢纽", "description": "呼南/包海/广昆通道交汇，面向东盟的枢纽" },
+    { "id": "guilin", "name": "桂林", "lat": 25.274, "lng": 110.29, "type": "station", "typeLabel": "车站", "description": "呼南通道站点，贵广高铁途经" },
+    { "id": "guiyang", "name": "贵阳", "lat": 26.647, "lng": 106.63, "type": "hub", "typeLabel": "枢纽", "description": "沪昆/包海/兰广/贵广通道交汇，西南枢纽" },
+    { "id": "kunming", "name": "昆明", "lat": 24.8801, "lng": 102.8329, "type": "hub", "typeLabel": "枢纽·终点", "description": "京昆/沪昆/广昆通道交汇，面向南亚东南亚的门户" },
+    { "id": "chongqing", "name": "重庆", "lat": 29.563, "lng": 106.5516, "type": "hub", "typeLabel": "枢纽", "description": "包海/兰广/沿江/厦渝通道交汇，西部陆海新通道起点" },
+    { "id": "chengdu", "name": "成都", "lat": 30.5728, "lng": 104.0668, "type": "hub", "typeLabel": "枢纽", "description": "京昆/兰广/沿江通道交汇，成渝双城核心" },
+    { "id": "xian", "name": "西安", "lat": 34.3416, "lng": 108.9398, "type": "hub", "typeLabel": "枢纽", "description": "京昆/包海/陆桥通道交汇，西北最大枢纽" },
+    { "id": "lanzhou", "name": "兰州", "lat": 36.0611, "lng": 103.8343, "type": "hub", "typeLabel": "枢纽", "description": "京兰/陆桥/兰广通道交汇，西北咽喉" },
+    { "id": "xining", "name": "西宁", "lat": 36.6171, "lng": 101.7782, "type": "terminal", "typeLabel": "终点", "description": "兰广通道北端终点，兰新高铁途经" },
+    { "id": "yinchuan", "name": "银川", "lat": 38.4872, "lng": 106.2309, "type": "terminal", "typeLabel": "终点", "description": "京兰/青银通道交汇，包银高铁北端" },
+    { "id": "urumqi", "name": "乌鲁木齐", "lat": 43.8256, "lng": 87.6168, "type": "terminal", "typeLabel": "终点", "description": "陆桥通道西端终点，兰新高铁西端" },
+    { "id": "baotou", "name": "包头", "lat": 40.6574, "lng": 109.8403, "type": "terminal", "typeLabel": "终点", "description": "包海通道北端起点" },
+    { "id": "yanan", "name": "延安", "lat": 36.585, "lng": 109.49, "type": "station", "typeLabel": "车站", "description": "包海通道站点，西延高铁途经" },
+    { "id": "datong", "name": "大同", "lat": 40.076, "lng": 113.3, "type": "station", "typeLabel": "车站", "description": "呼南通道站点" },
+    { "id": "ganzhou", "name": "赣州", "lat": 25.831, "lng": 114.935, "type": "station", "typeLabel": "车站", "description": "京港台/厦渝通道交汇" },
+    { "id": "jiujiang", "name": "九江", "lat": 29.705, "lng": 116.002, "type": "station", "typeLabel": "车站", "description": "京港台通道站点" },
+    { "id": "yancheng", "name": "盐城", "lat": 33.348, "lng": 120.163, "type": "station", "typeLabel": "车站", "description": "沿海通道站点" },
+    { "id": "nantong", "name": "南通", "lat": 31.9804, "lng": 120.8943, "type": "station", "typeLabel": "车站", "description": "沿海通道站点，沪苏通长江公铁大桥所在地" },
+    { "id": "shantou", "name": "汕头", "lat": 23.354, "lng": 116.682, "type": "terminal", "typeLabel": "终点", "description": "沿海通道节点，广汕高铁终点" },
+    { "id": "longyan", "name": "龙岩", "lat": 25.075, "lng": 117.017, "type": "station", "typeLabel": "车站", "description": "厦渝通道站点" },
+    { "id": "qianjiang", "name": "黔江", "lat": 29.533, "lng": 108.771, "type": "station", "typeLabel": "车站", "description": "厦渝通道站点，渝怀铁路沿线" },
+    { "id": "haikou", "name": "海口", "lat": 20.044, "lng": 110.199, "type": "terminal", "typeLabel": "终点", "description": "包海通道南端终点，琼州海峡跨海通道规划中" },
+    { "id": "taipei", "name": "台北", "lat": 25.033, "lng": 121.565, "type": "terminal", "typeLabel": "终点", "description": "京港台通道规划支线南端终点（京台高铁远期规划）" }
+  ],
+  "lines": [
+    {
+      "id": "v-yanhai",
+      "name": "八纵① 沿海通道",
+      "color": "#e74c3c",
+      "path": ["dalian", "tianjin", "qingdao", "lianyungang", "yancheng", "nantong", "shanghai", "ningbo", "fuzhou", "xiamen", "shantou", "guangzhou", "zhanjiang", "beihai", "fangchenggang"],
+      "description": "北起大连，经天津、青岛、连云港、上海、宁波、福州、厦门、汕头、广州至防城港，串联全部东部沿海城市群"
+    },
+    {
+      "id": "v-jinghu",
+      "name": "八纵② 京沪通道",
+      "color": "#c0392b",
+      "path": ["beijing", "tianjin", "jinan", "nanjing", "shanghai"],
+      "description": "北京—天津—济南—南京—上海，全国最繁忙的高铁走廊，京沪高铁全长1318公里，设计时速350km/h"
+    },
+    {
+      "id": "v-jinggangtai",
+      "name": "八纵③ 京港（台）通道",
+      "color": "#e84393",
+      "path": ["beijing", "hengshui", "heze", "shangqiu", "fuyang", "hefei", "jiujiang", "nanchang", "ganzhou", "shenzhen", "hongkong"],
+      "description": "北京—衡水—菏泽—商丘—阜阳—合肥—九江—南昌—赣州—深圳—香港，京雄商+商合杭+昌赣+赣深+广深港高铁串联"
+    },
+    {
+      "id": "v-jinggangtai-branch",
+      "name": "八纵③ 京港台·合福支线",
+      "color": "#fd79a8",
+      "dashed": true,
+      "path": ["hefei", "fuzhou", "taipei"],
+      "description": "合肥—福州—台北支线（规划），合福高铁已通车，京台高铁跨海峡段为远期规划"
+    },
+    {
+      "id": "v-jingha",
+      "name": "八纵④ 京哈—京港澳通道",
+      "color": "#d35400",
+      "path": ["harbin", "changchun", "shenyang", "beijing", "shijiazhuang", "zhengzhou", "wuhan", "changsha", "guangzhou", "shenzhen", "hongkong"],
+      "description": "哈尔滨—长春—沈阳—北京—石家庄—郑州—武汉—长沙—广州—深圳—香港，纵贯东北与中南的客运大动脉，京广高铁2300公里"
+    },
+    {
+      "id": "v-hunan",
+      "name": "八纵⑤ 呼南通道",
+      "color": "#f39c12",
+      "path": ["hohhot", "datong", "taiyuan", "zhengzhou", "xiangyang", "changde", "yiyang", "shaoyang", "yongzhou", "guilin", "nanning"],
+      "description": "呼和浩特—大同—太原—郑州—襄阳—常德—益阳—邵阳—永州—桂林—南宁，连接华北与华南腹地"
+    },
+    {
+      "id": "v-jingkun",
+      "name": "八纵⑥ 京昆通道",
+      "color": "#e67e22",
+      "path": ["beijing", "taiyuan", "xian", "chengdu", "kunming"],
+      "description": "北京—太原—西安—成都—昆明，经大西客专、西成高铁、成昆复线，连接华北、西北与西南"
+    },
+    {
+      "id": "v-baohai",
+      "name": "八纵⑦ 包（银）海通道",
+      "color": "#c2185b",
+      "path": ["baotou", "yanan", "xian", "chongqing", "guiyang", "nanning", "haikou"],
+      "description": "包头—延安—西安—重庆—贵阳—南宁—海口，西部纵向大通道，琼州海峡段规划中"
+    },
+    {
+      "id": "v-baohai-branch",
+      "name": "八纵⑦ 包海·银西支线",
+      "color": "#e91e63",
+      "dashed": true,
+      "path": ["yinchuan", "xian"],
+      "description": "银川—西安支线（银西高铁已通车），银川接入全国高铁网"
+    },
+    {
+      "id": "v-lanxiguang",
+      "name": "八纵⑧ 兰（西）广通道",
+      "color": "#8e44ad",
+      "path": ["lanzhou", "xining", "chengdu", "chongqing", "guiyang", "guangzhou"],
+      "description": "兰州（西宁）—成都—重庆—贵阳—广州，连接西北与华南，成贵高铁已通车"
+    },
+    {
+      "id": "h-suiman",
+      "name": "八横① 绥满通道",
+      "color": "#3498db",
+      "path": ["suifenhe", "mudanjiang", "harbin", "qiqihar", "manzhouli"],
+      "description": "绥芬河—牡丹江—哈尔滨—齐齐哈尔—满洲里，东北东西向通道，两端均为对俄口岸"
+    },
+    {
+      "id": "h-jinglan",
+      "name": "八横② 京兰通道",
+      "color": "#2980b9",
+      "path": ["beijing", "hohhot", "yinchuan", "lanzhou"],
+      "description": "北京—呼和浩特—银川—兰州，京呼高铁已通车，包银高铁在建"
+    },
+    {
+      "id": "h-qingyin",
+      "name": "八横③ 青银通道",
+      "color": "#2c3e50",
+      "path": ["qingdao", "jinan", "shijiazhuang", "taiyuan", "yinchuan"],
+      "description": "青岛—济南—石家庄—太原—银川，连接山东半岛与西北，石济客专已通车"
+    },
+    {
+      "id": "h-luqiao",
+      "name": "八横④ 陆桥通道",
+      "color": "#27ae60",
+      "path": ["lianyungang", "xuzhou", "zhengzhou", "xian", "lanzhou", "xining", "urumqi"],
+      "description": "连云港—徐州—郑州—西安—兰州—西宁—乌鲁木齐，陇海—兰新高铁线，徐兰高铁已通车、兰新二线为双线电气化"
+    },
+    {
+      "id": "h-yanjiang",
+      "name": "八横⑤ 沿江通道",
+      "color": "#16a085",
+      "path": ["shanghai", "nanjing", "hefei", "wuhan", "yichang", "chongqing", "chengdu"],
+      "description": "上海—南京—合肥—武汉—宜昌—重庆—成都，沿长江黄金水道，沪渝蓉沿江高铁（北沿江）建设中"
+    },
+    {
+      "id": "h-hukun",
+      "name": "八横⑥ 沪昆通道",
+      "color": "#1abc9c",
+      "path": ["shanghai", "hangzhou", "nanchang", "changsha", "guiyang", "kunming"],
+      "description": "上海—杭州—南昌—长沙—贵阳—昆明，沪昆高铁全长2252公里，横贯华东、华中与西南"
+    },
+    {
+      "id": "h-xiayu",
+      "name": "八横⑦ 厦渝通道",
+      "color": "#00b894",
+      "path": ["xiamen", "longyan", "ganzhou", "changsha", "changde", "zhangjiajie", "qianjiang", "chongqing"],
+      "description": "厦门—龙岩—赣州—长沙—常德—张家界—黔江—重庆，连接海峡西岸与成渝，渝厦高铁在建"
+    },
+    {
+      "id": "h-guangkun",
+      "name": "八横⑧ 广昆通道",
+      "color": "#00cec9",
+      "path": ["guangzhou", "nanning", "kunming"],
+      "description": "广州—南宁—昆明，南广高铁、南昆客专已通车，连接珠三角与东盟门户"
+    }
+  ]
+}

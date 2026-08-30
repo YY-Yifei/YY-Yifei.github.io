@@ -34,6 +34,13 @@
       "description": "西（阿拉山口/霍尔果斯）、中（二连浩特）、东（满洲里/绥芬河）三通道横跨亚欧大陆，通达欧洲25国200余城，莫斯科为最大到站，70 节点 / 20 线路",
       "dataFile": "data/scenes/cr-express.json",
       "tags": ["铁路", "一带一路", "国际联运"]
+    },
+    {
+      "id": "ba-zong-ba-heng",
+      "name": "八纵八横高铁网",
+      "description": "《中长期铁路网规划》全国高铁网骨架：8条南北纵线 + 8条东西横线，68 节点 / 18 线路，覆盖全国主要城市群",
+      "dataFile": "data/scenes/ba-zong-ba-heng.json",
+      "tags": ["铁路", "高铁", "规划"]
     }
   ]
 }
