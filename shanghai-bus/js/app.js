@@ -157,7 +157,7 @@
         if (!Number.isFinite(s.gLng) || !Number.isFinite(s.gLat)) continue;
         const d = haversineKm(clng, clat, s.gLng, s.gLat);
         if (d <= state.radiusKm) {
-          points.push({ lnglat: [s.gLng, s.gLat], name: s.n, rc: s.rc || 0 });
+          points.push({ lnglat: new AMap.LngLat(s.gLng, s.gLat), name: s.n, rc: s.rc || 0 });
         }
       }
       $('stat-stops').textContent = '周边站点 ' + points.length;
@@ -165,7 +165,7 @@
       points = [];
       for (const s of state.stops) {
         if (Number.isFinite(s.gLng) && Number.isFinite(s.gLat)) {
-          points.push({ lnglat: [s.gLng, s.gLat], name: s.n, rc: s.rc || 0 });
+          points.push({ lnglat: new AMap.LngLat(s.gLng, s.gLat), name: s.n, rc: s.rc || 0 });
         }
       }
       $('stat-stops').textContent = '站点 ' + (state.stopIndex.size || points.length);
@@ -188,7 +188,7 @@
         state.currentCenter = [lnglatGcj[0], lnglatGcj[1]];
         state.currentMode = 'near';
         renderStops(state.currentCenter);
-        state.map.setZoomAndCenter(13, state.currentCenter);
+        state.map.setZoomAndCenter(13, new AMap.LngLat(state.currentCenter[0], state.currentCenter[1]));
         showToast('📍 已定位，显示周边 ' + state.radiusKm + 'km 站点');
         finish(true);
       };
@@ -245,7 +245,7 @@
       state.currentInfoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
     }
     state.currentInfoWindow.setContent(content);
-    state.currentInfoWindow.open(state.map, lnglat);
+    state.currentInfoWindow.open(state.map, new AMap.LngLat(lnglat[0], lnglat[1]));
 
     // 异步加载线路列表并渲染
     loadStopRoutes(name).then((list) => {
@@ -490,7 +490,7 @@
             if (!Number.isFinite(s.lat) || !Number.isFinite(s.lng)) return;
             const lnglat = toAMap(s.lat, s.lng);
             if (!Number.isFinite(lnglat[0]) || !Number.isFinite(lnglat[1])) return;
-            state.map.setZoomAndCenter(16, lnglat);
+            state.map.setZoomAndCenter(16, new AMap.LngLat(lnglat[0], lnglat[1]));
             showStopInfo(lnglat, s.n, stopRouteCount(s.n));
           });
         } else {
@@ -512,7 +512,7 @@
 
   /* ========== 视野 ========== */
   function fitShanghai() {
-    state.map.setZoomAndCenter(10, [121.47, 31.23]);
+    state.map.setZoomAndCenter(10, new AMap.LngLat(121.47, 31.23));
   }
 
   function fitRoute(route) {
