@@ -275,19 +275,37 @@ function showSceneInfo(data, scene) {
 
 /* ========== POI 搜索 / 坐标定位 ========== */
 
-/** 解析坐标输入，如 "31.24, 121.49" / "121.49 31.24"（自动判断 lat/lng 顺序） */
-function parseCoord(str) {
-  // 清除零宽字符/全角空格/BOM 等不可见字符（手机复制坐标常带），统一转普通空格
-  const cleaned = String(str).replace(/[\u200b-\u200f\u2028\u2029\u00a0\u3000\ufeff]/g, ' ').trim();
-  const m = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*[,，\s]\s*(-?\d+(?:\.\d+)?)$/);
-  if (!m) return null;
-  const a = parseFloat(m[1]);
-  const b = parseFloat(m[2]);
+/** 坐标对 → {lat, lng}（自动判断 lat/lng 顺序） */
+function buildCoord(aStr, bStr) {
+  const a = parseFloat(aStr);
+  const b = parseFloat(bStr);
+  if (isNaN(a) || isNaN(b)) return null;
   const aIsLat = Math.abs(a) <= 90;
   const bIsLat = Math.abs(b) <= 90;
   if (aIsLat && !bIsLat) return { lat: a, lng: b };   // 31, 121 → lat, lng
   if (!aIsLat && bIsLat) return { lat: b, lng: a };   // 121, 31 → lng, lat
   if (aIsLat && bIsLat) return { lat: a, lng: b };    // 都合法，按 lat, lng
+  return null;
+}
+
+/** 解析坐标输入：全角→半角、清不可见字符，容忍复制带来的杂字符 */
+function parseCoord(str) {
+  const cleaned = String(str)
+    .replace(/[\u200b-\u200f\u2028\u2029\u00a0\u3000\ufeff]/g, ' ') // 零宽/全角空格等
+    .replace(/[０-９]/g, d => String.fromCharCode(d.charCodeAt(0) - 0xFEE0)) // 全角数字
+    .replace(/．/g, '.')  // 全角小数点
+    .replace(/，/g, ',')  // 全角逗号
+    .trim();
+
+  // 标准格式：数字[分隔符]数字
+  const m = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)$/);
+  if (m) return buildCoord(m[1], m[2]);
+
+  // 宽松路径：包含逗号且恰好有 2 个数字（容忍中间夹杂字符）
+  if (/,/.test(cleaned)) {
+    const nums = cleaned.match(/-?\d+(?:\.\d+)?/g);
+    if (nums && nums.length === 2) return buildCoord(nums[0], nums[1]);
+  }
   return null;
 }
 
