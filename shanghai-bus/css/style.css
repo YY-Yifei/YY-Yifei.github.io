@@ -147,7 +147,22 @@ body.sidebar-collapsed #sidebar-toggle { left: 8px; }
 /* 地图 marker 信息窗体优化 */
 .amap-info-content { font-size: 13px; }
 .amap-info-content .sname { font-weight: 700; color: var(--green-dark); font-size: 14px; margin-bottom: 4px; }
-.amap-info-content .smeta { color: var(--text-2); font-size: 12px; }
+.amap-info-content .sname .slabel { font-size: 11px; font-weight: 400; color: var(--text-2); margin-left: 6px; }
+.amap-info-content .smeta { color: var(--text-2); font-size: 12px; margin-bottom: 6px; }
+
+/* 途经线路 chips */
+.route-chips {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  max-width: 260px; max-height: 150px; overflow-y: auto;
+  margin-top: 4px;
+}
+.route-chip {
+  display: inline-block; padding: 3px 9px; font-size: 12px;
+  background: var(--green-light); color: var(--green-dark);
+  border: 1px solid #cdebd5; border-radius: 12px;
+  cursor: pointer; transition: background .15s, color .15s; user-select: none;
+}
+.route-chip:hover { background: var(--green); color: #fff; border-color: var(--green); }
 
 /* 滚动条 */
 #route-list::-webkit-scrollbar, #detail-stops::-webkit-scrollbar { width: 6px; }

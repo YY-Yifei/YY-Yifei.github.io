@@ -52,6 +52,7 @@
     currentMarkers: [],
     currentInfoWindow: null,
     searchTerm: '',
+    stopRoutes: null,    // 站名 -> 途经线路列表（懒加载）
     currentMode: 'all',  // 'near' 周边5km | 'all' 全上海
     currentCenter: null, // GCJ-02 [lng, lat]
     radiusKm: 5,
@@ -225,16 +226,77 @@
   }
 
   /* ========== 站点信息窗体 ========== */
-  function showStopInfo(lnglat, name, rc) {
+  function showStopInfo(lnglat, name, rc, label) {
     const content = document.createElement('div');
     content.innerHTML =
-      '<div class="sname">🚏 ' + escapeHtml(name) + '</div>' +
-      '<div class="smeta">途经线路 ' + (rc || '?') + ' 条</div>';
+      '<div class="sname">🚏 ' + escapeHtml(name) + (label ? '<span class="slabel">' + escapeHtml(label) + '</span>' : '') + '</div>' +
+      '<div class="smeta">途经线路加载中…</div>';
     if (!state.currentInfoWindow) {
       state.currentInfoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
     }
     state.currentInfoWindow.setContent(content);
     state.currentInfoWindow.open(state.map, lnglat);
+
+    // 异步加载线路列表并渲染
+    loadStopRoutes(name).then((list) => {
+      if (!state.currentInfoWindow || !state.currentInfoWindow.getContent()) return;
+      renderStopRoutes(content, name, label, list, rc);
+    });
+  }
+
+  /** 懒加载 stop_routes.json 并缓存 */
+  async function loadStopRoutes(name) {
+    if (!state.stopRoutes) {
+      try {
+        const res = await fetch('data/stop_routes.json');
+        state.stopRoutes = (await res.json()).stopRoutes || {};
+      } catch (e) {
+        state.stopRoutes = {};
+      }
+    }
+    return state.stopRoutes[name] || [];
+  }
+
+  /** 渲染站点弹窗的线路列表 */
+  function renderStopRoutes(container, name, label, list, rc) {
+    container.innerHTML = '';
+    const title = document.createElement('div');
+    title.className = 'sname';
+    title.innerHTML = '🚏 ' + escapeHtml(name) +
+      (label ? '<span class="slabel">' + escapeHtml(label) + '</span>' : '');
+    container.appendChild(title);
+
+    const meta = document.createElement('div');
+    meta.className = 'smeta';
+    meta.textContent = '途经 ' + (list.length || rc || 0) + ' 条线路';
+    container.appendChild(meta);
+
+    if (list.length) {
+      const wrap = document.createElement('div');
+      wrap.className = 'route-chips';
+      for (const rn of list) {
+        const chip = document.createElement('span');
+        chip.className = 'route-chip';
+        chip.textContent = rn;
+        chip.title = '查看 ' + rn + ' 线路走向';
+        chip.addEventListener('click', () => {
+          if (state.currentInfoWindow) state.currentInfoWindow.close();
+          const route = state.routes.find((r) => r.n === rn);
+          if (route) {
+            selectRoute(route);
+          } else {
+            showToast('⚠️ 未找到线路 ' + rn);
+          }
+        });
+        wrap.appendChild(chip);
+      }
+      container.appendChild(wrap);
+    } else {
+      const empty = document.createElement('div');
+      empty.className = 'smeta';
+      empty.textContent = rc && rc > 0 ? '（线路明细未收录）' : '（暂无线路信息）';
+      container.appendChild(empty);
+    }
   }
 
   /* ========== 线路列表 ========== */
@@ -344,7 +406,7 @@
         title: s.n,
       });
       marker.on('click', () => {
-        showStopInfo(toAMap(s.lat, s.lng), s.n + '（' + dirLabel + ' 第' + (i + 1) + '站）', stopRouteCount(s.n));
+        showStopInfo(toAMap(s.lat, s.lng), s.n, stopRouteCount(s.n), dirLabel + ' 第' + (i + 1) + '站');
       });
       marker.setMap(state.map);
       state.currentMarkers.push(marker);
