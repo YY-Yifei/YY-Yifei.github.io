@@ -1,0 +1,101 @@
+{
+  "id": "china-laos-railway",
+  "name": "中老铁路",
+  "type": "railway",
+  "description": "连接中国昆明与老挝万象的国际铁路（2021 年 12 月通车），全长 1000+ 公里。北起中国云南昆明，南至老挝首都万象。",
+  "view": {
+    "center": [21.5, 101.8],
+    "zoom": 6
+  },
+  "nodes": [
+    {
+      "id": "kunming",
+      "name": "昆明",
+      "lat": 24.8801,
+      "lng": 102.8329,
+      "type": "terminal",
+      "typeLabel": "起点/枢纽",
+      "description": "中老铁路中国段起点，昆明南站"
+    },
+    {
+      "id": "yuxi",
+      "name": "玉溪",
+      "lat": 24.3472,
+      "lng": 102.5439,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "云南中部城市，玉溪站"
+    },
+    {
+      "id": "puer",
+      "name": "普洱",
+      "lat": 22.7883,
+      "lng": 100.9667,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "普洱茶故乡，普洱站"
+    },
+    {
+      "id": "xishuangbanna",
+      "name": "西双版纳",
+      "lat": 22.0085,
+      "lng": 100.7974,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "景洪站，著名旅游目的地"
+    },
+    {
+      "id": "mohan",
+      "name": "磨憨",
+      "lat": 21.1914,
+      "lng": 101.6943,
+      "type": "border",
+      "typeLabel": "中国口岸",
+      "description": "中国磨憨口岸，中老铁路中国境内最后一站"
+    },
+    {
+      "id": "moding",
+      "name": "磨丁",
+      "lat": 21.1653,
+      "lng": 101.7110,
+      "type": "border",
+      "typeLabel": "老挝口岸",
+      "description": "老挝磨丁口岸，入境老挝第一站"
+    },
+    {
+      "id": "luangprabang",
+      "name": "琅勃拉邦",
+      "lat": 19.8856,
+      "lng": 102.1347,
+      "type": "hub",
+      "typeLabel": "枢纽/旅游",
+      "description": "世界文化遗产古城，老挝著名旅游城市"
+    },
+    {
+      "id": "vangvieng",
+      "name": "万荣",
+      "lat": 18.9167,
+      "lng": 102.4500,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "喀斯特地貌风光，户外运动胜地"
+    },
+    {
+      "id": "vientiane",
+      "name": "万象",
+      "lat": 17.9757,
+      "lng": 102.6331,
+      "type": "terminal",
+      "typeLabel": "终点",
+      "description": "老挝首都，中老铁路终点站"
+    }
+  ],
+  "lines": [
+    {
+      "id": "main-line",
+      "name": "中老铁路主线",
+      "color": "#e74c3c",
+      "path": ["kunming", "yuxi", "puer", "xishuangbanna", "mohan", "moding", "luangprabang", "vangvieng", "vientiane"]
+    }
+  ]
+}

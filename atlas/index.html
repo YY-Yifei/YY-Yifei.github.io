@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地图标记系统 · Atlas</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="sidebar">
+    <h1>🗺️ Atlas 地图标记系统</h1>
+    <p class="subtitle">场景数据由对话生成，GitHub Pages 托管</p>
+    <div id="scene-list">
+      <p class="loading">加载中…</p>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <div id="scene-info" class="hidden">
+    <button id="info-close">✕</button>
+    <h2 id="info-name"></h2>
+    <p id="info-desc"></p>
+    <div id="info-nodes"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

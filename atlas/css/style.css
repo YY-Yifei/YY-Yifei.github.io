@@ -1,0 +1,151 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- 侧边栏 ---------- */
+#sidebar {
+  width: 320px;
+  min-width: 320px;
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#sidebar h1 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+#sidebar .subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+#scene-list .scene-card {
+  background: #334155;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  border-left: 4px solid transparent;
+}
+
+#scene-list .scene-card:hover {
+  background: #475569;
+  transform: translateX(2px);
+}
+
+#scene-list .scene-card.active {
+  border-left-color: #38bdf8;
+  background: #475569;
+}
+
+.scene-card .scene-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.scene-card .scene-desc {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.scene-card .scene-tags {
+  margin-top: 6px;
+}
+
+.scene-card .tag {
+  display: inline-block;
+  font-size: 11px;
+  background: #0ea5e9;
+  color: white;
+  border-radius: 10px;
+  padding: 1px 8px;
+  margin-right: 4px;
+}
+
+/* ---------- 地图 ---------- */
+#map {
+  flex: 1;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* ---------- 场景信息面板 ---------- */
+#scene-info {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 300px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+#scene-info.hidden { display: none; }
+
+#info-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#scene-info h2 { font-size: 18px; margin-bottom: 6px; }
+#scene-info #info-desc { font-size: 13px; color: #64748b; margin-bottom: 12px; }
+#info-nodes { font-size: 13px; }
+#info-nodes .node-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+#info-nodes .node-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-self: center;
+}
+#info-nodes .node-name { font-weight: 600; }
+#info-nodes .node-type { font-size: 11px; color: #94a3b8; }
+#info-nodes .node-desc { color: #475569; }
+
+/* 加载提示 */
+.loading { color: #94a3b8; font-size: 13px; }
+
+/* Leaflet 自定义图标 */
+.custom-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}

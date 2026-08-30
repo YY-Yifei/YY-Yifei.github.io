@@ -1,0 +1,11 @@
+{
+  "scenes": [
+    {
+      "id": "china-laos-railway",
+      "name": "中老铁路",
+      "description": "连接中国昆明与老挝万象的国际铁路，全长 1000+ 公里",
+      "dataFile": "data/scenes/china-laos-railway.json",
+      "tags": ["铁路", "一带一路"]
+    }
+  ]
+}

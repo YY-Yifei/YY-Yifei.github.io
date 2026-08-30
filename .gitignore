@@ -1,0 +1,9 @@
+# 只提交 GitHub Pages 站点内容
+# 忽略工作区无关内容
+*
+!.gitignore
+!index.html
+!atlas/
+!atlas/**
+!assets/
+!assets/**
