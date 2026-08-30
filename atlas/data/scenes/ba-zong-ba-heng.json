@@ -2,7 +2,7 @@
   "id": "ba-zong-ba-heng",
   "name": "八纵八横高铁网",
   "type": "railway",
-  "description": "《中长期铁路网规划》(2016) 提出的全国高速铁路网骨架：八条南北纵向通道 + 八条东西横向通道，连接京津冀、长三角、珠三角、成渝四大城市群，截至2025年高铁运营里程超4.8万公里，居世界第一。",
+  "description": "《中长期铁路网规划》(2016) 提出的全国高速铁路网骨架：八条南北纵向通道 + 八条东西横向通道，连接京津冀、长三角、珠三角、成渝四大城市群。本图为规划网架示意：既有高铁、在建与规划区段均已逐段标注，未建成段用虚线或文字注明，截至2025年高铁运营里程超4.8万公里，居世界第一。",
   "view": {
     "center": [
       34.5,
@@ -16,6 +16,7 @@
     { "id": "shijiazhuang", "name": "石家庄", "lat": 38.0428, "lng": 114.5149, "type": "hub", "typeLabel": "枢纽", "description": "京哈京港澳/青银通道交汇" },
     { "id": "taiyuan", "name": "太原", "lat": 37.8706, "lng": 112.5489, "type": "hub", "typeLabel": "枢纽", "description": "呼南/京昆/青银通道交汇" },
     { "id": "hohhot", "name": "呼和浩特", "lat": 40.8426, "lng": 111.7492, "type": "hub", "typeLabel": "枢纽", "description": "呼南/京兰通道交汇，呼张高铁直通北京" },
+    { "id": "zhangjiakou", "name": "张家口", "lat": 40.7683, "lng": 114.8863, "type": "hub", "typeLabel": "枢纽", "description": "京张高铁终点，京昆/呼南通道北段交汇，京张/张呼/大张三线汇聚" },
     { "id": "shenyang", "name": "沈阳", "lat": 41.8057, "lng": 123.4315, "type": "hub", "typeLabel": "枢纽", "description": "京哈通道东北段核心枢纽" },
     { "id": "changchun", "name": "长春", "lat": 43.8171, "lng": 125.3235, "type": "station", "typeLabel": "车站", "description": "京哈通道站点，哈大高铁途经" },
     { "id": "harbin", "name": "哈尔滨", "lat": 45.8038, "lng": 126.535, "type": "terminal", "typeLabel": "终点", "description": "京哈通道北端终点，绥满通道交汇，哈大高铁起点" },
@@ -89,7 +90,7 @@
       "name": "八纵① 沿海通道",
       "color": "#e74c3c",
       "path": ["dalian", "qinhuangdao", "tianjin", "dongying", "weifang", "qingdao", "lianyungang", "yancheng", "nantong", "shanghai", "ningbo", "fuzhou", "xiamen", "shantou", "guangzhou", "zhanjiang", "beihai", "fangchenggang"],
-      "description": "北起大连，经秦皇岛、天津、东营、潍坊、青岛、连云港、盐城、南通、上海、宁波、福州、厦门、汕头、广州、湛江、北海至防城港，串联东部沿海城市群。注意：大连—天津段经秦皇岛绕行（津秦高铁+秦沈客专+哈大高铁），无直达线"
+      "description": "北起大连，经秦皇岛、天津、东营、潍坊、青岛、连云港、盐城、南通、上海、宁波、福州、厦门、汕头、广州、湛江、北海至防城港，串联东部沿海城市群。大连—秦皇岛段为规划（环渤海高铁，未建成），天津—东营—潍坊（津潍高铁）、湛江—北海（合湛高铁）段在建"
     },
     {
       "id": "v-jinghu",
@@ -103,7 +104,7 @@
       "name": "八纵③ 京港（台）通道",
       "color": "#e84393",
       "path": ["beijing", "hengshui", "heze", "shangqiu", "fuyang", "hefei", "jiujiang", "nanchang", "ganzhou", "shenzhen", "hongkong"],
-      "description": "北京—衡水—菏泽—商丘—阜阳—合肥—九江—南昌—赣州—深圳—香港，京雄商+商合杭+昌赣+赣深+广深港高铁串联"
+      "description": "北京—衡水—菏泽—商丘—阜阳—合肥—九江—南昌—赣州—深圳—香港。已通：商合杭/合安九/昌赣/赣深/广深港段；在建：北京—商丘（京雄商高铁）段"
     },
     {
       "id": "v-jinggangtai-branch",
@@ -124,22 +125,22 @@
       "id": "v-hunan",
       "name": "八纵⑤ 呼南通道",
       "color": "#f39c12",
-      "path": ["hohhot", "datong", "taiyuan", "zhengzhou", "xiangyang", "changde", "yiyang", "shaoyang", "yongzhou", "guilin", "nanning"],
-      "description": "呼和浩特—大同—太原—郑州—襄阳—常德—益阳—邵阳—永州—桂林—南宁，连接华北与华南腹地"
+      "path": ["hohhot", "zhangjiakou", "datong", "taiyuan", "zhengzhou", "xiangyang", "changde", "yiyang", "shaoyang", "yongzhou", "guilin", "nanning"],
+      "description": "呼和浩特—张家口—大同—太原—郑州—襄阳—常德—益阳—邵阳—永州—桂林—南宁。已通：张呼/大张/大西/郑太/郑万/常益长/衡柳柳南段；在建或规划：襄阳—常德、益阳—邵阳、邵阳—永州、永州—桂林段"
     },
     {
       "id": "v-jingkun",
       "name": "八纵⑥ 京昆通道",
       "color": "#e67e22",
-      "path": ["beijing", "taiyuan", "xian", "chengdu", "kunming"],
-      "description": "北京—太原—西安—成都—昆明，经大西客专、西成高铁、成昆复线，连接华北、西北与西南"
+      "path": ["beijing", "zhangjiakou", "datong", "taiyuan", "xian", "chengdu", "kunming"],
+      "description": "北京—张家口—大同—太原—西安—成都—昆明（京张高铁+大西高铁+西成高铁+成昆复线）；北京—太原间无直达高铁，经张家口、大同绕行；成都—昆明为客货共线复线，非350高铁"
     },
     {
       "id": "v-baohai",
       "name": "八纵⑦ 包（银）海通道",
       "color": "#c2185b",
       "path": ["baotou", "yanan", "xian", "chongqing", "guiyang", "nanning", "haikou"],
-      "description": "包头—延安—西安—重庆—贵阳—南宁—海口，西部纵向大通道，琼州海峡段规划中"
+      "description": "包头—延安—西安—重庆—贵阳—南宁—海口，西部纵向大通道。已通：贵南高铁、渝贵铁路；在建：包头—延安—西安（包西/西延高铁）、西安—重庆（西渝高铁）；规划：南宁—海口（跨琼州海峡，湛海高铁）段"
     },
     {
       "id": "v-baohai-branch",
@@ -154,28 +155,28 @@
       "name": "八纵⑧ 兰（西）广通道",
       "color": "#8e44ad",
       "path": ["lanzhou", "xining", "chengdu", "chongqing", "guiyang", "guangzhou"],
-      "description": "兰州（西宁）—成都—重庆—贵阳—广州，连接西北与华南，成贵高铁已通车"
+      "description": "兰州（西宁）—成都—重庆—贵阳—广州。已通：兰新/成渝/渝贵/贵广段；在建：西宁—成都（成兰铁路）段"
     },
     {
       "id": "h-suiman",
       "name": "八横① 绥满通道",
       "color": "#3498db",
       "path": ["suifenhe", "mudanjiang", "harbin", "qiqihar", "manzhouli"],
-      "description": "绥芬河—牡丹江—哈尔滨—齐齐哈尔—满洲里，东北东西向通道，两端均为对俄口岸"
+      "description": "绥芬河—牡丹江—哈尔滨—齐齐哈尔—满洲里，东北东西向通道，两端均为对俄口岸。已通：哈牡/哈齐高铁；齐齐哈尔—满洲里为既有滨洲铁路（普速），高铁规划中"
     },
     {
       "id": "h-jinglan",
       "name": "八横② 京兰通道",
       "color": "#2980b9",
       "path": ["beijing", "hohhot", "yinchuan", "lanzhou"],
-      "description": "北京—呼和浩特—银川—兰州，京呼高铁已通车，包银高铁在建"
+      "description": "北京—呼和浩特—银川—兰州。已通：京张+张呼高铁、中兰高铁；在建：呼和浩特—银川（包银高铁）段"
     },
     {
       "id": "h-qingyin",
       "name": "八横③ 青银通道",
       "color": "#2c3e50",
       "path": ["qingdao", "jinan", "shijiazhuang", "taiyuan", "yinchuan"],
-      "description": "青岛—济南—石家庄—太原—银川，连接山东半岛与西北，石济客专已通车"
+      "description": "青岛—济南—石家庄—太原—银川，连接山东半岛与西北。已通：济青/石济/石太段；太原—银川为太中银铁路（200km/h客货共线，非高铁），高铁段规划中"
     },
     {
       "id": "h-luqiao",
@@ -189,7 +190,7 @@
       "name": "八横⑤ 沿江通道",
       "color": "#16a085",
       "path": ["shanghai", "nanjing", "hefei", "wuhan", "yichang", "chongqing", "chengdu"],
-      "description": "上海—南京—合肥—武汉—宜昌—重庆—成都，沿长江黄金水道，沪渝蓉沿江高铁（北沿江）建设中"
+      "description": "上海—南京—合肥—武汉—宜昌—重庆—成都，沿长江黄金水道。已通：沪宁/合宁/合武/汉宜/成渝段；在建：宜昌—重庆（渝宜高铁）段"
     },
     {
       "id": "h-hukun",
@@ -203,7 +204,7 @@
       "name": "八横⑦ 厦渝通道",
       "color": "#00b894",
       "path": ["xiamen", "longyan", "ganzhou", "changsha", "changde", "zhangjiajie", "qianjiang", "chongqing"],
-      "description": "厦门—龙岩—赣州—长沙—常德—张家界—黔江—重庆，连接海峡西岸与成渝，渝厦高铁在建"
+      "description": "厦门—龙岩—赣州—长沙—常德—张家界—黔江—重庆，连接海峡西岸与成渝。已通：龙厦/赣龙复线/常益长/黔张常段；在建：赣州—长沙（长赣高铁，目前无直达）、黔江—重庆（渝湘高铁）段"
     },
     {
       "id": "h-guangkun",
