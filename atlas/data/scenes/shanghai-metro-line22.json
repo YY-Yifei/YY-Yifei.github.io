@@ -1,0 +1,112 @@
+{
+  "id": "shanghai-metro-line22",
+  "name": "上海地铁22号线",
+  "type": "metro",
+  "description": "上海轨道交通22号线（崇明线）：自浦东金桥至崇明裕安，全长约 43 公里，全程地下，两次穿越长江（南港隧道、北港隧道），最高时速 120 km/h。2026 年建成，可与 9 号线、12 号线换乘。",
+  "view": {
+    "center": [31.395, 121.76],
+    "zoom": 10
+  },
+  "nodes": [
+    {
+      "id": "jingji-road",
+      "name": "金吉路",
+      "lat": 31.2590,
+      "lng": 121.6200,
+      "type": "terminal",
+      "typeLabel": "起点",
+      "description": "22号线起点站，位于浦东金桥申江路/金海路，可换乘 9 号线"
+    },
+    {
+      "id": "shenjiang-road",
+      "name": "申江路",
+      "lat": 31.2875,
+      "lng": 121.6215,
+      "type": "hub",
+      "typeLabel": "换乘站",
+      "description": "申江路/巨峰路，可换乘 12 号线"
+    },
+    {
+      "id": "gaobao-road",
+      "name": "高宝路",
+      "lat": 31.3000,
+      "lng": 121.6210,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "申江路/高宝路，浦东段中间站"
+    },
+    {
+      "id": "lingkong-north-road",
+      "name": "凌空北路",
+      "lat": 31.3220,
+      "lng": 121.6430,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "东靖路/凌空北路，东靖路车辆段接轨站"
+    },
+    {
+      "id": "changxing-island",
+      "name": "长兴岛",
+      "lat": 31.3980,
+      "lng": 121.7230,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "长兴岛上唯一车站，潘圆公路/永卫路，北接崇明、南连浦东"
+    },
+    {
+      "id": "chenjiazhen",
+      "name": "陈家镇",
+      "lat": 31.5170,
+      "lng": 121.8360,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "崇明岛上第一站，服务陈家镇镇区"
+    },
+    {
+      "id": "dongtan",
+      "name": "东滩",
+      "lat": 31.5230,
+      "lng": 121.8720,
+      "type": "station",
+      "typeLabel": "车站",
+      "description": "位于崇明东滩开发片区（规划繁郁路/贝云路）"
+    },
+    {
+      "id": "yuan",
+      "name": "裕安",
+      "lat": 31.5320,
+      "lng": 121.9050,
+      "type": "terminal",
+      "typeLabel": "终点",
+      "description": "22号线终点站，位于陈家镇裕安社区（中滨路/北沿公路）"
+    }
+  ],
+  "lines": [
+    {
+      "id": "pudong-section",
+      "name": "浦东段",
+      "color": "#401AA6",
+      "path": ["jingji-road", "shenjiang-road", "gaobao-road", "lingkong-north-road"]
+    },
+    {
+      "id": "south-tunnel",
+      "name": "长江南港隧道（越江）",
+      "color": "#401AA6",
+      "dashed": true,
+      "path": ["lingkong-north-road", "changxing-island"]
+    },
+    {
+      "id": "north-tunnel",
+      "name": "长江北港隧道（越江）",
+      "color": "#401AA6",
+      "dashed": true,
+      "path": ["changxing-island", "chenjiazhen"]
+    },
+    {
+      "id": "chongming-section",
+      "name": "崇明段",
+      "color": "#401AA6",
+      "path": ["chenjiazhen", "dongtan", "yuan"]
+    }
+  ]
+}
