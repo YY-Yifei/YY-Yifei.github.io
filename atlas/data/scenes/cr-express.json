@@ -2,16 +2,19 @@
   "id": "cr-express",
   "name": "中欧班列",
   "type": "railway",
-  "description": "中欧班列是中国与欧洲之间的国际铁路联运班列，经西（阿拉山口/霍尔果斯）、中（二连浩特）、东（满洲里）三大通道出境，横跨亚欧大陆。截至2025年累计开行超10万列，通达欧洲25国200余城，运输时效约为海运的1/3、空运的1/5。",
+  "description": "中欧班列是中国与欧洲之间的国际铁路联运班列，经西（阿拉山口/霍尔果斯）、中（二连浩特）、东（满洲里/绥芬河）三大通道出境，横跨亚欧大陆。截至2025年累计开行超10万列，通达欧洲25国200余城；CSV 显示上月开行线路 743 条，莫斯科为最大到站（月均 478 列），运输时效约为海运的1/3、空运的1/5。",
   "view": {
-    "center": [50, 63],
+    "center": [
+      50,
+      63
+    ],
     "zoom": 3
   },
   "nodes": [
     {
       "id": "chongqing",
       "name": "重庆",
-      "lat": 29.5630,
+      "lat": 29.563,
       "lng": 106.5516,
       "type": "terminal",
       "typeLabel": "始发城市",
@@ -57,7 +60,7 @@
       "id": "yiwu",
       "name": "义乌",
       "lat": 29.3068,
-      "lng": 120.0750,
+      "lng": 120.075,
       "type": "terminal",
       "typeLabel": "始发城市",
       "description": "义新欧班列始发地，以出口小商品为主，线路直达西班牙马德里，全程13052公里"
@@ -84,7 +87,7 @@
       "id": "alashankou",
       "name": "阿拉山口",
       "lat": 45.1723,
-      "lng": 82.5670,
+      "lng": 82.567,
       "type": "border",
       "typeLabel": "出境口岸",
       "description": "中国西部最大陆路口岸，中欧班列西通道主力口岸，对应哈方多斯特克"
@@ -93,7 +96,7 @@
       "id": "khorgos",
       "name": "霍尔果斯",
       "lat": 44.2202,
-      "lng": 80.4200,
+      "lng": 80.42,
       "type": "border",
       "typeLabel": "出境口岸",
       "description": "西通道第二大口岸，中哈边境合作中心所在地，对应哈方阿腾科里"
@@ -101,7 +104,7 @@
     {
       "id": "erlian",
       "name": "二连浩特",
-      "lat": 43.6430,
+      "lat": 43.643,
       "lng": 111.9777,
       "type": "border",
       "typeLabel": "出境口岸",
@@ -137,7 +140,7 @@
     {
       "id": "aktogay",
       "name": "阿克斗卡（哈）",
-      "lat": 46.9500,
+      "lat": 46.95,
       "lng": 79.6667,
       "type": "hub",
       "typeLabel": "编组枢纽",
@@ -146,7 +149,7 @@
     {
       "id": "almaty",
       "name": "阿拉木图",
-      "lat": 43.2380,
+      "lat": 43.238,
       "lng": 76.8829,
       "type": "hub",
       "typeLabel": "哈最大城市",
@@ -155,7 +158,7 @@
     {
       "id": "shu",
       "name": "楚城（哈）",
-      "lat": 43.6000,
+      "lat": 43.6,
       "lng": 73.7667,
       "type": "station",
       "typeLabel": "铁路枢纽",
@@ -182,7 +185,7 @@
     {
       "id": "petropavl",
       "name": "彼得罗巴甫尔（哈）",
-      "lat": 54.8750,
+      "lat": 54.875,
       "lng": 69.1628,
       "type": "border",
       "typeLabel": "出境口岸",
@@ -192,7 +195,7 @@
       "id": "zamynuud",
       "name": "扎门乌德（蒙）",
       "lat": 43.7167,
-      "lng": 111.9000,
+      "lng": 111.9,
       "type": "border",
       "typeLabel": "蒙古口岸",
       "description": "蒙古国铁路口岸，与二连浩特隔界相望，中通道出境第一站"
@@ -210,7 +213,7 @@
       "id": "sukhbaatar",
       "name": "苏赫巴托尔（蒙）",
       "lat": 50.2333,
-      "lng": 106.2000,
+      "lng": 106.2,
       "type": "border",
       "typeLabel": "蒙古口岸",
       "description": "蒙古北部边境口岸城市，出境俄罗斯纳乌什基，接入西伯利亚大铁路"
@@ -218,8 +221,8 @@
     {
       "id": "zabaykalsk",
       "name": "后贝加尔斯克（俄）",
-      "lat": 49.6450,
-      "lng": 117.0000,
+      "lat": 49.645,
+      "lng": 117.0,
       "type": "border",
       "typeLabel": "俄罗斯口岸",
       "description": "俄罗斯铁路口岸，与满洲里对应，东通道接入西伯利亚大铁路"
@@ -259,6 +262,384 @@
       "type": "terminal",
       "typeLabel": "欧洲终点",
       "description": "德国鲁尔区内陆港，欧洲最大内陆港，渝新欧等线路的主要终点"
+    },
+    {
+      "id": "shanghai",
+      "name": "上海",
+      "lat": 31.2313,
+      "lng": 121.47,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "沪欧班列始发地（闵行站），长三角货源中心，CSV 显示上月 18 条线路开行，出口以电子产品、汽车零部件为主"
+    },
+    {
+      "id": "suzhou",
+      "name": "苏州",
+      "lat": 31.3111,
+      "lng": 120.6213,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "苏州西站始发，制造业重镇，CSV 显示上月 31 条线路，电子、光伏产品出口主力"
+    },
+    {
+      "id": "shenyang",
+      "name": "沈阳",
+      "lat": 41.8026,
+      "lng": 123.4279,
+      "type": "hub",
+      "typeLabel": "始发·东北枢纽",
+      "description": "沈满欧班列始发地（蒲河站），东北最大集结中心，CSV 显示上月 33 条线路，经满洲里出境"
+    },
+    {
+      "id": "guangzhou",
+      "name": "广州",
+      "lat": 23.1288,
+      "lng": 113.259,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "大湾区始发枢纽（增城西/广州国际港/南沙港南），CSV 显示上月 36 条线路，海铁联运衔接东南亚"
+    },
+    {
+      "id": "qingdao",
+      "name": "青岛",
+      "lat": 36.0663,
+      "lng": 120.3778,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "上合示范区始发（胶州站），海铁联运枢纽，CSV 显示上月 14 条线路，中日韩货物中转"
+    },
+    {
+      "id": "jinan",
+      "name": "济南",
+      "lat": 36.652,
+      "lng": 117.1138,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "齐鲁号班列始发地（董家镇站），CSV 显示上月 17 条线路，辐射山东腹地制造业"
+    },
+    {
+      "id": "changsha",
+      "name": "长沙",
+      "lat": 28.1451,
+      "lng": 113.2384,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "湘欧班列始发地（长沙北站），CSV 显示上月 19 条线路，工程机械、电子产品出口"
+    },
+    {
+      "id": "haerbin",
+      "name": "哈尔滨",
+      "lat": 45.7594,
+      "lng": 126.6276,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "哈欧班列始发地（新香坊站），对俄贸易桥头堡，CSV 显示上月 15 条线路，经满洲里/绥芬河出境"
+    },
+    {
+      "id": "shijiazhuang",
+      "name": "石家庄",
+      "lat": 38.043,
+      "lng": 114.5088,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "冀欧班列始发地（高邑站），京津冀协同发展支点，CSV 显示上月 20 条线路"
+    },
+    {
+      "id": "dalian",
+      "name": "大连",
+      "lat": 38.914,
+      "lng": 121.6147,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "金港站始发，东北亚海铁联运门户，CSV 显示上月 18 条线路"
+    },
+    {
+      "id": "taiyuan",
+      "name": "太原",
+      "lat": 37.87,
+      "lng": 112.5437,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "晋欧班列始发地（中鼎物流园站），CSV 显示上月 14 条线路，不锈钢、煤机装备出口"
+    },
+    {
+      "id": "changchun",
+      "name": "长春",
+      "lat": 43.8845,
+      "lng": 125.3182,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "长满欧班列始发地（兴隆山/远达站），CSV 显示上月 23 条线路，汽车及零部件出口主力"
+    },
+    {
+      "id": "jinhua",
+      "name": "金华",
+      "lat": 29.108,
+      "lng": 119.6486,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "金华南站始发，与义乌双核联动，CSV 显示上月 19 条线路，小商品出口"
+    },
+    {
+      "id": "linyi",
+      "name": "临沂",
+      "lat": 35.1032,
+      "lng": 118.3507,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "朱保站始发，商贸物流之都，CSV 显示上月 2 条线路，回程木材、板材特色"
+    },
+    {
+      "id": "suifenhe",
+      "name": "绥芬河",
+      "lat": 44.3947,
+      "lng": 131.1556,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "东通道第二口岸，中俄边境铁路口岸，对应俄方格罗迭科沃，CSV 显示上月 13 条线路经此出境"
+    },
+    {
+      "id": "moskva",
+      "name": "莫斯科",
+      "lat": 55.6256,
+      "lng": 37.6064,
+      "type": "hub",
+      "typeLabel": "核心枢纽·最大到站",
+      "description": "俄罗斯最大到站，CSV 显示上月 161 条线路、月均 478 列，占去程发送量近半，沃尔西诺/谢利亚季诺等场站承接"
+    },
+    {
+      "id": "stpetersburg",
+      "name": "圣彼得堡",
+      "lat": 59.9607,
+      "lng": 30.1587,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "俄罗斯第二大城市、波罗的海门户（舒沙雷站），CSV 显示上月 34 条线路，货物可延伸至芬兰湾港口"
+    },
+    {
+      "id": "ekaterinburg",
+      "name": "叶卡捷琳堡",
+      "lat": 56.8382,
+      "lng": 60.6008,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "乌拉尔地区中心城市（叶卡捷琳堡-货站），西伯利亚大铁路重要枢纽，CSV 显示上月 25 条线路"
+    },
+    {
+      "id": "novosibirsk",
+      "name": "新西伯利亚",
+      "lat": 54.9678,
+      "lng": 82.9516,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "西西伯利亚最大城市（克列希哈站），CSV 显示上月 20 条线路"
+    },
+    {
+      "id": "krasnoyarsk",
+      "name": "克拉斯诺亚尔斯克",
+      "lat": 56.0091,
+      "lng": 92.8726,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "东西伯利亚工业重镇，去程 7 条线路，回程木材、纸浆班列重要始发地"
+    },
+    {
+      "id": "kazan",
+      "name": "喀山",
+      "lat": 55.7946,
+      "lng": 49.1115,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "伏尔加河流域中心城市（拉格尔纳亚站），鞑靼斯坦汽车产业聚集地，CSV 显示上月 10 条线路"
+    },
+    {
+      "id": "rostov",
+      "name": "罗斯托夫",
+      "lat": 47.261,
+      "lng": 39.7249,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "顿河畔罗斯托夫（罗斯托夫-货站），俄罗斯南部枢纽，CSV 显示上月 10 条线路"
+    },
+    {
+      "id": "samara",
+      "name": "萨马拉",
+      "lat": 53.1956,
+      "lng": 50.1015,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "伏尔加河中游重镇（别济米扬卡站），航空航天产业基地，CSV 显示上月 9 条线路"
+    },
+    {
+      "id": "ufa",
+      "name": "乌法",
+      "lat": 54.7261,
+      "lng": 55.9475,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "巴什科尔托斯坦首府（切尔尼科夫卡站），乌拉尔工业带节点，CSV 显示上月 8 条线路"
+    },
+    {
+      "id": "nizhny-novgorod",
+      "name": "下诺夫哥罗德",
+      "lat": 56.3265,
+      "lng": 44.0051,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "伏尔加河畔工业城市，CSV 显示上月 8 条线路，汽车、机械制造业基地"
+    },
+    {
+      "id": "chelyabinsk",
+      "name": "车里雅宾斯克",
+      "lat": 55.1598,
+      "lng": 61.4026,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "南乌拉尔工业中心，CSV 显示上月 7 条线路，冶金、军工重镇"
+    },
+    {
+      "id": "irkutsk",
+      "name": "伊尔库茨克",
+      "lat": 52.2891,
+      "lng": 104.2798,
+      "type": "terminal",
+      "typeLabel": "终到站",
+      "description": "东西伯利亚枢纽，贝加尔湖地区门户，去程 5 条线路，回程木材班列始发"
+    },
+    {
+      "id": "nizhnekamsk",
+      "name": "下卡姆斯克",
+      "lat": 55.6413,
+      "lng": 51.816,
+      "type": "station",
+      "typeLabel": "终到站",
+      "description": "鞑靼斯坦石化城市，CSV 显示上月 11 条线路，卡马汽车厂所在地"
+    },
+    {
+      "id": "minsk",
+      "name": "明斯克",
+      "lat": 53.9025,
+      "lng": 27.5618,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "白俄罗斯首都（科利亚季奇站），中白工业园所在地，CSV 显示上月 34 条线路、月均 108 列，回程钾肥班列重要节点"
+    },
+    {
+      "id": "zhodino",
+      "name": "若季诺",
+      "lat": 54.0963,
+      "lng": 28.3224,
+      "type": "station",
+      "typeLabel": "终到站",
+      "description": "白俄罗斯机械制造重镇（别拉斯矿用自卸车产地），CSV 显示上月 12 条线路"
+    },
+    {
+      "id": "baku",
+      "name": "巴库",
+      "lat": 40.4093,
+      "lng": 49.8671,
+      "type": "hub",
+      "typeLabel": "跨里海枢纽",
+      "description": "阿塞拜疆首都，里海西岸最大港口，跨里海国际运输走廊（中间走廊）核心节点"
+    },
+    {
+      "id": "tbilisi",
+      "name": "第比利斯",
+      "lat": 41.6935,
+      "lng": 44.8014,
+      "type": "hub",
+      "typeLabel": "南通道枢纽",
+      "description": "格鲁吉亚首都，连接里海与黑海的铁路枢纽，CSV 显示上月 2 条线路"
+    },
+    {
+      "id": "poti",
+      "name": "波季",
+      "lat": 42.1416,
+      "lng": 41.6748,
+      "type": "terminal",
+      "typeLabel": "南通道出海口",
+      "description": "格鲁吉亚黑海港口，CSV 显示上月 4 条线路，货物转海运至欧洲"
+    },
+    {
+      "id": "batumi",
+      "name": "巴统",
+      "lat": 41.651,
+      "lng": 41.636,
+      "type": "terminal",
+      "typeLabel": "南通道出海口",
+      "description": "格鲁吉亚黑海重要港口，CSV 显示上月 2 条线路（月均 12.5 列），南通道备选出海通道"
+    },
+    {
+      "id": "budapest",
+      "name": "布达佩斯",
+      "lat": 47.4979,
+      "lng": 19.0402,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "匈牙利首都，中欧班列东南欧分拨中心，CSV 显示上月 9 条线路"
+    },
+    {
+      "id": "milan",
+      "name": "米兰",
+      "lat": 45.4642,
+      "lng": 9.1896,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "意大利经济中心、南欧终点，CSV 显示上月 4 条线路，时尚与制造业货源"
+    },
+    {
+      "id": "prague",
+      "name": "布拉格",
+      "lat": 50.0875,
+      "lng": 14.4213,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "捷克首都，中欧制造业节点，CSV 显示上月 6 条线路"
+    },
+    {
+      "id": "lodz",
+      "name": "罗兹",
+      "lat": 51.7728,
+      "lng": 19.4785,
+      "type": "station",
+      "typeLabel": "分拨节点",
+      "description": "波兰中部物流枢纽，CSV 显示上月 1 条线路（月均 3.9 列）"
+    },
+    {
+      "id": "mannheim",
+      "name": "曼海姆",
+      "lat": 49.4893,
+      "lng": 8.4673,
+      "type": "station",
+      "typeLabel": "分拨节点",
+      "description": "德国莱茵内卡地区枢纽，巴符州工业带门户，CSV 显示上月 2 条线路（月均 13.4 列）"
+    },
+    {
+      "id": "tilburg",
+      "name": "蒂尔堡",
+      "lat": 51.5856,
+      "lng": 5.0661,
+      "type": "station",
+      "typeLabel": "分拨节点",
+      "description": "荷兰南部物流城市，鹿特丹港内陆延伸节点，CSV 显示上月 2 条线路"
+    },
+    {
+      "id": "madrid",
+      "name": "马德里",
+      "lat": 40.4168,
+      "lng": -3.7035,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "西班牙首都，义新欧线路终点，全程13052公里，CSV 显示上月 1 条线路"
+    },
+    {
+      "id": "vienna",
+      "name": "维也纳",
+      "lat": 48.2084,
+      "lng": 16.3725,
+      "type": "station",
+      "typeLabel": "分拨节点",
+      "description": "奥地利首都，中欧十字路口，回程班列经克雷姆斯等站衔接"
     }
   ],
   "lines": [
@@ -266,44 +647,115 @@
       "id": "west-main",
       "name": "西通道·阿拉山口（渝新欧/长安号）",
       "color": "#c0392b",
-      "path": ["chongqing", "xian", "lanzhou", "urumqi", "alashankou", "dostyk", "aktogay", "almaty", "shu", "karaganda", "astana", "petropavl", "malaszewicze", "duisburg"],
-      "description": "主力通道，经哈萨克斯坦北线（阿拉木图—阿斯塔纳）出境入俄，再经白俄罗斯抵波兰，占中欧班列开行量约50%"
+      "path": [
+        "chongqing",
+        "xian",
+        "lanzhou",
+        "urumqi",
+        "alashankou",
+        "dostyk",
+        "aktogay",
+        "almaty",
+        "shu",
+        "karaganda",
+        "astana",
+        "petropavl",
+        "chelyabinsk",
+        "ekaterinburg",
+        "moskva",
+        "zhodino",
+        "minsk",
+        "malaszewicze",
+        "duisburg"
+      ],
+      "description": "主力通道，经哈萨克斯坦北线（阿拉木图—阿斯塔纳）出境入俄，沿西伯利亚大铁路西行经车里雅宾斯克、叶卡捷琳堡、莫斯科，再经白俄罗斯布列斯特抵波兰，占中欧班列开行量约50%"
     },
     {
       "id": "west-khorgos",
       "name": "西通道·霍尔果斯（蓉欧）",
       "color": "#e67e22",
-      "path": ["chengdu", "lanzhou", "urumqi", "khorgos", "altynkol", "almaty", "shu", "karaganda", "astana", "petropavl", "malaszewicze"],
+      "path": [
+        "chengdu",
+        "lanzhou",
+        "urumqi",
+        "khorgos",
+        "altynkol",
+        "almaty",
+        "shu",
+        "karaganda",
+        "astana",
+        "petropavl",
+        "chelyabinsk",
+        "ekaterinburg",
+        "moskva",
+        "zhodino",
+        "minsk",
+        "malaszewicze"
+      ],
       "description": "西部第二大口岸通道，经阿腾科里入境后在阿拉木图与西通道主线汇合北上"
     },
     {
       "id": "central",
       "name": "中通道·二连浩特",
       "color": "#2980b9",
-      "path": ["erlian", "zamynuud", "ulaanbaatar", "sukhbaatar", "malaszewicze"],
-      "description": "经蒙古纵贯铁路北上，苏赫巴托尔出境入俄，接入西伯利亚大铁路西行，线路最短但冬季严寒"
+      "path": [
+        "erlian",
+        "zamynuud",
+        "ulaanbaatar",
+        "sukhbaatar",
+        "irkutsk",
+        "krasnoyarsk",
+        "novosibirsk",
+        "ekaterinburg",
+        "moskva",
+        "zhodino",
+        "minsk",
+        "malaszewicze"
+      ],
+      "description": "经蒙古纵贯铁路北上，苏赫巴托尔出境入俄，沿西伯利亚大铁路西行经伊尔库茨克、新西伯利亚、莫斯科，再经白俄抵波兰，线路最短但冬季严寒"
     },
     {
       "id": "east",
       "name": "东通道·满洲里",
       "color": "#27ae60",
-      "path": ["manzhouli", "zabaykalsk", "malaszewicze"],
-      "description": "沿西伯利亚大铁路全程西行，服务东北、京津冀方向班列"
+      "path": [
+        "manzhouli",
+        "zabaykalsk",
+        "irkutsk",
+        "krasnoyarsk",
+        "novosibirsk",
+        "ekaterinburg",
+        "moskva",
+        "zhodino",
+        "minsk",
+        "malaszewicze"
+      ],
+      "description": "沿西伯利亚大铁路全程西行，服务东北、京津冀方向班列，直达莫斯科及欧洲"
     },
     {
-      "id": "feeder-yiwu",
-      "name": "始发集货（义新欧/郑欧）",
+      "id": "feeder-east",
+      "name": "始发集货（长三角）",
       "color": "#7f8c8d",
       "dashed": true,
-      "path": ["yiwu", "zhengzhou", "xian"],
-      "description": "东部始发班列经陇海线西行集结；义新欧另经阿拉山口直达西班牙马德里（13052公里）"
+      "path": [
+        "shanghai",
+        "suzhou",
+        "jinhua",
+        "yiwu",
+        "zhengzhou",
+        "xian"
+      ],
+      "description": "长三角始发班列（上海闵行/苏州西/金华南/义乌西）经陇海线西行在西安集结；义新欧另经阿拉山口直达西班牙马德里（13052公里）"
     },
     {
       "id": "feeder-wuhan",
       "name": "始发集货（汉欧）",
       "color": "#7f8c8d",
       "dashed": true,
-      "path": ["wuhan", "xian"],
+      "path": [
+        "wuhan",
+        "xian"
+      ],
       "description": "汉欧班列经陇海线在西安集结后汇入西通道"
     },
     {
@@ -311,7 +763,11 @@
       "name": "欧洲分拨·汉堡",
       "color": "#8e44ad",
       "dashed": true,
-      "path": ["malaszewicze", "warsaw", "hamburg"],
+      "path": [
+        "malaszewicze",
+        "warsaw",
+        "hamburg"
+      ],
       "description": "马拉舍维奇换轨后，货物分拨至德国及北欧"
     },
     {
@@ -319,8 +775,163 @@
       "name": "欧洲分拨·杜伊斯堡",
       "color": "#8e44ad",
       "dashed": true,
-      "path": ["malaszewicze", "duisburg"],
+      "path": [
+        "malaszewicze",
+        "duisburg"
+      ],
       "description": "经波兰—德国铁路直达杜伊斯堡内陆港，再分拨欧洲各地"
+    },
+    {
+      "id": "east-suifenhe",
+      "name": "东通道·绥芬河",
+      "color": "#27ae60",
+      "dashed": true,
+      "path": [
+        "haerbin",
+        "suifenhe"
+      ],
+      "description": "哈绥线出境入俄（格罗迭科沃），经乌苏里斯克汇入西伯利亚大铁路，服务黑龙江东部货源"
+    },
+    {
+      "id": "russia-volga",
+      "name": "俄支线·伏尔加—乌拉尔",
+      "color": "#7f8c8d",
+      "dashed": true,
+      "path": [
+        "moskva",
+        "nizhny-novgorod",
+        "kazan",
+        "nizhnekamsk",
+        "samara",
+        "ufa"
+      ],
+      "description": "莫斯科以东伏尔加—乌拉尔工业带支线，衔接喀山、萨马拉、乌法等到站"
+    },
+    {
+      "id": "russia-south",
+      "name": "俄支线·南部",
+      "color": "#7f8c8d",
+      "dashed": true,
+      "path": [
+        "moskva",
+        "rostov"
+      ],
+      "description": "莫斯科—顿河畔罗斯托夫南下支线，辐射俄罗斯南部"
+    },
+    {
+      "id": "east-spb",
+      "name": "俄支线·波罗的海",
+      "color": "#7f8c8d",
+      "dashed": true,
+      "path": [
+        "moskva",
+        "stpetersburg"
+      ],
+      "description": "莫斯科—圣彼得堡支线，货物经波罗的海港口海铁联运至北欧"
+    },
+    {
+      "id": "south-caspian",
+      "name": "南通道·跨里海（中间走廊）",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": [
+        "almaty",
+        "baku",
+        "tbilisi",
+        "poti",
+        "batumi"
+      ],
+      "description": "跨里海国际运输走廊：经阿克套港/巴库港渡里海，过南高加索抵格鲁吉亚黑海港口，避开俄罗斯，近年快速增长的替代通道"
+    },
+    {
+      "id": "feeder-northeast",
+      "name": "始发集货（东北）",
+      "color": "#95a5a6",
+      "dashed": true,
+      "path": [
+        "dalian",
+        "shenyang",
+        "changchun",
+        "haerbin",
+        "manzhouli"
+      ],
+      "description": "沈满欧/长满欧/哈欧班列及大连金港货源经东通道出境"
+    },
+    {
+      "id": "feeder-south",
+      "name": "始发集货（华南/中部）",
+      "color": "#95a5a6",
+      "dashed": true,
+      "path": [
+        "guangzhou",
+        "changsha",
+        "wuhan",
+        "xian"
+      ],
+      "description": "大湾区（增城西/南沙港南）、中部班列经京广—陇海线在西安集结"
+    },
+    {
+      "id": "feeder-north",
+      "name": "始发集货（华北）",
+      "color": "#95a5a6",
+      "dashed": true,
+      "path": [
+        "shijiazhuang",
+        "taiyuan",
+        "xian"
+      ],
+      "description": "冀欧/晋欧班列经石太—同蒲—陇海线西行集结"
+    },
+    {
+      "id": "feeder-shandong",
+      "name": "始发集货（山东）",
+      "color": "#95a5a6",
+      "dashed": true,
+      "path": [
+        "qingdao",
+        "jinan",
+        "linyi",
+        "xian"
+      ],
+      "description": "齐鲁号班列（青岛胶州/济南董家镇/临沂朱保）经胶济—陇海线集结"
+    },
+    {
+      "id": "europe-southeast",
+      "name": "欧洲分拨·中南欧",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": [
+        "malaszewicze",
+        "lodz",
+        "prague",
+        "budapest",
+        "milan"
+      ],
+      "description": "马拉舍维奇换轨后分拨波兰中部、捷克、匈牙利、意大利；维也纳经布达佩斯衔接"
+    },
+    {
+      "id": "europe-iberia",
+      "name": "欧洲分拨·伊比利亚",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": [
+        "malaszewicze",
+        "duisburg",
+        "mannheim",
+        "madrid"
+      ],
+      "description": "经德国南部（曼海姆）延伸至西班牙马德里，义新欧全程13052公里"
+    },
+    {
+      "id": "europe-netherlands",
+      "name": "欧洲分拨·荷兰",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": [
+        "duisburg",
+        "tilburg"
+      ],
+      "description": "杜伊斯堡—蒂尔堡支线，衔接鹿特丹港海铁联运"
     }
   ]
 }

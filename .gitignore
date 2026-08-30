@@ -7,3 +7,6 @@
 !atlas/**
 !assets/
 !assets/**
+
+# 本地测试用，不推送
+atlas/场景布局预览.png
