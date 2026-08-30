@@ -273,7 +273,57 @@ function showSceneInfo(data, scene) {
   panel.classList.remove('hidden');
 }
 
-/* ========== POI 搜索 ========== */
+/* ========== POI 搜索 / 坐标定位 ========== */
+
+/** 解析坐标输入，如 "31.24, 121.49" / "121.49 31.24"（自动判断 lat/lng 顺序） */
+function parseCoord(str) {
+  const m = str.trim().match(/^(-?\d+(?:\.\d+)?)\s*[,，\s]\s*(-?\d+(?:\.\d+)?)$/);
+  if (!m) return null;
+  const a = parseFloat(m[1]);
+  const b = parseFloat(m[2]);
+  const aIsLat = Math.abs(a) <= 90;
+  const bIsLat = Math.abs(b) <= 90;
+  if (aIsLat && !bIsLat) return { lat: a, lng: b };   // 31, 121 → lat, lng
+  if (!aIsLat && bIsLat) return { lat: b, lng: a };   // 121, 31 → lng, lat
+  if (aIsLat && bIsLat) return { lat: a, lng: b };    // 都合法，按 lat, lng
+  return null;
+}
+
+/** 定位到坐标：isGcj=true 表示输入已是高德坐标，否则按 WGS-84 转换 */
+function locateCoord(coord, isGcj) {
+  let lng, lat;
+  if (isGcj) {
+    lng = coord.lng; lat = coord.lat;
+  } else {
+    const p = wgs84ToGcj02(coord.lat, coord.lng);
+    lng = p.lng; lat = p.lat;
+  }
+  map.setZoomAndCenter(Math.max(map.getZoom(), 15), [lng, lat]);
+  showCoord({ getLng: () => lng, getLat: () => lat });
+}
+
+document.getElementById('poi-btn').onclick = () => {
+  const raw = document.getElementById('poi-input').value.trim();
+  if (!raw) return;
+  const coord = parseCoord(raw);
+  if (coord) {
+    const isGcj = document.getElementById('coord-sys').value === 'gcj';
+    locateCoord(coord, isGcj);
+  } else {
+    searchPoi(raw);
+  }
+};
+document.getElementById('poi-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('poi-btn').click();
+});
+
+// 坐标系下拉：同步 placeholder 提示
+document.getElementById('coord-sys').onchange = function () {
+  document.getElementById('poi-input').placeholder = this.value === 'gcj'
+    ? '搜地点 / 输入坐标(GCJ-02)，如 31.24, 121.49'
+    : '搜地点 / 输入坐标(WGS-84)，如 31.24, 121.49';
+};
+
 let placeSearch = null;
 AMap.plugin(['AMap.PlaceSearch'], () => {
   placeSearch = new AMap.PlaceSearch({

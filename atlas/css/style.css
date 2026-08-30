@@ -134,6 +134,17 @@ body.sidebar-collapsed #sidebar-toggle {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   outline: none;
 }
+#poi-search select {
+  padding: 8px 6px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  font-size: 12px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  outline: none;
+}
 #poi-search input:focus { border-color: #1e88e5; }
 #poi-search button {
   padding: 8px 14px;
