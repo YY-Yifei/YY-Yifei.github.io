@@ -1,6 +1,13 @@
 {
   "scenes": [
     {
+      "id": "russia-ukraine-conflict",
+      "name": "俄乌冲突战斗城市",
+      "description": "2022.2–2026.8 五大战线 62 座战斗城镇：北线基辅、东线顿巴斯、南线赫尔松—扎波罗热、俄本土库尔斯克/别尔哥罗德、东北哈尔科夫北部/苏梅边境",
+      "dataFile": "data/scenes/russia-ukraine-conflict.json",
+      "tags": ["战争", "俄乌冲突", "地缘政治"]
+    },
+    {
       "id": "china-laos-railway",
       "name": "中老铁路",
       "description": "连接中国昆明与老挝万象的国际铁路，全长 1000+ 公里",

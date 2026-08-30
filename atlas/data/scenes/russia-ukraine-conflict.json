@@ -1,0 +1,873 @@
+{
+  "id": "russia-ukraine-conflict",
+  "name": "俄乌冲突战斗城市",
+  "type": "conflict",
+  "description": "2022年2月24日俄乌冲突全面爆发至2026年8月，北线基辅、东线顿巴斯、南线赫尔松—扎波罗热、俄本土库尔斯克/别尔哥罗德及东北方向（哈尔科夫北部/苏梅州边境）5大战线60余座城镇发生过巷战、围城、争夺战或大规模炮击与无人机攻击。本场景按战线与时间轴标注战斗城市与主要战役轴线。",
+  "view": {
+    "center": [
+      49.3,
+      33.5
+    ],
+    "zoom": 5
+  },
+  "nodes": [
+    {
+      "id": "hostomel",
+      "name": "霍斯托梅尔",
+      "en": "Hostomel",
+      "label": "霍斯",
+      "lat": 50.58826,
+      "lng": 30.25909,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.24–03｜俄占→乌收复｜安东诺夫机场争夺战，开战首日俄空降兵与乌军反复拉锯"
+    },
+    {
+      "id": "irpin",
+      "name": "伊尔平",
+      "en": "Irpin",
+      "label": "伊尔",
+      "lat": 50.52068,
+      "lng": 30.24487,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02–03｜乌坚守｜基辅近郊巷战，全城90%建筑受损"
+    },
+    {
+      "id": "bucha",
+      "name": "布查",
+      "en": "Bucha",
+      "label": "布查",
+      "lat": 50.55031,
+      "lng": 30.21069,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.27–03.31｜俄占→乌收复｜俄军占领约一个月，撤军后曝出\"布查事件\""
+    },
+    {
+      "id": "makariv",
+      "name": "马卡里夫",
+      "en": "Makariv",
+      "label": "马卡",
+      "lat": 50.46399,
+      "lng": 29.8069,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02–03｜乌收复｜基辅西北门户公路枢纽争夺"
+    },
+    {
+      "id": "brovary",
+      "name": "布罗瓦里",
+      "en": "Brovary",
+      "label": "布罗",
+      "lat": 50.51112,
+      "lng": 30.79005,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03｜乌坚守｜基辅东侧交通枢纽伏击战，俄装甲纵队受挫"
+    },
+    {
+      "id": "chernihiv",
+      "name": "切尔尼戈夫",
+      "en": "Chernihiv",
+      "label": "切尔",
+      "lat": 51.4941,
+      "lng": 31.29433,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.24–04.03｜乌坚守｜围城战约40天，城市遭重炮封锁"
+    },
+    {
+      "id": "sumy",
+      "name": "苏梅",
+      "en": "Sumy",
+      "label": "苏梅",
+      "lat": 50.91198,
+      "lng": 34.80277,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.24–04｜乌坚守｜俄军合围失败，市民与守军共同守城"
+    },
+    {
+      "id": "kharkiv",
+      "name": "哈尔科夫",
+      "en": "Kharkiv",
+      "label": "哈尔",
+      "lat": 49.99232,
+      "lng": 36.23101,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022.02.24–05｜乌坚守｜开战即遭强攻，市区巷战后俄军退至城郊炮击区"
+    },
+    {
+      "id": "mariupol",
+      "name": "马里乌波尔",
+      "en": "Mariupol",
+      "label": "马里",
+      "lat": 47.09576,
+      "lng": 37.54996,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022.03–05.20｜俄占领｜86天围城战，全城90%建筑被毁，亚速钢铁厂最后死守"
+    },
+    {
+      "id": "volnovakha",
+      "name": "沃尔诺瓦哈",
+      "en": "Volnovakha",
+      "label": "沃尔诺",
+      "lat": 47.60145,
+      "lng": 37.49341,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.25–03.11｜俄占领｜通往马里乌波尔公路上的首个攻坚点"
+    },
+    {
+      "id": "izium",
+      "name": "伊久姆",
+      "en": "Izium",
+      "label": "伊久",
+      "lat": 49.19132,
+      "lng": 37.27841,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03–05 / 09月｜两次易手｜3–5月激战易手；9月乌军哈尔科夫反攻中收复"
+    },
+    {
+      "id": "lyman",
+      "name": "红利曼",
+      "en": "Lyman",
+      "label": "红利",
+      "lat": 48.98013,
+      "lng": 37.8168,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.05 / 10 / 至今｜仍交战中｜三度成为焦点：俄占（5月）→乌收复（10月）→2026年俄军再次兵临城下"
+    },
+    {
+      "id": "popasna",
+      "name": "波帕斯纳",
+      "en": "Popasna",
+      "label": "波帕",
+      "lat": 48.63227,
+      "lng": 38.3777,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.05｜俄占领｜瓦格纳突破点，打开北顿涅茨克侧翼"
+    },
+    {
+      "id": "rubizhne",
+      "name": "鲁比日内",
+      "en": "Rubizhne",
+      "label": "鲁比",
+      "lat": 49.0329,
+      "lng": 38.37258,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03–05｜俄占领｜北顿城市群最先陷落的一城"
+    },
+    {
+      "id": "sievierodonetsk",
+      "name": "北顿涅茨克",
+      "en": "Sievierodonetsk",
+      "label": "北顿",
+      "lat": 48.94787,
+      "lng": 38.49365,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.05–06.24｜俄占领｜逐街区攻防，\"氮肥厂要塞\"死守"
+    },
+    {
+      "id": "lysychansk",
+      "name": "利西昌斯克",
+      "en": "Lysychansk",
+      "label": "利西",
+      "lat": 48.91727,
+      "lng": 38.4286,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.06–07.03｜俄占领｜卢甘斯克州最后失守的城市"
+    },
+    {
+      "id": "kreminna",
+      "name": "克里米纳",
+      "en": "Kreminna",
+      "label": "克里",
+      "lat": 49.04632,
+      "lng": 38.21785,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.04 / 至今｜俄控制｜陷落后成为卢甘斯克西部支点，2023年起乌军克宫-克里米纳森林线拉锯"
+    },
+    {
+      "id": "soledar",
+      "name": "索列达尔",
+      "en": "Soledar",
+      "label": "索列",
+      "lat": 48.69567,
+      "lng": 38.06718,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.08–2023.01｜俄占领｜瓦格纳盐矿坑道攻坚，1月陷落"
+    },
+    {
+      "id": "bakhmut",
+      "name": "巴赫穆特",
+      "en": "Bakhmut",
+      "label": "巴赫",
+      "lat": 48.58941,
+      "lng": 38.0021,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022.05–2023.05.21｜俄占领｜整场战争最血腥的绞肉机战役，瓦格纳\"人海+炮兵\"逐街推进"
+    },
+    {
+      "id": "chasiv-yar",
+      "name": "恰索夫亚尔",
+      "en": "Chasiv Yar",
+      "label": "恰索",
+      "lat": 48.58739,
+      "lng": 37.83734,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.03–2026.07｜俄占领｜运河防线血战840余天，2025.07俄方宣布控制主城区，2026.07乌军撤出西部全境"
+    },
+    {
+      "id": "avdiivka",
+      "name": "阿夫杰耶夫卡",
+      "en": "Avdiivka",
+      "label": "阿夫",
+      "lat": 48.13388,
+      "lng": 37.74667,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2023.10–2024.02.17｜俄占领｜四个月强攻，\"焦炭厂\"撤离战；乌东七年堡垒陷落"
+    },
+    {
+      "id": "marinka",
+      "name": "马林卡",
+      "en": "Marinka",
+      "label": "马林",
+      "lat": 47.94012,
+      "lng": 37.50223,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022–2023.12｜俄占领｜九年战线上的一城，历经近两年逐屋争夺后全城废墟易手"
+    },
+    {
+      "id": "krasnohorivka",
+      "name": "克拉斯诺霍里夫卡",
+      "en": "Krasnohorivka",
+      "label": "克拉斯",
+      "lat": 48.01068,
+      "lng": 37.50449,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.04–09｜俄占领｜阿夫杰耶夫卡西侧延伸攻势"
+    },
+    {
+      "id": "selydove",
+      "name": "塞利多韦",
+      "en": "Selydove",
+      "label": "塞利",
+      "lat": 48.15015,
+      "lng": 37.30189,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.10｜俄占领｜波克罗夫斯克东南门户，快速失守"
+    },
+    {
+      "id": "novohrodivka",
+      "name": "新格罗多夫卡",
+      "en": "Novohrodivka",
+      "label": "新格",
+      "lat": 48.19972,
+      "lng": 37.33997,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.08–09｜俄占领｜波克罗夫斯克前哨，数日内陷落"
+    },
+    {
+      "id": "vuhledar",
+      "name": "乌格列达尔",
+      "en": "Vuhledar",
+      "label": "乌格",
+      "lat": 47.78099,
+      "lng": 37.24608,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022–2024.10.01｜俄占领｜俄军2022–23年两次强攻惨败后，2024年迂回包抄得手"
+    },
+    {
+      "id": "toretsk",
+      "name": "托列茨克",
+      "en": "Toretsk",
+      "label": "托列",
+      "lat": 48.39705,
+      "lng": 37.85014,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.06–2025.02｜俄占领｜8个月攻防，2025.02陷落；乌军反击失败后防线连锁崩溃"
+    },
+    {
+      "id": "kurakhove",
+      "name": "库拉霍韦",
+      "en": "Kurakhove",
+      "label": "库拉",
+      "lat": 47.98352,
+      "lng": 37.28264,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.09–2025.01｜俄占领｜水库工业区分割包围，2025年开年陷落"
+    },
+    {
+      "id": "velyka-novosilka",
+      "name": "大诺沃西尔卡",
+      "en": "Velyka Novosilka",
+      "label": "大诺",
+      "lat": 47.84368,
+      "lng": 36.83965,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.11–2025.01｜俄占领｜2023年反攻出发点，2025.01被合围失守"
+    },
+    {
+      "id": "pokrovsk",
+      "name": "波克罗夫斯克",
+      "en": "Pokrovsk",
+      "label": "波克",
+      "lat": 48.27711,
+      "lng": 37.17725,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2024.03–2025.12｜俄占领｜物流铁路枢纽，21个月围攻；2025.12初俄方宣布占领，俄官方确认控制"
+    },
+    {
+      "id": "dobropillia",
+      "name": "多布罗皮利亚",
+      "en": "Dobropillia",
+      "label": "多布",
+      "lat": 48.4683,
+      "lng": 37.09032,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2025.09–至今｜仍交战中｜波克罗夫斯克陷落后的新焦点，俄军穿插推进"
+    },
+    {
+      "id": "kostiantynivka",
+      "name": "康斯坦丁诺夫卡",
+      "en": "Kostiantynivka",
+      "label": "康斯",
+      "lat": 48.5349,
+      "lng": 37.69238,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.07–至今｜仍交战中｜\"乌东三要塞\"之首，2026年俄军多路入城并控制火车站"
+    },
+    {
+      "id": "druzhkivka",
+      "name": "德鲁日科夫卡",
+      "en": "Druzhkivka",
+      "label": "德鲁",
+      "lat": 48.61986,
+      "lng": 37.52495,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2026｜交战逼近｜俄军经沙霍韦方向逼近的下一个要塞"
+    },
+    {
+      "id": "kramatorsk",
+      "name": "克拉马托尔斯克",
+      "en": "Kramatorsk",
+      "label": "克拉马",
+      "lat": 48.73894,
+      "lng": 37.58438,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "持续｜乌控制｜乌东指挥中心，长期遭导弹/无人机袭击"
+    },
+    {
+      "id": "sloviansk",
+      "name": "斯拉维扬斯克",
+      "en": "Sloviansk",
+      "label": "斯拉",
+      "lat": 48.85227,
+      "lng": 37.60582,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "持续｜乌控制｜乌东防御核心，距前线约25公里"
+    },
+    {
+      "id": "siversk",
+      "name": "塞弗尔斯克",
+      "en": "Siversk",
+      "label": "塞弗",
+      "lat": 48.86763,
+      "lng": 38.09024,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022–至今｜仍交战中｜2023年起战线僵持，2026年俄军重开此方向攻势"
+    },
+    {
+      "id": "borova",
+      "name": "博罗瓦",
+      "en": "Borova",
+      "label": "博罗",
+      "lat": 49.37995,
+      "lng": 37.62534,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2025–至今｜仍交战中｜哈尔科夫州东部，通往伊久姆门户的拉锯"
+    },
+    {
+      "id": "kupiansk",
+      "name": "库皮扬斯克",
+      "en": "Kupiansk",
+      "label": "库皮",
+      "lat": 49.7133,
+      "lng": 37.6142,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022 / 2024–至今｜争议/仍交战｜铁路枢纽：2022.02俄占→09月乌收复→2024–25年再被围攻，俄方2025.11宣称占领，乌方否认并称2025.12反攻入城"
+    },
+    {
+      "id": "dvorichna",
+      "name": "德沃里奇纳",
+      "en": "Dvorichna",
+      "label": "德沃",
+      "lat": 49.85094,
+      "lng": 37.68261,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024–2025｜多次易手｜库皮扬斯克东北侧翼小镇，多次易手"
+    },
+    {
+      "id": "kherson",
+      "name": "赫尔松",
+      "en": "Kherson",
+      "label": "赫尔",
+      "lat": 46.64013,
+      "lng": 32.61439,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022.02.24–11.11｜俄占→乌收复｜开战唯一陷落的州府，鏖战261天后俄军撤回左岸；此后全城处于左岸炮击射程内"
+    },
+    {
+      "id": "nova-kakhovka",
+      "name": "新卡霍夫卡",
+      "en": "Nova Kakhovka",
+      "label": "新卡",
+      "lat": 46.75834,
+      "lng": 33.35667,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02–至今｜俄控制｜卡霍夫卡水坝所在地，始终在俄军手中，遭乌军多次打击"
+    },
+    {
+      "id": "snihurivka",
+      "name": "斯尼胡里夫卡",
+      "en": "Snihurivka",
+      "label": "斯尼",
+      "lat": 47.07072,
+      "lng": 32.79246,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.09–11｜乌收复｜赫尔松反攻北翼推进的关键节点"
+    },
+    {
+      "id": "krynky",
+      "name": "克林基",
+      "en": "Krynky",
+      "label": "克林",
+      "lat": 46.74648,
+      "lng": 33.11897,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2023.10–2024.07｜乌据点→放弃｜乌军第聂伯河左岸桥头堡，坚守9个月后撤出"
+    },
+    {
+      "id": "melitopol",
+      "name": "梅利托波尔",
+      "en": "Melitopol",
+      "label": "梅利",
+      "lat": 46.84673,
+      "lng": 35.38273,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2022.02.26–03.01｜俄占领｜南线走廊咽喉，几乎无抵抗占领后成为俄\"扎波罗热州\"驻地"
+    },
+    {
+      "id": "berdiansk",
+      "name": "别尔江斯克",
+      "en": "Berdiansk",
+      "label": "别尔江",
+      "lat": 46.75568,
+      "lng": 36.78876,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.02.27–28｜俄占领｜亚速海港口被占，2024–26年持续遭乌军后勤打击"
+    },
+    {
+      "id": "enerhodar",
+      "name": "埃涅尔霍达尔",
+      "en": "Enerhodar",
+      "label": "埃涅",
+      "lat": 47.50293,
+      "lng": 34.62915,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03.04｜俄占领｜扎波罗热核电站所在的\"核城\"，占领过程中核电站起火"
+    },
+    {
+      "id": "mykolaiv",
+      "name": "尼古拉耶夫",
+      "en": "Mykolaiv",
+      "label": "尼古",
+      "lat": 46.97586,
+      "lng": 31.99397,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03–11｜乌坚守｜俄军多次强攻未下，转为远程炮击，乌军以此为跳板反攻赫尔松"
+    },
+    {
+      "id": "voznesensk",
+      "name": "沃兹涅先斯克",
+      "en": "Voznesensk",
+      "label": "沃兹",
+      "lat": 47.56796,
+      "lng": 31.33386,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022.03.02｜乌坚守｜俄空降兵强渡南布格河被击退，切断通往敖德萨路径"
+    },
+    {
+      "id": "robotyne",
+      "name": "罗博季涅",
+      "en": "Robotyne",
+      "label": "罗博",
+      "lat": 47.44308,
+      "lng": 35.82607,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2023.08–2025｜两次易手｜2023夏季反攻唯一战果村庄，攻守转换后2025年陷落"
+    },
+    {
+      "id": "verbove",
+      "name": "韦尔博韦",
+      "en": "Verbove",
+      "label": "韦尔",
+      "lat": 47.42667,
+      "lng": 35.99694,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2023.09–至今｜拉锯区｜\"苏罗维金防线\"第二道壁垒争夺"
+    },
+    {
+      "id": "huliaipole",
+      "name": "胡里艾波列",
+      "en": "Huliaipole",
+      "label": "胡里",
+      "lat": 47.66554,
+      "lng": 36.26568,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022–2025.12｜俄占领｜前线僵持三年的\"马赫诺故乡\"，2025年底随西侧战线崩溃陷落"
+    },
+    {
+      "id": "orikhiv",
+      "name": "奥里希夫",
+      "en": "Orikhiv",
+      "label": "奥里",
+      "lat": 47.57544,
+      "lng": 35.78555,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2022–至今｜仍交战中｜扎波罗热正面重镇，2026年乌军在其东南发起局部反攻"
+    },
+    {
+      "id": "kamianske-zp",
+      "name": "卡缅西克",
+      "en": "Kamianske",
+      "label": "卡缅",
+      "lat": 47.54245,
+      "lng": 35.36617,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2025–2026｜仍交战中｜扎波罗热市南郊门户，2026.02乌军在此方向发起大反攻"
+    },
+    {
+      "id": "sudzha",
+      "name": "苏贾",
+      "en": "Sudzha",
+      "label": "苏贾",
+      "lat": 51.19058,
+      "lng": 35.27095,
+      "type": "border",
+      "typeLabel": "俄本土战场",
+      "description": "2024.08–2025.03｜乌占→俄收复｜乌军库尔斯克行动的核心占领区，建立军事管制7个月；2026年再遭乌军越境袭击"
+    },
+    {
+      "id": "korenevo",
+      "name": "科列涅沃",
+      "en": "Korenevo",
+      "label": "科列",
+      "lat": 51.40974,
+      "lng": 34.89351,
+      "type": "border",
+      "typeLabel": "俄本土战场",
+      "description": "2024.08–09｜俄收复｜库尔斯克突出部西翼交通枢纽拉锯"
+    },
+    {
+      "id": "glushkovo",
+      "name": "格卢什科沃",
+      "en": "Glushkovo",
+      "label": "格卢",
+      "lat": 51.33404,
+      "lng": 34.64287,
+      "type": "border",
+      "typeLabel": "俄本土战场",
+      "description": "2024.09–2025｜俄收复｜塞姆河南岸乌军桥头堡争夺"
+    },
+    {
+      "id": "demidovka",
+      "name": "杰米多夫卡",
+      "en": "Demidovka",
+      "label": "杰米",
+      "lat": 50.94628,
+      "lng": 35.39354,
+      "type": "border",
+      "typeLabel": "俄本土战场",
+      "description": "2025.03–｜边境拉锯｜乌军对别尔哥罗德州发起的越境牵制攻势"
+    },
+    {
+      "id": "belgorod",
+      "name": "别尔哥罗德",
+      "en": "Belgorod",
+      "label": "别尔哥",
+      "lat": 50.59556,
+      "lng": 36.58734,
+      "type": "hub",
+      "typeLabel": "战线枢纽",
+      "description": "2023–至今｜持续遭袭｜俄境内遭炮击/无人机/无人机袭击最频繁的边境大城市，乌军两次越境行动直逼城郊"
+    },
+    {
+      "id": "vovchansk",
+      "name": "沃尔昌斯克",
+      "en": "Vovchansk",
+      "label": "沃尔昌",
+      "lat": 50.29288,
+      "lng": 36.937,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.05–2025｜俄占领｜俄军开辟\"哈尔科夫北部缓冲区\"，城市沿河分割激战一年，2026年俄军完全实控"
+    },
+    {
+      "id": "lyptsi",
+      "name": "利普齐",
+      "en": "Lyptsi",
+      "label": "利普",
+      "lat": 50.2037,
+      "lng": 36.42435,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2024.05–12｜拉锯｜沃尔昌斯克南侧并行攻势"
+    },
+    {
+      "id": "filiia",
+      "name": "菲利亚",
+      "en": "Filiia",
+      "label": "菲利",
+      "lat": 51.11,
+      "lng": 35.15,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2025–2026.08｜乌收复｜俄军2025年夏季起攻入苏梅州建立桥头堡，2026.08乌军收复并夺回6.7平方公里"
+    },
+    {
+      "id": "yunakivka",
+      "name": "尤纳基夫卡",
+      "en": "Yunakivka",
+      "label": "尤纳",
+      "lat": 51.12271,
+      "lng": 35.0323,
+      "type": "station",
+      "typeLabel": "战斗城镇",
+      "description": "2025–至今｜仍交战中｜苏梅州边境主要交火区"
+    }
+  ],
+  "lines": [
+    {
+      "id": "kyiv-campaign",
+      "name": "基辅战役（2022.02–04）",
+      "color": "#a68ae0",
+      "path": [
+        "hostomel",
+        "irpin",
+        "bucha",
+        "makariv",
+        "brovary",
+        "chernihiv",
+        "sumy"
+      ],
+      "description": "俄军北线三路直逼基辅，霍斯托梅尔机场争夺战开启战争，切尔尼戈夫围城40天后随俄军撤出基辅州而解围"
+    },
+    {
+      "id": "mariupol-axis",
+      "name": "马里乌波尔围城（2022.03–05）",
+      "color": "#e74c3c",
+      "path": [
+        "volnovakha",
+        "mariupol"
+      ],
+      "description": "沃尔诺瓦哈为马里乌波尔公路门户，马里乌波尔86天围城战，亚速钢铁厂最后死守，全城90%建筑被毁"
+    },
+    {
+      "id": "siverodonetsk-axis",
+      "name": "北顿涅茨克—利西昌斯克轴线（2022）",
+      "color": "#e74c3c",
+      "path": [
+        "izium",
+        "lyman",
+        "popasna",
+        "rubizhne",
+        "sievierodonetsk",
+        "lysychansk",
+        "kreminna"
+      ],
+      "description": "伊久姆突出部与北顿城市群攻坚，瓦格纳在波帕斯纳打开侧翼，卢甘斯克州全境陷落"
+    },
+    {
+      "id": "bakhmut-axis",
+      "name": "索列达尔—巴赫穆特（2022.08–2023.05）",
+      "color": "#e74c3c",
+      "path": [
+        "soledar",
+        "bakhmut",
+        "chasiv-yar"
+      ],
+      "description": "瓦格纳盐矿坑道攻坚，巴赫穆特成为整场战争最血腥绞肉机；恰索夫亚尔运河防线此后血战840余天（2024.03–2026.07）"
+    },
+    {
+      "id": "avdiivka-pokrovsk",
+      "name": "阿夫杰耶夫卡—波克罗夫斯克走廊（2023.10–2025）",
+      "color": "#e74c3c",
+      "path": [
+        "avdiivka",
+        "krasnohorivka",
+        "novohrodivka",
+        "selydove",
+        "pokrovsk",
+        "dobropillia"
+      ],
+      "description": "俄军2024.02拿下阿夫杰耶夫卡要塞后沿走廊推进，2025年相继攻克新格罗多夫卡、塞利多韦、波克罗夫斯克，2026年继续向多布罗皮利亚推进"
+    },
+    {
+      "id": "marinka-kurakhove",
+      "name": "马林卡—库拉霍韦—大诺沃西尔卡（2023–2025）",
+      "color": "#e74c3c",
+      "path": [
+        "marinka",
+        "kurakhove",
+        "velyka-novosilka"
+      ],
+      "description": "南顿涅茨克方向逐城推进，马林卡2023年底陷落，库拉霍韦与大诺沃西尔卡2025年相继易手"
+    },
+    {
+      "id": "toretsk-kramatorsk",
+      "name": "托列茨克—康斯坦丁诺夫卡城市群（2024–2026）",
+      "color": "#e74c3c",
+      "path": [
+        "toretsk",
+        "druzhkivka",
+        "kostiantynivka",
+        "kramatorsk",
+        "sloviansk"
+      ],
+      "description": "顿巴斯中部城市群防线，2025年托列茨克陷落，俄军2026年逼近康斯坦丁诺夫卡，克拉马托尔斯克—斯拉维扬斯克为乌控核心"
+    },
+    {
+      "id": "southern-dnieper",
+      "name": "南线第聂伯河—亚速海（2022–2023）",
+      "color": "#5aa2e8",
+      "path": [
+        "mykolaiv",
+        "snihurivka",
+        "kherson",
+        "nova-kakhovka",
+        "melitopol",
+        "berdiansk"
+      ],
+      "description": "俄军开战即占赫尔松、梅利托波尔，直逼尼古拉耶夫；2022.11乌军赫尔松反攻收复第聂伯河右岸；克林基桥头堡与埃涅尔霍达尔核电站为河岸焦点"
+    },
+    {
+      "id": "zaporizhzhia-counter",
+      "name": "扎波罗热反攻轴线（2023–2024）",
+      "color": "#5aa2e8",
+      "dashed": true,
+      "path": [
+        "orikhiv",
+        "robotyne",
+        "verbove"
+      ],
+      "description": "2023年乌军夏季反攻自奥里希夫南下，推进至罗博季涅—韦尔博韦一线后停滞，卡缅西克为俄控第聂伯河据点"
+    },
+    {
+      "id": "kupiansk-front",
+      "name": "库皮扬斯克方向（2022–2026）",
+      "color": "#f39c12",
+      "dashed": true,
+      "path": [
+        "kharkiv",
+        "kupiansk",
+        "dvorichna",
+        "borova",
+        "lyman"
+      ],
+      "description": "哈尔科夫反攻收复库皮扬斯克后长期拉锯，2024年起俄军再度施压，2026年乌军在库皮扬斯克局部反攻"
+    },
+    {
+      "id": "kharkiv-north",
+      "name": "哈尔科夫北部（2024）",
+      "color": "#2ecc71",
+      "path": [
+        "kharkiv",
+        "lyptsi",
+        "vovchansk"
+      ],
+      "description": "俄军2024.05开辟哈尔科夫北部缓冲区，沃尔昌斯克沿河分割激战一年，2026年俄军完全实控"
+    },
+    {
+      "id": "sumy-border",
+      "name": "苏梅州边境（2025–2026）",
+      "color": "#2ecc71",
+      "dashed": true,
+      "path": [
+        "sumy",
+        "yunakivka",
+        "filiia"
+      ],
+      "description": "俄军2025年夏季攻入苏梅州建立桥头堡，尤纳基夫卡为主要交火区，2026.08乌军收复菲利亚并夺回6.7平方公里"
+    },
+    {
+      "id": "kursk-incursion",
+      "name": "库尔斯克州（2024.08–2026）",
+      "color": "#2ecc71",
+      "path": [
+        "sudzha",
+        "korenevo",
+        "glushkovo"
+      ],
+      "description": "乌军2024.08突入库尔斯克州，开战以来首次攻入俄本土，苏贾为主战场，科列涅沃、格卢什科沃边境拉锯"
+    },
+    {
+      "id": "belgorod-border",
+      "name": "别尔哥罗德州（2023–至今）",
+      "color": "#2ecc71",
+      "dashed": true,
+      "path": [
+        "belgorod",
+        "demidovka"
+      ],
+      "description": "俄境内遭袭最频繁的边境大城市，乌军两次越境行动直逼城郊，杰米多夫卡为2025年越境牵制攻势方向"
+    }
+  ]
+}
