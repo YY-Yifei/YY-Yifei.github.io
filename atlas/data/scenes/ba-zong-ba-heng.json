@@ -23,7 +23,10 @@
     { "id": "mudanjiang", "name": "牡丹江", "lat": 44.583, "lng": 129.5995, "type": "station", "typeLabel": "车站", "description": "绥满通道站点，哈牡客专终点" },
     { "id": "suifenhe", "name": "绥芬河", "lat": 44.412, "lng": 131.151, "type": "border", "typeLabel": "口岸·终点", "description": "绥满通道东端终点，对俄铁路口岸" },
     { "id": "manzhouli", "name": "满洲里", "lat": 49.5983, "lng": 117.379, "type": "border", "typeLabel": "口岸·终点", "description": "绥满通道西端终点，对俄铁路口岸" },
-    { "id": "dalian", "name": "大连", "lat": 38.914, "lng": 121.6147, "type": "terminal", "typeLabel": "终点", "description": "沿海通道北端终点，哈大高铁南端" },
+    { "id": "dalian", "name": "大连", "lat": 38.914, "lng": 121.6147, "type": "terminal", "typeLabel": "终点", "description": "沿海通道北端节点，经哈大高铁北上沈阳，与天津间无直达高铁需绕行" },
+    { "id": "qinhuangdao", "name": "秦皇岛", "lat": 39.9354, "lng": 119.5996, "type": "station", "typeLabel": "车站", "description": "沿海通道节点，津秦高铁与秦沈客专交汇，天津—大连间必经中转" },
+    { "id": "dongying", "name": "东营", "lat": 37.4346, "lng": 118.6747, "type": "station", "typeLabel": "车站", "description": "沿海通道节点，津潍高铁（在建）途经" },
+    { "id": "weifang", "name": "潍坊", "lat": 36.7069, "lng": 119.1618, "type": "station", "typeLabel": "车站", "description": "沿海通道节点，潍烟高铁（在建）连通烟台" },
     { "id": "jinan", "name": "济南", "lat": 36.6512, "lng": 117.1201, "type": "hub", "typeLabel": "枢纽", "description": "京沪/青银通道交汇" },
     { "id": "qingdao", "name": "青岛", "lat": 36.0671, "lng": 120.3826, "type": "terminal", "typeLabel": "终点", "description": "青银通道东端终点，沿海通道重要节点" },
     { "id": "xuzhou", "name": "徐州", "lat": 34.205, "lng": 117.285, "type": "hub", "typeLabel": "枢纽", "description": "陆桥通道与京沪高铁交汇的十字枢纽" },
@@ -85,8 +88,8 @@
       "id": "v-yanhai",
       "name": "八纵① 沿海通道",
       "color": "#e74c3c",
-      "path": ["dalian", "tianjin", "qingdao", "lianyungang", "yancheng", "nantong", "shanghai", "ningbo", "fuzhou", "xiamen", "shantou", "guangzhou", "zhanjiang", "beihai", "fangchenggang"],
-      "description": "北起大连，经天津、青岛、连云港、上海、宁波、福州、厦门、汕头、广州至防城港，串联全部东部沿海城市群"
+      "path": ["dalian", "qinhuangdao", "tianjin", "dongying", "weifang", "qingdao", "lianyungang", "yancheng", "nantong", "shanghai", "ningbo", "fuzhou", "xiamen", "shantou", "guangzhou", "zhanjiang", "beihai", "fangchenggang"],
+      "description": "北起大连，经秦皇岛、天津、东营、潍坊、青岛、连云港、盐城、南通、上海、宁波、福州、厦门、汕头、广州、湛江、北海至防城港，串联东部沿海城市群。注意：大连—天津段经秦皇岛绕行（津秦高铁+秦沈客专+哈大高铁），无直达线"
     },
     {
       "id": "v-jinghu",
