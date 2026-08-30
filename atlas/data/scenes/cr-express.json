@@ -1,0 +1,263 @@
+{
+  "id": "cr-express",
+  "name": "中欧班列",
+  "type": "railway",
+  "description": "中欧班列是中国与欧洲之间的国际铁路联运班列，经西（阿拉山口/霍尔果斯）、中（二连浩特）、东（满洲里）三大通道出境，横跨亚欧大陆。截至2025年累计开行超10万列，通达欧洲25国200余城，运输时效约为海运的1/3、空运的1/5。",
+  "view": {
+    "center": [50, 63],
+    "zoom": 3
+  },
+  "nodes": [
+    {
+      "id": "chongqing",
+      "name": "重庆",
+      "lat": 29.5630,
+      "lng": 106.5516,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "渝新欧班列始发地，2011年首列中欧班列即由此开出，是班列鼻祖"
+    },
+    {
+      "id": "chengdu",
+      "name": "成都",
+      "lat": 30.5728,
+      "lng": 104.0668,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "蓉欧班列始发地，西部开行量最大的枢纽之一"
+    },
+    {
+      "id": "xian",
+      "name": "西安",
+      "lat": 34.3416,
+      "lng": 108.9398,
+      "type": "hub",
+      "typeLabel": "始发·中转枢纽",
+      "description": "长安号班列始发地，全国开行量第一的集结中心，多条线路在此汇合"
+    },
+    {
+      "id": "zhengzhou",
+      "name": "郑州",
+      "lat": 34.7466,
+      "lng": 113.6254,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "郑欧班列始发地，中部集结中心，经阿拉山口出境"
+    },
+    {
+      "id": "wuhan",
+      "name": "武汉",
+      "lat": 30.5928,
+      "lng": 114.3055,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "汉欧班列始发地，2020年疫情期间率先复开，保障国际供应链"
+    },
+    {
+      "id": "yiwu",
+      "name": "义乌",
+      "lat": 29.3068,
+      "lng": 120.0750,
+      "type": "terminal",
+      "typeLabel": "始发城市",
+      "description": "义新欧班列始发地，以出口小商品为主，线路直达西班牙马德里，全程13052公里"
+    },
+    {
+      "id": "lanzhou",
+      "name": "兰州",
+      "lat": 36.0611,
+      "lng": 103.8343,
+      "type": "station",
+      "typeLabel": "中转站",
+      "description": "陇海—兰新通道咽喉，西通道班列的必经枢纽"
+    },
+    {
+      "id": "urumqi",
+      "name": "乌鲁木齐",
+      "lat": 43.8256,
+      "lng": 87.6168,
+      "type": "hub",
+      "typeLabel": "枢纽",
+      "description": "新亚欧大陆桥中国段终点，班列在此编组后分赴阿拉山口/霍尔果斯"
+    },
+    {
+      "id": "alashankou",
+      "name": "阿拉山口",
+      "lat": 45.1723,
+      "lng": 82.5670,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "中国西部最大陆路口岸，中欧班列西通道主力口岸，对应哈方多斯特克"
+    },
+    {
+      "id": "khorgos",
+      "name": "霍尔果斯",
+      "lat": 44.2202,
+      "lng": 80.4200,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "西通道第二大口岸，中哈边境合作中心所在地，对应哈方阿腾科里"
+    },
+    {
+      "id": "erlian",
+      "name": "二连浩特",
+      "lat": 43.6430,
+      "lng": 111.9777,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "中通道唯一铁路口岸，经蒙古国扎门乌德出境"
+    },
+    {
+      "id": "manzhouli",
+      "name": "满洲里",
+      "lat": 49.5983,
+      "lng": 117.3786,
+      "type": "border",
+      "typeLabel": "出境口岸",
+      "description": "东通道最大口岸，连接俄罗斯西伯利亚铁路，对应后贝加尔斯克"
+    },
+    {
+      "id": "dostyk",
+      "name": "多斯特克（哈）",
+      "lat": 45.2511,
+      "lng": 82.4849,
+      "type": "hub",
+      "typeLabel": "换装站",
+      "description": "哈萨克斯坦口岸，与阿拉山口对应，中哈轨距换装（1435mm/1520mm）作业站"
+    },
+    {
+      "id": "altynkol",
+      "name": "阿腾科里（哈）",
+      "lat": 44.3319,
+      "lng": 80.4424,
+      "type": "hub",
+      "typeLabel": "换装站",
+      "description": "哈萨克斯坦口岸，与霍尔果斯对应，无水港换装场"
+    },
+    {
+      "id": "zamynuud",
+      "name": "扎门乌德（蒙）",
+      "lat": 43.7167,
+      "lng": 111.9000,
+      "type": "border",
+      "typeLabel": "蒙古口岸",
+      "description": "蒙古国铁路口岸，与二连浩特隔界相望，中通道出境第一站"
+    },
+    {
+      "id": "ulaanbaatar",
+      "name": "乌兰巴托",
+      "lat": 47.8864,
+      "lng": 106.9057,
+      "type": "station",
+      "typeLabel": "蒙古首都",
+      "description": "蒙古国首都，中通道班列沿蒙古纵贯铁路北上进入俄罗斯"
+    },
+    {
+      "id": "zabaykalsk",
+      "name": "后贝加尔斯克（俄）",
+      "lat": 49.6450,
+      "lng": 117.0000,
+      "type": "border",
+      "typeLabel": "俄罗斯口岸",
+      "description": "俄罗斯铁路口岸，与满洲里对应，东通道接入西伯利亚大铁路"
+    },
+    {
+      "id": "malaszewicze",
+      "name": "马拉舍维奇（波）",
+      "lat": 52.3779,
+      "lng": 23.1026,
+      "type": "hub",
+      "typeLabel": "欧洲换轨枢纽",
+      "description": "波兰边境小镇，欧洲最大铁路换装场，欧亚轨距换装后分拨全欧"
+    },
+    {
+      "id": "warsaw",
+      "name": "华沙",
+      "lat": 52.2297,
+      "lng": 21.0122,
+      "type": "station",
+      "typeLabel": "分拨枢纽",
+      "description": "波兰首都，中东欧分拨中心，货物经此辐射波兰及周边国家"
+    },
+    {
+      "id": "hamburg",
+      "name": "汉堡",
+      "lat": 53.5511,
+      "lng": 9.9937,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "德国最大港口城市，中欧班列传统终点，海铁联运重要节点"
+    },
+    {
+      "id": "duisburg",
+      "name": "杜伊斯堡",
+      "lat": 51.4344,
+      "lng": 6.7623,
+      "type": "terminal",
+      "typeLabel": "欧洲终点",
+      "description": "德国鲁尔区内陆港，欧洲最大内陆港，渝新欧等线路的主要终点"
+    }
+  ],
+  "lines": [
+    {
+      "id": "west-main",
+      "name": "西通道·阿拉山口（渝新欧/长安号）",
+      "color": "#c0392b",
+      "path": ["chongqing", "xian", "lanzhou", "urumqi", "alashankou", "dostyk", "malaszewicze", "duisburg"],
+      "description": "主力通道，经哈萨克斯坦—俄罗斯—白俄罗斯抵波兰，占中欧班列开行量约50%"
+    },
+    {
+      "id": "west-khorgos",
+      "name": "西通道·霍尔果斯（蓉欧）",
+      "color": "#e67e22",
+      "path": ["chengdu", "lanzhou", "urumqi", "khorgos", "altynkol", "malaszewicze"],
+      "description": "西部第二大口岸通道，2017年开通中欧班列乌鲁木齐集结中心后加密开行"
+    },
+    {
+      "id": "central",
+      "name": "中通道·二连浩特",
+      "color": "#2980b9",
+      "path": ["erlian", "zamynuud", "ulaanbaatar", "malaszewicze"],
+      "description": "经蒙古国纵贯铁路，接入俄罗斯西伯利亚大铁路西行，线路最短但冬季严寒"
+    },
+    {
+      "id": "east",
+      "name": "东通道·满洲里",
+      "color": "#27ae60",
+      "path": ["manzhouli", "zabaykalsk", "malaszewicze"],
+      "description": "沿西伯利亚大铁路全程西行，服务东北、京津冀方向班列"
+    },
+    {
+      "id": "feeder-yiwu",
+      "name": "始发集货（义新欧/郑欧）",
+      "color": "#7f8c8d",
+      "dashed": true,
+      "path": ["yiwu", "zhengzhou", "xian"],
+      "description": "东部始发班列经陇海线西行集结；义新欧另经阿拉山口直达西班牙马德里（13052公里）"
+    },
+    {
+      "id": "feeder-wuhan",
+      "name": "始发集货（汉欧）",
+      "color": "#7f8c8d",
+      "dashed": true,
+      "path": ["wuhan", "xian"],
+      "description": "汉欧班列经陇海线在西安集结后汇入西通道"
+    },
+    {
+      "id": "europe-hamburg",
+      "name": "欧洲分拨·汉堡",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": ["malaszewicze", "warsaw", "hamburg"],
+      "description": "马拉舍维奇换轨后，货物分拨至德国及北欧"
+    },
+    {
+      "id": "europe-duisburg",
+      "name": "欧洲分拨·杜伊斯堡",
+      "color": "#8e44ad",
+      "dashed": true,
+      "path": ["malaszewicze", "duisburg"],
+      "description": "经波兰—德国铁路直达杜伊斯堡内陆港，再分拨欧洲各地"
+    }
+  ]
+}
