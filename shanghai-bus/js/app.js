@@ -81,15 +81,16 @@
 
       state.stops = stopsData.stops || [];
       state.routes = routesData.routes || [];
+      const uniqueStopCount = stopsData.count || new Set(state.stops.map((s) => s.n)).size;
 
-      // 建索引
+      // 建索引（同名站多坐标）
       state.stopIndex.clear();
       for (const s of state.stops) {
         if (!state.stopIndex.has(s.n)) state.stopIndex.set(s.n, []);
         state.stopIndex.get(s.n).push(s);
       }
 
-      $('stat-stops').textContent = '站点 ' + state.stops.length;
+      $('stat-stops').textContent = '站点 ' + uniqueStopCount;
       $('stat-routes').textContent = '线路 ' + state.routes.length;
 
       renderRouteList(state.routes);
@@ -151,13 +152,13 @@
     for (const r of routes) {
       const item = document.createElement('div');
       item.className = 'route-item' + (state.currentRoute && state.currentRoute.n === r.n ? ' active' : '');
-      const total = (r.uCount || 0) + (r.dCount || 0);
+      const total = (r.upCount || 0) + (r.downCount || 0);
       item.innerHTML =
         '<span class="route-no">' + escapeHtml(r.n) + '</span>' +
         '<span class="route-meta">' +
         '  <div class="route-name">' + escapeHtml(r.n) + '</div>' +
         '  <div class="route-tag">' + total + ' 站 · ' +
-          ((r.uCount ? '上行' + r.uCount : '') + (r.uCount && r.dCount ? ' / ' : '') + (r.dCount ? '下行' + r.dCount : '')) +
+          ((r.upCount ? '上行' + r.upCount : '') + (r.upCount && r.downCount ? ' / ' : '') + (r.downCount ? '下行' + r.downCount : '')) +
         '</div>' +
         '</span>';
       item.addEventListener('click', () => selectRoute(r));
@@ -199,16 +200,23 @@
   }
 
   function drawDirection(stops, dirLabel, color) {
-    // 收集有坐标的点，无坐标处断开
+    // stops: [{n, lat, lng}]；无坐标或与上一坐标距离 >15km 时断开
     const segments = [];
     let cur = [];
-    for (const name of stops) {
-      const s = pickStop(name);
-      if (s) {
-        cur.push({ name, lnglat: toAMap(s.lat, s.lng) });
-      } else {
+    let prevLatLng = null;
+    for (const s of stops) {
+      const has = s && typeof s.lat === 'number';
+      let tooFar = false;
+      if (has && prevLatLng) {
+        tooFar = haversineKm(prevLatLng[1], prevLatLng[0], s.lng, s.lat) > 15;
+      }
+      if (!has || tooFar) {
         if (cur.length >= 2) segments.push(cur);
         cur = [];
+        prevLatLng = null;
+      } else {
+        cur.push({ name: s.n, lnglat: toAMap(s.lat, s.lng) });
+        prevLatLng = [s.lng, s.lat];
       }
     }
     if (cur.length >= 2) segments.push(cur);
@@ -230,23 +238,36 @@
     }
 
     // 站点 marker
-    stops.forEach((name, i) => {
-      const s = pickStop(name);
-      if (!s) return;
+    stops.forEach((s, i) => {
+      if (!s || typeof s.lat !== 'number') return;
       const marker = new AMap.Marker({
         position: toAMap(s.lat, s.lng),
-        content: makeStopDot(i + 1, color, name),
+        content: makeStopDot(i + 1, color, s.n),
         offset: new AMap.Pixel(-9, -9),
         zIndex: 30,
-        title: name,
+        title: s.n,
       });
       marker.on('click', () => {
-        const rc = s.rc || 0;
-        showStopInfo(toAMap(s.lat, s.lng), name + '（' + dirLabel + ' 第' + (i + 1) + '站）', rc);
+        showStopInfo(toAMap(s.lat, s.lng), s.n + '（' + dirLabel + ' 第' + (i + 1) + '站）', stopRouteCount(s.n));
       });
       marker.setMap(state.map);
       state.currentMarkers.push(marker);
     });
+  }
+
+  function stopRouteCount(name) {
+    const list = state.stopIndex.get(name);
+    if (!list || !list.length) return 0;
+    return list[0].rc || 0;
+  }
+
+  function haversineKm(lng1, lat1, lng2, lat2) {
+    const R = 6371.0;
+    const rad = (d) => (d * PI) / 180;
+    const dLat = rad(lat2 - lat1);
+    const dLng = rad(lng2 - lng1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(a));
   }
 
   function makeStopDot(seq, color, name) {
@@ -269,9 +290,9 @@
   function renderDetail(route) {
     $('detail-name').textContent = route.n;
     const stats = [];
-    if (route.uCount) stats.push('上行 ' + route.uCount + ' 站');
-    if (route.dCount) stats.push('下行 ' + route.dCount + ' 站');
-    stats.push('共 ' + ((route.uCount || 0) + (route.dCount || 0)) + ' 个站次');
+    if (route.upCount) stats.push('上行 ' + route.upCount + ' 站');
+    if (route.downCount) stats.push('下行 ' + route.downCount + ' 站');
+    stats.push('共 ' + ((route.upCount || 0) + (route.downCount || 0)) + ' 个站次');
     $('detail-stats').textContent = stats.join(' · ');
 
     const box = $('detail-stops');
@@ -285,23 +306,20 @@
       h.style.cssText = 'font-size:12px;font-weight:700;color:var(--text-2);padding:10px 8px 4px;';
       h.textContent = '⬆ ' + d.label + '（' + d.list.length + ' 站）';
       box.appendChild(h);
-      d.list.forEach((name, i) => {
+      d.list.forEach((s, i) => {
         const row = document.createElement('div');
         row.className = 'stop-row';
-        const has = pickStop(name);
+        const has = s && typeof s.lat === 'number';
         row.innerHTML =
           '<span class="seq">' + (i + 1) + '</span>' +
-          '<span class="stop-name">' + escapeHtml(name) + '</span>' +
+          '<span class="stop-name">' + escapeHtml(s.n) + '</span>' +
           '<span class="direction">' + (has ? '' : '⚠ 无坐标') + '</span>';
         if (has) {
           row.style.cursor = 'pointer';
           row.addEventListener('click', () => {
-            const p = pickStop(name);
-            if (p) {
-              const lnglat = toAMap(p.lat, p.lng);
-              state.map.setZoomAndCenter(16, lnglat);
-              showStopInfo(lnglat, name, p.rc || 0);
-            }
+            const lnglat = toAMap(s.lat, s.lng);
+            state.map.setZoomAndCenter(16, lnglat);
+            showStopInfo(lnglat, s.n, stopRouteCount(s.n));
           });
         } else {
           row.style.opacity = '.55';
@@ -331,9 +349,8 @@
     if (route.up) lists.push(route.up);
     if (route.down) lists.push(route.down);
     for (const list of lists) {
-      for (const name of list) {
-        const s = pickStop(name);
-        if (s) pts.push(toAMap(s.lat, s.lng));
+      for (const s of list) {
+        if (s && typeof s.lat === 'number') pts.push(toAMap(s.lat, s.lng));
       }
     }
     if (pts.length >= 2) {
