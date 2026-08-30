@@ -1,6 +1,8 @@
 /**
- * Atlas 地图标记系统
+ * Atlas 地图标记系统 — 高德 JS API 2.0 引擎版
  * 数据驱动：场景索引 data/scenes.json + 每个场景独立 JSON
+ * 坐标：场景数据存 WGS-84，显示时转 GCJ-02（高德坐标系）
+ * 功能：场景标记/连线 · POI 搜索 · 卫星底图 · 实时路况 · 3D 视角
  */
 
 /* ========== 坐标系转换：WGS-84 → GCJ-02（中国境内） ========== */
@@ -41,52 +43,13 @@ function wgs84ToGcj02(lat, lng) {
   return { lat: lat + dLat, lng: lng + dLng };
 }
 
-/* ========== 瓦片源配置（仅高德，全部 GCJ-02 坐标系） ==========
- * 矢量：webrd 接口 style=8 标准矢量底图，最高 18 级（19 级由 18 级放大）
- * 卫星：webst 接口 style=6 卫星影像（JPEG），最高 18 级
- * 路网标注：webst 接口 style=8 透明标注叠加层（RGBA，约半透明），最高 18 级
- * 卫星·含路网标注 = 卫星 style=6 + 路网 style=8 叠加（同高德官方 Satellite+RoadNet 组合）
- * 注意：webst style=7 是矢量简图而非卫星，勿混淆
- * 不附加缓存版本号参数：瓦片新旧由高德 HTTP 缓存头自动管理，真遇旧图强刷即可
- */
-const TILE_SOURCES = {
-  gaode_vec: {
-    name: '高德矢量地图',
-    url: 'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
-    subdomains: '1234',
-    attribution: '&copy; 高德地图',
-    gcj: true,
-    maxZoom: 19,
-    maxNativeZoom: 18,
-  },
-  gaode_sat: {
-    name: '高德卫星·纯影像',
-    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}',
-    subdomains: '1234',
-    attribution: '&copy; 高德地图',
-    gcj: true,
-    maxZoom: 19,
-    maxNativeZoom: 18,
-  },
-  gaode_roadnet: {
-    name: '高德路网标注（透明层）',
-    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}',
-    subdomains: '1234',
-    attribution: '&copy; 高德地图',
-    gcj: true,
-    maxZoom: 19,
-    maxNativeZoom: 18,
-    hidden: true, // 仅作为组合项内部成员，不出现在底图切换控件
-  },
-  gaode_sat_road: {
-    name: '高德卫星·含路网标注',
-    combine: ['gaode_sat', 'gaode_roadnet'],
-    gcj: true,
-    maxZoom: 19,
-  },
-};
+/** 数据坐标 (lat, lng, WGS-84) → 高德坐标 [lng, lat]（GCJ-02） */
+function toAMap(lat, lng) {
+  const p = wgs84ToGcj02(lat, lng);
+  return [p.lng, p.lat];
+}
 
-/* ========== 状态 ========== */
+/* ========== 常量 ========== */
 const NODE_COLORS = {
   terminal: '#e74c3c',   // 终点/起点
   station:  '#3498db',   // 普通站点
@@ -96,56 +59,49 @@ const NODE_COLORS = {
   default:  '#64748b',
 };
 
-let currentTileSource = 'gaode_vec';
-let currentGcj = TILE_SOURCES[currentTileSource].gcj;
-
-const map = L.map('map').setView([24, 103], 5);
-
-/** 按瓦片源配置创建图层（支持 maxNativeZoom：超出原生级别时放大显示而非留白） */
-function createTileLayer(src) {
-  if (src.combine) {
-    return L.layerGroup(src.combine.map(k => createTileLayer(TILE_SOURCES[k])));
-  }
-  return L.tileLayer(src.url, {
-    maxZoom: src.maxZoom,
-    maxNativeZoom: src.maxNativeZoom,
-    subdomains: src.subdomains,
-    attribution: src.attribution,
-  });
+/* ========== 地图初始化 ========== */
+if (typeof AMap === 'undefined') {
+  document.getElementById('scene-list').innerHTML =
+    '<p class="loading">⚠️ 高德地图 SDK 加载失败（检查 key / 域名白名单）</p>';
+  throw new Error('AMap SDK not loaded');
 }
 
-const baseLayer = createTileLayer(TILE_SOURCES.gaode_vec).addTo(map);
-
-// 图层切换控件（右上角）
-const baseMaps = {};
-Object.keys(TILE_SOURCES).forEach(key => {
-  const src = TILE_SOURCES[key];
-  if (src.hidden) return; // 纯叠加层不作为独立底图暴露
-  baseMaps[src.name] = createTileLayer(src);
+const map = new AMap.Map('map', {
+  zoom: 5,
+  center: [103.0, 24.0], // 默认视角：云南一带
+  viewMode: '2D',
 });
-L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
-map.on('baselayerchange', (e) => {
-  const name = e.name;
-  const key = Object.keys(TILE_SOURCES).find(k => TILE_SOURCES[k].name === name);
-  if (key) {
-    currentTileSource = key;
-    currentGcj = TILE_SOURCES[key].gcj;
-    if (currentScene) selectScene(currentScene); // 重绘以应用坐标系
+/* 图层（懒加载，避免初始化开销） */
+let satLayer = null;
+let roadNetLayer = null;
+const trafficLayer = new AMap.TileLayer.Traffic();
+let satOn = false;
+let trafficOn = false;
+let mode3D = false;
+
+function setBaseMode(mode) {
+  if (mode === 'satellite') {
+    if (!satOn) {
+      if (!satLayer) satLayer = new AMap.TileLayer.Satellite();
+      if (!roadNetLayer) roadNetLayer = new AMap.TileLayer.RoadNet();
+      map.add([satLayer, roadNetLayer]);
+      satOn = true;
+    }
+  } else if (satOn) {
+    map.remove([satLayer, roadNetLayer]);
+    satOn = false;
   }
-});
-
-/** WGS-84 坐标 → 当前瓦片源坐标系 */
-function toDisplay(lat, lng) {
-  if (!currentGcj) return [lat, lng];
-  const p = wgs84ToGcj02(lat, lng);
-  return [p.lat, p.lng];
+  document.querySelectorAll('.lc-btn[data-mode]').forEach(b =>
+    b.classList.toggle('active', b.dataset.mode === mode));
 }
 
 /* ========== 场景管理 ========== */
 let scenes = [];
 let currentScene = null;
 let currentLayers = [];
+let poiMarkers = [];
+let infoWindow = null;
 
 /** 加载场景索引 */
 async function loadScenes() {
@@ -185,16 +141,16 @@ async function selectScene(scene, activeCard) {
   currentScene = scene;
   const data = await fetchSceneData(scene.dataFile);
 
-  // 设置默认视角
+  // 设置默认视角（数据 view.center 为 [lat, lng]）
   if (data.view) {
-    map.setView(toDisplay(data.view.center[0], data.view.center[1]), data.view.zoom);
+    map.setZoomAndCenter(data.view.zoom, toAMap(data.view.center[0], data.view.center[1]));
   }
 
   // 画连线（先画线，节点盖在上面）
   (data.lines || []).forEach(line => drawLine(line, data.nodes));
 
   // 画节点
-  (data.nodes || []).forEach(node => drawNode(node, scene));
+  (data.nodes || []).forEach(node => drawNode(node));
 
   // 信息面板
   showSceneInfo(data, scene);
@@ -211,27 +167,44 @@ async function fetchSceneData(file) {
   }
 }
 
-/** 清空当前图层 */
+/** 清空当前图层（场景覆盖物 + POI + 弹窗） */
 function clearLayers() {
-  currentLayers.forEach(l => map.removeLayer(l));
+  currentLayers.forEach(l => map.remove(l));
   currentLayers = [];
+  clearPoi();
+  if (infoWindow) infoWindow.close();
+}
+
+/** 清空 POI 搜索结果 */
+function clearPoi() {
+  poiMarkers.forEach(m => map.remove(m));
+  poiMarkers = [];
 }
 
 /** 画节点标记 */
-function drawNode(node, scene) {
+function drawNode(node) {
   const color = NODE_COLORS[node.type] || NODE_COLORS.default;
-  const [lat, lng] = toDisplay(node.lat, node.lng);
-  const icon = L.divIcon({
-    className: 'custom-marker',
-    html: `<div style="width:26px;height:26px;background:${color};border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:bold;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)">${node.label || node.name.charAt(0)}</div>`,
-    iconSize: [26, 26],
-    iconAnchor: [13, 13],
+  const label = node.label || node.name.charAt(0);
+  const html = `<div style="width:26px;height:26px;background:${color};border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:bold;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)">${label}</div>`;
+
+  const marker = new AMap.Marker({
+    position: toAMap(node.lat, node.lng),
+    content: html,
+    anchor: 'center',
   });
 
-  const marker = L.marker([lat, lng], { icon })
-    .addTo(map)
-    .bindPopup(`<b>${node.name}</b><br><span style="color:#64748b">${node.typeLabel || node.type}</span><br>${node.description || ''}`);
+  marker.on('click', () => {
+    const content = `<div style="font-size:13px;line-height:1.6;min-width:170px">
+      <b style="font-size:14px">${node.name}</b><br>
+      <span style="color:#888">${node.typeLabel || node.type}</span><br>
+      ${node.description || ''}
+    </div>`;
+    if (!infoWindow) infoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
+    infoWindow.setContent(content);
+    infoWindow.open(map, toAMap(node.lat, node.lng));
+  });
 
+  map.add(marker);
   currentLayers.push(marker);
 }
 
@@ -240,21 +213,31 @@ function drawLine(line, nodes) {
   const nodeMap = {};
   nodes.forEach(n => nodeMap[n.id] = n);
 
-  const points = (line.path || [])
+  const path = (line.path || [])
     .map(id => nodeMap[id])
     .filter(n => n)
-    .map(n => toDisplay(n.lat, n.lng));
+    .map(n => toAMap(n.lat, n.lng));
 
-  if (points.length < 2) return;
+  if (path.length < 2) return;
 
-  const polyline = L.polyline(points, {
-    color: line.color || '#e74c3c',
-    weight: 4,
-    opacity: 0.8,
-    dashArray: line.dashed ? '8 8' : null,
-  }).addTo(map);
+  const polyline = new AMap.Polyline({
+    path,
+    strokeColor: line.color || '#e74c3c',
+    strokeWeight: 4,
+    strokeOpacity: 0.85,
+    lineJoin: 'round',
+    lineCap: 'round',
+    ...(line.dashed ? { strokeStyle: 'dashed' } : {}),
+  });
 
-  polyline.bindPopup(`<b>${line.name}</b>`);
+  polyline.on('click', () => {
+    const content = `<div style="font-size:13px;padding:2px 4px"><b>${line.name}</b></div>`;
+    if (!infoWindow) infoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
+    infoWindow.setContent(content);
+    infoWindow.open(map, path[Math.floor(path.length / 2)]);
+  });
+
+  map.add(polyline);
   currentLayers.push(polyline);
 }
 
@@ -272,27 +255,105 @@ function showSceneInfo(data, scene) {
     row.className = 'node-row';
     row.innerHTML = `
       <span class="node-dot" style="background:${color}"></span>
-      <span class="node-name">${i + 1}. ${node.name}</span>
+      <span class="node-name">${node.name}</span>
       <span class="node-type">${node.typeLabel || node.type}</span>
-      <span class="node-desc">${node.description || ''}</span>
     `;
     rows.appendChild(row);
   });
-
   panel.classList.remove('hidden');
 }
 
-document.getElementById('info-close').onclick = () => {
-  document.getElementById('scene-info').classList.add('hidden');
+/* ========== POI 搜索 ========== */
+let placeSearch = null;
+AMap.plugin(['AMap.PlaceSearch'], () => {
+  placeSearch = new AMap.PlaceSearch({
+    pageSize: 10,
+    pageIndex: 1,
+    citylimit: false, // 全国范围搜索
+  });
+});
+
+function searchPoi(keyword) {
+  if (!placeSearch) { alert('搜索组件尚未就绪，请稍后再试'); return; }
+  clearPoi();
+  placeSearch.search(keyword, (status, result) => {
+    if (status !== 'complete' || !result.poiList || !result.poiList.pois.length) {
+      alert(`未找到与「${keyword}」相关的地点`);
+      return;
+    }
+    const pois = result.poiList.pois;
+    pois.forEach(poi => {
+      const pos = [poi.location.lng, poi.location.lat];
+      const marker = new AMap.Marker({
+        position: pos,
+        content: '<div style="width:20px;height:20px;background:#1e88e5;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+        anchor: 'center',
+      });
+      marker.on('click', () => {
+        const content = `<div style="font-size:13px;line-height:1.6;min-width:180px">
+          <b style="font-size:14px">${poi.name}</b><br>
+          <span style="color:#888">${poi.type || ''}</span><br>
+          ${poi.address || ''}
+        </div>`;
+        if (!infoWindow) infoWindow = new AMap.InfoWindow({ offset: new AMap.Pixel(0, -8) });
+        infoWindow.setContent(content);
+        infoWindow.open(map, pos);
+      });
+      map.add(marker);
+      poiMarkers.push(marker);
+    });
+    // 视野适配到全部结果（避免 POI 被搜索框/控制条遮挡）
+    map.setFitView(poiMarkers, false, [90, 90, 90, 90]);
+  });
+}
+
+/* ========== 事件绑定 ========== */
+document.getElementById('poi-btn').onclick = () => {
+  const kw = document.getElementById('poi-input').value.trim();
+  if (kw) searchPoi(kw);
 };
+document.getElementById('poi-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('poi-btn').click();
+});
+
+// 点击地图空白处关闭信息窗
+map.on('click', () => { if (infoWindow) infoWindow.close(); });
+
+// 图层控制
+document.querySelectorAll('.lc-btn[data-mode]').forEach(btn => {
+  btn.onclick = () => setBaseMode(btn.dataset.mode);
+});
+document.getElementById('lc-traffic').onclick = function () {
+  trafficOn = !trafficOn;
+  if (trafficOn) map.add(trafficLayer); else map.remove(trafficLayer);
+  this.classList.toggle('active', trafficOn);
+};
+document.getElementById('lc-3d').onclick = function () {
+  mode3D = !mode3D;
+  if (mode3D) {
+    map.setViewMode('3D');
+    map.setPitch(50);
+  } else {
+    map.setViewMode('2D');
+    map.setPitch(0);
+  }
+  this.classList.toggle('active', mode3D);
+};
+document.getElementById('lc-zoom-in').onclick = () => map.zoomIn();
+document.getElementById('lc-zoom-out').onclick = () => map.zoomOut();
 
 /* ========== 侧边栏收起/展开 ========== */
 const sidebarToggle = document.getElementById('sidebar-toggle');
 sidebarToggle.onclick = () => {
-  const collapsed = document.body.classList.toggle('sidebar-collapsed');
-  sidebarToggle.textContent = collapsed ? '»' : '«';
-  sidebarToggle.title = collapsed ? '展开侧边栏' : '收起侧边栏';
-  setTimeout(() => map.invalidateSize(), 320); // 等动画结束后让地图自适应宽度
+  document.body.classList.toggle('sidebar-collapsed');
+  sidebarToggle.textContent = document.body.classList.contains('sidebar-collapsed') ? '»' : '«';
+  map.resize(); // 通知高德地图容器尺寸变化
 };
 
+/* ========== 场景信息面板 ========== */
+document.getElementById('info-close').onclick = () => {
+  document.getElementById('scene-info').classList.add('hidden');
+};
+
+/* ========== 启动 ========== */
 loadScenes();

@@ -4,20 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>地图标记系统 · Atlas</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <button id="sidebar-toggle" title="收起/展开侧边栏">«</button>
   <div id="sidebar">
     <h1>🗺️ Atlas 地图标记系统</h1>
-    <p class="subtitle">场景数据由对话生成，GitHub Pages 托管</p>
+    <p class="subtitle">场景数据由对话生成 · GitHub Pages 托管 · 高德 JS API</p>
     <div id="scene-list">
       <p class="loading">加载中…</p>
     </div>
   </div>
 
-  <div id="map"></div>
+  <div id="map">
+    <!-- POI 搜索（地图左上角） -->
+    <div id="poi-search">
+      <input id="poi-input" type="text" placeholder="搜索地点 / POI，如：外滩" autocomplete="off" />
+      <button id="poi-btn">搜索</button>
+    </div>
+
+    <!-- 图层/视图控制（地图右下角） -->
+    <div id="layer-control">
+      <button class="lc-btn active" data-mode="vector">🗺️ 矢量地图</button>
+      <button class="lc-btn" data-mode="satellite">🛰️ 卫星影像</button>
+      <button class="lc-btn" id="lc-traffic">🚦 实时路况</button>
+      <button class="lc-btn" id="lc-3d">🏔️ 3D 视角</button>
+      <div class="lc-divider"></div>
+      <button class="lc-btn lc-zoom" id="lc-zoom-in" title="放大">＋</button>
+      <button class="lc-btn lc-zoom" id="lc-zoom-out" title="缩小">－</button>
+    </div>
+  </div>
 
   <div id="scene-info" class="hidden">
     <button id="info-close">✕</button>
@@ -26,7 +42,13 @@
     <div id="info-nodes"></div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- 高德 JS API 2.0（安全密钥须在加载脚本之前设置） -->
+  <script type="text/javascript">
+    window._AMapSecurityConfig = {
+      securityJsCode: "857f260bcf74959c13573ae5f0cf8ae0",
+    };
+  </script>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467"></script>
   <script src="js/map.js"></script>
 </body>
 </html>
