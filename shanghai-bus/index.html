@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上海市公交线网 · BusMap</title>
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+  <button id="sidebar-toggle" title="收起/展开侧边栏">«</button>
+
+  <div id="sidebar">
+    <h1>🚌 上海市公交线网</h1>
+    <p class="subtitle">1573 条线路 · 1.5万+ 站点 · 坐标源自 OpenStreetMap</p>
+
+    <div id="route-search">
+      <input id="route-input" type="text" placeholder="搜索线路，如 47 / 奉贤 / 大桥" autocomplete="off" />
+    </div>
+
+    <div id="route-list">
+      <p class="loading">加载线路数据…</p>
+    </div>
+
+    <div id="route-detail" class="hidden">
+      <div class="detail-header">
+        <h2 id="detail-name"></h2>
+        <button id="detail-close" title="关闭">✕</button>
+      </div>
+      <div id="detail-stats"></div>
+      <div id="detail-stops"></div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- 信息提示 -->
+  <div id="toast" class="hidden"></div>
+
+  <!-- 统计角标 -->
+  <div id="stat-badge">
+    <span id="stat-stops">站点 -</span>
+    <span id="stat-routes">线路 -</span>
+  </div>
+
+  <script type="text/javascript">
+    window._AMapSecurityConfig = {
+      securityJsCode: "857f260bcf74959c13573ae5f0cf8ae0",
+    };
+  </script>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467"></script>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>
