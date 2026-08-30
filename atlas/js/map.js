@@ -80,6 +80,11 @@ const map = new AMap.Map('map', {
   doubleClickZoom: false, // 双击用于获取坐标，缩放用滚轮/按钮
 });
 
+// 移动端窄屏默认收起侧边栏（须在地图初始化后、首次绘制前设置布局）
+if (window.innerWidth <= 600) {
+  document.body.classList.add('sidebar-collapsed');
+}
+
 /* 图层（懒加载，避免初始化开销） */
 let satLayer = null;
 let roadNetLayer = null;
@@ -331,8 +336,50 @@ document.querySelectorAll('.lc-btn[data-mode]').forEach(btn => {
 document.getElementById('lc-zoom-in').onclick = () => map.zoomIn();
 document.getElementById('lc-zoom-out').onclick = () => map.zoomOut();
 
-/* ========== 双击获取坐标 ========== */
+/* ========== 获取坐标（双击 / 移动端长按） ========== */
 let coordMarker = null;
+
+/** 在指定高德坐标处显示坐标面板（gcjLngLat 为 AMap.LngLat） */
+function showCoord(gcjLngLat) {
+  const gcj = { lng: gcjLngLat.getLng(), lat: gcjLngLat.getLat() };
+  const wgs = gcj02ToWgs84(gcj.lat, gcj.lng);
+
+  // 临时标记双击位置
+  if (coordMarker) map.remove(coordMarker);
+  coordMarker = new AMap.Marker({
+    position: [gcj.lng, gcj.lat],
+    content: '<div style="width:16px;height:16px;background:#10b981;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+    anchor: 'center',
+  });
+  map.add(coordMarker);
+
+  // 更新坐标面板
+  document.getElementById('coord-gcj').textContent = `${gcj.lng.toFixed(6)}, ${gcj.lat.toFixed(6)}`;
+  document.getElementById('coord-wgs').textContent = `${wgs.lng.toFixed(6)}, ${wgs.lat.toFixed(6)}`;
+  document.getElementById('coord-panel').classList.remove('hidden');
+}
+
+// 桌面：双击取坐标
+map.on('dblclick', e => showCoord(e.lnglat));
+
+// 移动端：长按取坐标（500ms 无移动触发），touchend/移动取消
+const mapContainer = document.getElementById('map');
+let longPressTimer = null;
+mapContainer.addEventListener('touchstart', e => {
+  if (e.touches && e.touches.length === 1) {
+    const t = e.touches[0];
+    longPressTimer = setTimeout(() => {
+      const rect = mapContainer.getBoundingClientRect();
+      const lnglat = map.containerToLngLat(new AMap.Pixel(t.clientX - rect.left, t.clientY - rect.top));
+      showCoord(lnglat);
+    }, 500);
+  }
+}, { passive: true });
+['touchmove', 'touchend', 'touchcancel'].forEach(evt => {
+  mapContainer.addEventListener(evt, () => {
+    if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+  }, { passive: true });
+});
 
 function copyText(text, btn) {
   const done = () => {
@@ -355,25 +402,6 @@ function fallbackCopy(text, done) {
   document.body.removeChild(ta);
   done();
 }
-
-map.on('dblclick', e => {
-  const gcj = { lng: e.lnglat.getLng(), lat: e.lnglat.getLat() };
-  const wgs = gcj02ToWgs84(gcj.lat, gcj.lng);
-
-  // 临时标记双击位置
-  if (coordMarker) map.remove(coordMarker);
-  coordMarker = new AMap.Marker({
-    position: [gcj.lng, gcj.lat],
-    content: '<div style="width:16px;height:16px;background:#10b981;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
-    anchor: 'center',
-  });
-  map.add(coordMarker);
-
-  // 更新坐标面板
-  document.getElementById('coord-gcj').textContent = `${gcj.lng.toFixed(6)}, ${gcj.lat.toFixed(6)}`;
-  document.getElementById('coord-wgs').textContent = `${wgs.lng.toFixed(6)}, ${wgs.lat.toFixed(6)}`;
-  document.getElementById('coord-panel').classList.remove('hidden');
-});
 
 document.getElementById('coord-close').onclick = () => {
   document.getElementById('coord-panel').classList.add('hidden');
@@ -462,6 +490,8 @@ sidebarToggle.onclick = () => {
   sidebarToggle.textContent = document.body.classList.contains('sidebar-collapsed') ? '»' : '«';
   map.resize(); // 通知高德地图容器尺寸变化
 };
+// 初始状态同步按钮符号（移动端默认已收起）
+sidebarToggle.textContent = document.body.classList.contains('sidebar-collapsed') ? '»' : '«';
 
 /* ========== 场景信息面板 ========== */
 document.getElementById('info-close').onclick = () => {
