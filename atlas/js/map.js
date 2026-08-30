@@ -2,7 +2,7 @@
  * Atlas 地图标记系统 — 高德 JS API 2.0 引擎版
  * 数据驱动：场景索引 data/scenes.json + 每个场景独立 JSON
  * 坐标：场景数据存 WGS-84，显示时转 GCJ-02（高德坐标系）
- * 功能：场景标记/连线 · POI 搜索 · 卫星底图 · 实时路况 · 3D 视角
+ * 功能：场景标记/连线 · POI 搜索 · 卫星底图
  */
 
 /* ========== 坐标系转换：WGS-84 → GCJ-02（中国境内） ========== */
@@ -75,10 +75,7 @@ const map = new AMap.Map('map', {
 /* 图层（懒加载，避免初始化开销） */
 let satLayer = null;
 let roadNetLayer = null;
-const trafficLayer = new AMap.TileLayer.Traffic();
 let satOn = false;
-let trafficOn = false;
-let mode3D = false;
 
 function setBaseMode(mode) {
   if (mode === 'satellite') {
@@ -323,22 +320,6 @@ map.on('click', () => { if (infoWindow) infoWindow.close(); });
 document.querySelectorAll('.lc-btn[data-mode]').forEach(btn => {
   btn.onclick = () => setBaseMode(btn.dataset.mode);
 });
-document.getElementById('lc-traffic').onclick = function () {
-  trafficOn = !trafficOn;
-  if (trafficOn) map.add(trafficLayer); else map.remove(trafficLayer);
-  this.classList.toggle('active', trafficOn);
-};
-document.getElementById('lc-3d').onclick = function () {
-  mode3D = !mode3D;
-  if (mode3D) {
-    map.setViewMode('3D');
-    map.setPitch(50);
-  } else {
-    map.setViewMode('2D');
-    map.setPitch(0);
-  }
-  this.classList.toggle('active', mode3D);
-};
 document.getElementById('lc-zoom-in').onclick = () => map.zoomIn();
 document.getElementById('lc-zoom-out').onclick = () => map.zoomOut();
 
