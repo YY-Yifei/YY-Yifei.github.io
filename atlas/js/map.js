@@ -393,14 +393,6 @@ function searchPoi(keyword) {
 }
 
 /* ========== 事件绑定 ========== */
-document.getElementById('poi-btn').onclick = () => {
-  const kw = document.getElementById('poi-input').value.trim();
-  if (kw) searchPoi(kw);
-};
-document.getElementById('poi-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('poi-btn').click();
-});
-
 // 点击地图空白处关闭信息窗
 map.on('click', () => { if (infoWindow) infoWindow.close(); });
 
