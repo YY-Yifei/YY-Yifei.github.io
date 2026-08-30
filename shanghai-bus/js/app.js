@@ -67,7 +67,7 @@
   }
   state.map = new AMap.Map('map', {
     zoom: 10,
-    center: [121.47, 31.23],
+    center: new AMap.LngLat(121.47, 31.23),
     viewMode: '2D',
     mapStyle: 'amap://styles/normal',
   });
@@ -389,9 +389,9 @@
     }
     if (cur.length >= 2) segments.push(cur);
 
-    // polyline
+    // polyline（path 用 LngLat 实例，确保各 SDK 版本兼容）
     for (const seg of segments) {
-      const path = seg.map((p) => p.lnglat);
+      const path = seg.map((p) => new AMap.LngLat(p.lnglat[0], p.lnglat[1]));
       const line = new AMap.Polyline({
         path,
         strokeColor: color,
@@ -411,7 +411,7 @@
       const pos = toAMap(s.lat, s.lng);
       if (!Number.isFinite(pos[0]) || !Number.isFinite(pos[1])) return;
       const marker = new AMap.Marker({
-        position: pos,
+        position: new AMap.LngLat(pos[0], pos[1]),
         content: makeStopDot(i + 1, color, s.n),
         offset: new AMap.Pixel(-9, -9),
         zIndex: 30,
