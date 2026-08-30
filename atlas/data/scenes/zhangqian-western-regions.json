@@ -1,0 +1,197 @@
+{
+  "id": "zhangqian-western-regions",
+  "name": "张骞凿空西域",
+  "type": "history",
+  "description": "汉武帝建元三年（公元前138年），张骞奉诏出使西域，联络大月氏夹击匈奴。虽被匈奴扣留十余年、未达成军事联盟，却「凿空」了中原通往西域的道路，开辟丝绸之路。元狩四年（公元前119年）二次出使，通乌孙、联西域诸国。",
+  "view": {
+    "center": [40, 86],
+    "zoom": 4
+  },
+  "nodes": [
+    {
+      "id": "changan",
+      "name": "长安（今西安）",
+      "lat": 34.3416,
+      "lng": 108.9398,
+      "type": "terminal",
+      "typeLabel": "起点",
+      "description": "西汉都城。前138年张骞率百余人从长安出发，踏上凿空之旅"
+    },
+    {
+      "id": "longxi",
+      "name": "陇西（今临洮）",
+      "lat": 35.3766,
+      "lng": 103.8637,
+      "type": "border",
+      "typeLabel": "大汉西境",
+      "description": "张骞出陇西后即被匈奴扣留，长达十余年"
+    },
+    {
+      "id": "wuwei",
+      "name": "武威（姑臧）",
+      "lat": 37.9282,
+      "lng": 102.6379,
+      "type": "station",
+      "typeLabel": "河西四郡",
+      "description": "前121年置郡，二次出使时河西走廊已属汉，「通西域道」由此直达"
+    },
+    {
+      "id": "zhangye",
+      "name": "张掖",
+      "lat": 38.9259,
+      "lng": 100.4498,
+      "type": "station",
+      "typeLabel": "河西四郡",
+      "description": "「张国臂掖，以通西域」，河西走廊中段重镇"
+    },
+    {
+      "id": "jiuquan",
+      "name": "酒泉",
+      "lat": 39.7325,
+      "lng": 98.4940,
+      "type": "station",
+      "typeLabel": "河西四郡",
+      "description": "「城下有泉，其水若酒」，河西走廊西段"
+    },
+    {
+      "id": "dunhuang",
+      "name": "敦煌",
+      "lat": 40.1421,
+      "lng": 94.6620,
+      "type": "hub",
+      "typeLabel": "丝路枢纽",
+      "description": "河西四郡最西端，玉门关、阳关分扼南北两道，丝路总枢纽"
+    },
+    {
+      "id": "loulan",
+      "name": "楼兰",
+      "lat": 40.5149,
+      "lng": 89.8568,
+      "type": "hub",
+      "typeLabel": "绿洲枢纽",
+      "description": "罗布泊西岸绿洲城邦，汉通西域第一站，南北两道分岔处"
+    },
+    {
+      "id": "yanqi",
+      "name": "焉耆",
+      "lat": 42.0598,
+      "lng": 86.5743,
+      "type": "station",
+      "typeLabel": "北道城邦",
+      "description": "天山南麓北道城邦，博斯腾湖畔"
+    },
+    {
+      "id": "qiuci",
+      "name": "龟兹（今库车）",
+      "lat": 41.7179,
+      "lng": 82.9605,
+      "type": "hub",
+      "typeLabel": "北道大国",
+      "description": "西域北道大国，塔里木盆地北缘，后为西域佛国"
+    },
+    {
+      "id": "shule",
+      "name": "疏勒（今喀什）",
+      "lat": 39.4704,
+      "lng": 75.9898,
+      "type": "station",
+      "typeLabel": "葱岭门户",
+      "description": "葱岭（帕米尔）东麓，翻越高原前最后一站"
+    },
+    {
+      "id": "conglind",
+      "name": "葱岭（今帕米尔）",
+      "lat": 37.7734,
+      "lng": 75.2269,
+      "type": "landmark",
+      "typeLabel": "世界屋脊",
+      "description": "张骞西行翻越的葱岭，今帕米尔高原，「凿空」最险一段"
+    },
+    {
+      "id": "dayuan",
+      "name": "大宛",
+      "lat": 40.5000,
+      "lng": 70.5000,
+      "type": "terminal",
+      "typeLabel": "西域诸国",
+      "description": "今费尔干纳盆地（乌兹别克/塔吉克/吉尔吉斯交界），出产汗血宝马，张骞西行第一站"
+    },
+    {
+      "id": "kangju",
+      "name": "康居",
+      "lat": 42.8000,
+      "lng": 68.5000,
+      "type": "station",
+      "typeLabel": "西域诸国",
+      "description": "锡尔河中下游游牧大国，今哈萨克斯坦南部一带"
+    },
+    {
+      "id": "dayuezhi",
+      "name": "大月氏",
+      "lat": 36.7586,
+      "lng": 67.1283,
+      "type": "terminal",
+      "typeLabel": "出使目标",
+      "description": "都城蓝氏城（今阿富汗巴尔赫）。张骞此行的目标——但月氏已安居，无意复仇"
+    },
+    {
+      "id": "daxia",
+      "name": "大夏",
+      "lat": 36.6500,
+      "lng": 67.0500,
+      "type": "station",
+      "typeLabel": "西域诸国",
+      "description": "巴克特里亚故地（今阿富汗北部），张骞在此考察一年多，见邛竹杖、蜀布，得知身毒可通"
+    },
+    {
+      "id": "wusun",
+      "name": "乌孙",
+      "lat": 42.6000,
+      "lng": 79.5000,
+      "type": "hub",
+      "typeLabel": "二次出使目标",
+      "description": "伊犁河谷、伊塞克湖一带。前119年张骞率300人抵乌孙，成功建立联系"
+    },
+    {
+      "id": "yutian",
+      "name": "于阗（今和田）",
+      "lat": 37.1097,
+      "lng": 79.9297,
+      "type": "station",
+      "typeLabel": "南道重镇",
+      "description": "塔里木盆地南道重镇，盛产美玉，东归途经费尔干纳—南道一线"
+    }
+  ],
+  "lines": [
+    {
+      "id": "first-trip-out",
+      "name": "第一次出使 · 去程（前138年）",
+      "color": "#c0392b",
+      "path": ["changan", "longxi", "dayuan", "kangju", "dayuezhi", "daxia"],
+      "description": "出陇西即被匈奴扣留十余年，后西逃经大宛、康居，抵大月氏，又至大夏考察"
+    },
+    {
+      "id": "first-trip-back",
+      "name": "第一次出使 · 东归（前126年）",
+      "color": "#e74c3c",
+      "dashed": true,
+      "path": ["daxia", "yutian", "loulan", "dunhuang", "changan"],
+      "description": "归途拟取羌中/南道，途中再被匈奴扣留，前126年乘乱逃回长安"
+    },
+    {
+      "id": "second-trip",
+      "name": "第二次出使 · 西行（前119年）",
+      "color": "#2980b9",
+      "path": ["changan", "wuwei", "zhangye", "jiuquan", "dunhuang", "loulan", "yanqi", "qiuci", "shule", "wusun"],
+      "description": "河西走廊已置四郡，张骞率300人、牛羊万头西行，抵乌孙，打通丝路主干道"
+    },
+    {
+      "id": "envoys",
+      "name": "副使分遣",
+      "color": "#27ae60",
+      "dashed": true,
+      "path": ["wusun", "dayuan", "kangju", "dayuezhi", "daxia"],
+      "description": "张骞遣副使分赴大宛、康居、大月氏、大夏、安息（今伊朗）、身毒（今印度）诸国"
+    }
+  ]
+}

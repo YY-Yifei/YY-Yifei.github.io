@@ -20,6 +20,13 @@
       "description": "在建：普陀交通路至浦东北新园路，21站，串联真如、大宁、五角场、外高桥",
       "dataFile": "data/scenes/shanghai-metro-line20.json",
       "tags": ["地铁", "上海", "在建"]
+    },
+    {
+      "id": "zhangqian-western-regions",
+      "name": "张骞凿空西域",
+      "description": "公元前138年张骞出使西域，被匈奴扣留十余年仍不忘使命，凿空丝绸之路，二次出使通乌孙、联西域诸国",
+      "dataFile": "data/scenes/zhangqian-western-regions.json",
+      "tags": ["历史", "丝绸之路", "西域"]
     }
   ]
 }
