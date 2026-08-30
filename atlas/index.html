@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>地图标记系统 · Atlas</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
   <button id="sidebar-toggle" title="收起/展开侧边栏">«</button>
@@ -31,6 +31,19 @@
       <button class="lc-btn lc-zoom" id="lc-zoom-in" title="放大">＋</button>
       <button class="lc-btn lc-zoom" id="lc-zoom-out" title="缩小">－</button>
     </div>
+
+    <!-- 双击坐标面板 -->
+    <div id="coord-panel" class="hidden">
+      <button id="coord-close" title="关闭">✕</button>
+      <div class="coord-title">📍 双击位置坐标</div>
+      <div class="coord-row"><span class="coord-label">高德 GCJ-02</span><code id="coord-gcj">-</code></div>
+      <div class="coord-row"><span class="coord-label">真实 WGS-84</span><code id="coord-wgs">-</code></div>
+      <div class="coord-hint">场景数据请使用 WGS-84</div>
+      <div class="coord-btns">
+        <button id="coord-copy-gcj">复制 GCJ-02</button>
+        <button id="coord-copy-wgs">复制 WGS-84</button>
+      </div>
+    </div>
   </div>
 
   <div id="scene-info" class="hidden">
@@ -47,6 +60,6 @@
     };
   </script>
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=20ba7efb7e114247a8ddc8063661f467"></script>
-  <script src="js/map.js?v=2"></script>
+  <script src="js/map.js?v=3"></script>
 </body>
 </html>

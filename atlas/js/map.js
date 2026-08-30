@@ -43,6 +43,13 @@ function wgs84ToGcj02(lat, lng) {
   return { lat: lat + dLat, lng: lng + dLng };
 }
 
+/** 坐标系转换：GCJ-02 → WGS-84（中国境内，反向迭代） */
+function gcj02ToWgs84(lat, lng) {
+  if (outOfChina(lat, lng)) return { lat, lng };
+  const p = wgs84ToGcj02(lat, lng);
+  return { lat: lat - (p.lat - lat), lng: lng - (p.lng - lng) };
+}
+
 /** 数据坐标 (lat, lng, WGS-84) → 高德坐标 [lng, lat]（GCJ-02） */
 function toAMap(lat, lng) {
   const p = wgs84ToGcj02(lat, lng);
@@ -70,6 +77,7 @@ const map = new AMap.Map('map', {
   zoom: 5,
   center: [103.0, 24.0], // 默认视角：云南一带
   viewMode: '2D',
+  doubleClickZoom: false, // 双击用于获取坐标，缩放用滚轮/按钮
 });
 
 /* 图层（懒加载，避免初始化开销） */
@@ -322,6 +330,61 @@ document.querySelectorAll('.lc-btn[data-mode]').forEach(btn => {
 });
 document.getElementById('lc-zoom-in').onclick = () => map.zoomIn();
 document.getElementById('lc-zoom-out').onclick = () => map.zoomOut();
+
+/* ========== 双击获取坐标 ========== */
+let coordMarker = null;
+
+function copyText(text, btn) {
+  const done = () => {
+    const old = btn.textContent;
+    btn.textContent = '✅ 已复制';
+    setTimeout(() => { btn.textContent = old; }, 1200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) { /* ignore */ }
+  document.body.removeChild(ta);
+  done();
+}
+
+map.on('dblclick', e => {
+  const gcj = { lng: e.lnglat.getLng(), lat: e.lnglat.getLat() };
+  const wgs = gcj02ToWgs84(gcj.lat, gcj.lng);
+
+  // 临时标记双击位置
+  if (coordMarker) map.remove(coordMarker);
+  coordMarker = new AMap.Marker({
+    position: [gcj.lng, gcj.lat],
+    content: '<div style="width:16px;height:16px;background:#10b981;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+    anchor: 'center',
+  });
+  map.add(coordMarker);
+
+  // 更新坐标面板
+  document.getElementById('coord-gcj').textContent = `${gcj.lng.toFixed(6)}, ${gcj.lat.toFixed(6)}`;
+  document.getElementById('coord-wgs').textContent = `${wgs.lng.toFixed(6)}, ${wgs.lat.toFixed(6)}`;
+  document.getElementById('coord-panel').classList.remove('hidden');
+});
+
+document.getElementById('coord-close').onclick = () => {
+  document.getElementById('coord-panel').classList.add('hidden');
+  if (coordMarker) { map.remove(coordMarker); coordMarker = null; }
+};
+document.getElementById('coord-copy-gcj').onclick = function () {
+  copyText(document.getElementById('coord-gcj').textContent, this);
+};
+document.getElementById('coord-copy-wgs').onclick = function () {
+  copyText(document.getElementById('coord-wgs').textContent, this);
+};
 
 /* ========== 侧边栏收起/展开 ========== */
 const sidebarToggle = document.getElementById('sidebar-toggle');

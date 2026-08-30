@@ -187,6 +187,77 @@ body.sidebar-collapsed #sidebar-toggle {
   padding: 5px 0;
 }
 
+/* ---------- 双击坐标面板（地图左上角，搜索框下方） ---------- */
+#coord-panel {
+  position: absolute;
+  top: 60px;
+  left: 14px;
+  z-index: 1500;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  padding: 12px 14px;
+  font-size: 12px;
+}
+#coord-panel.hidden { display: none; }
+#coord-panel #coord-close {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #64748b;
+}
+#coord-panel #coord-close:hover { background: #e2e8f0; }
+#coord-panel .coord-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-right: 20px;
+}
+#coord-panel .coord-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+#coord-panel .coord-label {
+  width: 96px;
+  color: #64748b;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+#coord-panel code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  word-break: break-all;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+#coord-panel .coord-hint {
+  color: #94a3b8;
+  font-size: 11px;
+  margin: 4px 0 8px;
+}
+#coord-panel .coord-btns { display: flex; gap: 6px; }
+#coord-panel .coord-btns button {
+  flex: 1;
+  padding: 5px 0;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  color: #333;
+}
+#coord-panel .coord-btns button:hover { background: #f1f5f9; }
+
 /* ---------- 场景信息面板 ---------- */
 #scene-info {
   position: fixed;
