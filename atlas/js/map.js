@@ -43,9 +43,11 @@ function wgs84ToGcj02(lat, lng) {
 
 /* ========== 瓦片源配置（仅高德，全部 GCJ-02 坐标系） ==========
  * 矢量：webrd 接口 style=8 标准矢量底图，最高 18 级（19 级由 18 级放大）
- * 卫星：webst 接口 style=6 含路网标注 / style=7 纯影像，最高 20 级
- * 不附加缓存版本号参数：瓦片新旧由高德 HTTP 缓存头自动管理，
- * 真遇到旧图让用户强刷（Ctrl+Shift+R）即可
+ * 卫星：webst 接口 style=6 卫星影像（JPEG），最高 18 级
+ * 路网标注：webst 接口 style=8 透明标注叠加层（RGBA，约半透明），最高 18 级
+ * 卫星·含路网标注 = 卫星 style=6 + 路网 style=8 叠加（同高德官方 Satellite+RoadNet 组合）
+ * 注意：webst style=7 是矢量简图而非卫星，勿混淆
+ * 不附加缓存版本号参数：瓦片新旧由高德 HTTP 缓存头自动管理，真遇旧图强刷即可
  */
 const TILE_SOURCES = {
   gaode_vec: {
@@ -57,21 +59,30 @@ const TILE_SOURCES = {
     maxZoom: 19,
     maxNativeZoom: 18,
   },
-  gaode_sat_label: {
-    name: '高德卫星·含路网标注',
+  gaode_sat: {
+    name: '高德卫星·纯影像',
     url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}',
     subdomains: '1234',
     attribution: '&copy; 高德地图',
     gcj: true,
-    maxZoom: 20,
+    maxZoom: 19,
+    maxNativeZoom: 18,
   },
-  gaode_sat: {
-    name: '高德卫星·纯影像',
-    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}',
+  gaode_roadnet: {
+    name: '高德路网标注（透明层）',
+    url: 'https://webst0{s}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}',
     subdomains: '1234',
     attribution: '&copy; 高德地图',
     gcj: true,
-    maxZoom: 20,
+    maxZoom: 19,
+    maxNativeZoom: 18,
+    hidden: true, // 仅作为组合项内部成员，不出现在底图切换控件
+  },
+  gaode_sat_road: {
+    name: '高德卫星·含路网标注',
+    combine: ['gaode_sat', 'gaode_roadnet'],
+    gcj: true,
+    maxZoom: 19,
   },
 };
 
@@ -92,6 +103,9 @@ const map = L.map('map').setView([24, 103], 5);
 
 /** 按瓦片源配置创建图层（支持 maxNativeZoom：超出原生级别时放大显示而非留白） */
 function createTileLayer(src) {
+  if (src.combine) {
+    return L.layerGroup(src.combine.map(k => createTileLayer(TILE_SOURCES[k])));
+  }
   return L.tileLayer(src.url, {
     maxZoom: src.maxZoom,
     maxNativeZoom: src.maxNativeZoom,
@@ -105,7 +119,9 @@ const baseLayer = createTileLayer(TILE_SOURCES.gaode_vec).addTo(map);
 // 图层切换控件（右上角）
 const baseMaps = {};
 Object.keys(TILE_SOURCES).forEach(key => {
-  baseMaps[TILE_SOURCES[key].name] = createTileLayer(TILE_SOURCES[key]);
+  const src = TILE_SOURCES[key];
+  if (src.hidden) return; // 纯叠加层不作为独立底图暴露
+  baseMaps[src.name] = createTileLayer(src);
 });
 L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
