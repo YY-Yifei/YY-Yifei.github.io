@@ -4,24 +4,27 @@
   "type": "metro",
   "description": "上海轨道交通20号线一期（含东延伸）工程：西起普陀区交通路站，东至浦东新区北新园路站，全长约 28.4 公里，全地下，设 21 座车站。途经普陀、静安、虹口、杨浦、浦东五区，串联真如副中心（上海西站）、大宁、江湾-五角场副中心、外高桥保税区等区域。线路标识色 C=93 M0 Y78 K0（青绿色）。西段计划 2028 年通车，东段及东延伸计划 2031 年通车；2026-08-18 首台盾构始发（大宁公园—上海马戏城区间）。",
   "view": {
-    "center": [31.313, 121.502],
+    "center": [
+      31.295,
+      121.505
+    ],
     "zoom": 11
   },
   "nodes": [
     {
       "id": "jiaotong-road",
       "name": "交通路",
-      "lat": 31.2790,
-      "lng": 121.3800,
+      "lat": 31.2676,
+      "lng": 121.3865,
       "type": "terminal",
       "typeLabel": "起点",
-      "description": "20号线起点站（工程名金昌路站），位于普陀区西北部金昌路/交通路附近"
+      "description": "20号线起点站（工程名金昌路站），金昌路与交通路交叉口附近，普陀区西北部，远期拟向西北延伸服务桃浦智创城"
     },
     {
       "id": "shanghai-west-station",
       "name": "上海西站",
-      "lat": 31.2647,
-      "lng": 121.4045,
+      "lat": 31.265,
+      "lng": 121.3969,
       "type": "hub",
       "typeLabel": "换乘站",
       "description": "真如副中心核心站，可换乘 11 号线、15 号线及国铁上海西站（沪宁城际等）"
@@ -29,8 +32,8 @@
     {
       "id": "zhenhua-road",
       "name": "真华路",
-      "lat": 31.2675,
-      "lng": 121.4210,
+      "lat": 31.2637,
+      "lng": 121.4076,
       "type": "station",
       "typeLabel": "车站",
       "description": "普陀区真华路/交通路附近（工程名广泉路站）"
@@ -38,35 +41,35 @@
     {
       "id": "xincun-road",
       "name": "新村路",
-      "lat": 31.2655,
-      "lng": 121.4340,
+      "lat": 31.2653,
+      "lng": 121.4182,
       "type": "hub",
       "typeLabel": "换乘站",
-      "description": "可换乘 7 号线，普陀区新村路沿线"
+      "description": "可换乘 7 号线，位于新村路与沪太路附近"
     },
     {
       "id": "pingli-road",
       "name": "平利路",
-      "lat": 31.2680,
-      "lng": 121.4420,
+      "lat": 31.2695,
+      "lng": 121.4267,
       "type": "station",
       "typeLabel": "车站",
-      "description": "普陀区平利路/交通路附近"
+      "description": "普陀区平利路与新村路交叉口附近"
     },
     {
       "id": "daning-park",
       "name": "大宁公园",
-      "lat": 31.2760,
-      "lng": 121.4490,
+      "lat": 31.2785,
+      "lng": 121.4345,
       "type": "station",
       "typeLabel": "车站",
-      "description": "静安区彭越浦路/广中西路（工程名彭越浦路站），紧邻大宁公园北侧；2026-08-18 首台盾构自本站始发"
+      "description": "静安区彭越浦路与广中西路交叉口（工程名彭越浦路站），紧邻大宁公园；2026-08-18 首台盾构自本站始发"
     },
     {
       "id": "shanghai-circus-world",
       "name": "上海马戏城",
-      "lat": 31.2823,
-      "lng": 121.4556,
+      "lat": 31.2812,
+      "lng": 121.4464,
       "type": "hub",
       "typeLabel": "换乘站",
       "description": "共和新路/广中西路，可换乘 1 号线；主体结构已封顶"
@@ -74,53 +77,53 @@
     {
       "id": "liangcheng-road",
       "name": "凉城路",
-      "lat": 31.2870,
-      "lng": 121.4670,
+      "lat": 31.2899,
+      "lng": 121.4663,
       "type": "hub",
       "typeLabel": "换乘站",
-      "description": "虹口区凉城路/广灵四路附近，可换乘在建的 19 号线"
+      "description": "虹口区凉城路与广灵四路交叉口（沿广中路），可换乘在建的 19 号线（叠岛式换乘）"
     },
     {
       "id": "guangling-2nd-road",
       "name": "广灵二路",
-      "lat": 31.2900,
-      "lng": 121.4750,
+      "lat": 31.2838,
+      "lng": 121.4716,
       "type": "station",
       "typeLabel": "车站",
-      "description": "虹口区广灵二路/水电路附近，预留换乘 26 号线（规划）"
+      "description": "虹口区水电路与广灵二路交叉口附近"
     },
     {
       "id": "chezhan-south-road",
       "name": "车站南路",
-      "lat": 31.2940,
-      "lng": 121.4835,
+      "lat": 31.2949,
+      "lng": 121.4726,
       "type": "station",
       "typeLabel": "车站",
-      "description": "虹口区车站南路/水电路附近"
+      "description": "虹口区水电路与车站南路交叉口附近"
     },
     {
       "id": "wanan-road",
       "name": "万安路",
-      "lat": 31.2965,
-      "lng": 121.4860,
+      "lat": 31.3026,
+      "lng": 121.4718,
       "type": "station",
       "typeLabel": "车站",
-      "description": "虹口区万安路/水电路附近，近场中路"
+      "description": "虹口区水电路与万安路交叉口附近，近场中路"
     },
     {
       "id": "jiangwan-town",
       "name": "江湾镇",
-      "lat": 31.3000,
-      "lng": 121.4895,
+      "lat": 31.3075,
+      "lng": 121.4806,
       "type": "hub",
       "typeLabel": "换乘站",
-      "description": "逸仙路/场中路附近，可换乘 3 号线"
+      "description": "场中路/逸仙路附近，可换乘 3 号线"
     },
     {
       "id": "sufe",
       "name": "上海财经大学",
-      "lat": 31.3052,
-      "lng": 121.4970,
+      "lat": 31.3106,
+      "lng": 121.4919,
       "type": "hub",
       "typeLabel": "换乘站",
       "description": "杨浦区政立路/武川路附近，可换乘 18 号线，服务上海财经大学"
@@ -128,26 +131,26 @@
     {
       "id": "sanmen-road",
       "name": "三门路",
-      "lat": 31.3110,
-      "lng": 121.5090,
+      "lat": 31.3153,
+      "lng": 121.5039,
       "type": "hub",
       "typeLabel": "换乘站",
-      "description": "淞沪路/三门路附近，可换乘 10 号线"
+      "description": "政立路/淞沪路附近（三门路），可换乘 10 号线"
     },
     {
       "id": "sus",
       "name": "上海体育大学",
-      "lat": 31.3160,
-      "lng": 121.5170,
+      "lat": 31.3104,
+      "lng": 121.5149,
       "type": "station",
       "typeLabel": "车站",
-      "description": "杨浦区国和路附近（工程名国和路站），服务上海体育大学"
+      "description": "杨浦区国和路与政立路交叉口附近（工程名国和路站），服务上海体育大学"
     },
     {
       "id": "nenjiang-road",
       "name": "嫩江路",
-      "lat": 31.3170,
-      "lng": 121.5265,
+      "lat": 31.3168,
+      "lng": 121.5275,
       "type": "hub",
       "typeLabel": "换乘站",
       "description": "嫩江路/中原路附近，可换乘 8 号线"
@@ -155,47 +158,47 @@
     {
       "id": "gongqing-forest-park",
       "name": "共青森林公园",
-      "lat": 31.3110,
-      "lng": 121.5445,
+      "lat": 31.32,
+      "lng": 121.542,
       "type": "station",
       "typeLabel": "车站",
-      "description": "军工路 2000 号共青森林公园南门附近，预留换乘 24 号线（规划）"
+      "description": "杨浦区嫩江路以北、跨军工路呈东西向布置（白城路以东），共青森林公园附近，预留换乘 24 号线（规划）"
     },
     {
       "id": "pudong-north-road",
       "name": "浦东北路",
-      "lat": 31.3195,
-      "lng": 121.5740,
+      "lat": 31.3145,
+      "lng": 121.5715,
       "type": "station",
       "typeLabel": "车站",
-      "description": "浦东新区浦东北路/启帆路附近（东延伸段），预留换乘 21 号线（规划）"
+      "description": "浦东新区浦东北路与洲海路交叉口附近（东延伸段，沿洲海路走行），预留换乘 21 号线（规划）"
     },
     {
       "id": "zhangyang-north-road",
       "name": "张杨北路",
-      "lat": 31.3375,
-      "lng": 121.5840,
+      "lat": 31.3143,
+      "lng": 121.5852,
       "type": "station",
       "typeLabel": "车站",
-      "description": "张杨北路/洲海路附近（东延伸段），近 6 号线洲海路站；2026-01 完成第一阶段交通翻交"
+      "description": "洲海路与张杨北路交叉口东侧、沿洲海路南侧布置（东延伸段），与 6 号线洲海路站长通道换乘；2024-12-30 东段及东延伸工程在此开工"
     },
     {
       "id": "tainan-west-road",
       "name": "台南西路",
-      "lat": 31.3430,
-      "lng": 121.6060,
+      "lat": 31.3155,
+      "lng": 121.6035,
       "type": "station",
       "typeLabel": "车站",
-      "description": "高东镇台南西路/洲海路附近（东延伸段）"
+      "description": "高东镇洲海路/台南西路附近（东延伸段）"
     },
     {
       "id": "beixinyuan-road",
       "name": "北新园路",
-      "lat": 31.3470,
-      "lng": 121.6240,
+      "lat": 31.3226,
+      "lng": 121.6242,
       "type": "terminal",
       "typeLabel": "终点",
-      "description": "20号线终点站，位于浦东高东镇新园路/北新园路附近（东延伸段）"
+      "description": "20号线终点站，位于浦东高东镇新园路附近（东延伸段）"
     }
   ],
   "lines": [
@@ -203,26 +206,54 @@
       "id": "main-line-west",
       "name": "一期西段（普陀-静安）",
       "color": "#00C850",
-      "path": ["jiaotong-road", "shanghai-west-station", "zhenhua-road", "xincun-road", "pingli-road", "daning-park", "shanghai-circus-world"]
+      "path": [
+        "jiaotong-road",
+        "shanghai-west-station",
+        "zhenhua-road",
+        "xincun-road",
+        "pingli-road",
+        "daning-park",
+        "shanghai-circus-world"
+      ]
     },
     {
       "id": "main-line-east",
       "name": "一期东段（虹口-杨浦）",
       "color": "#00C850",
-      "path": ["shanghai-circus-world", "liangcheng-road", "guangling-2nd-road", "chezhan-south-road", "wanan-road", "jiangwan-town", "sufe", "sanmen-road", "sus", "nenjiang-road", "gongqing-forest-park"]
+      "path": [
+        "shanghai-circus-world",
+        "liangcheng-road",
+        "guangling-2nd-road",
+        "chezhan-south-road",
+        "wanan-road",
+        "jiangwan-town",
+        "sufe",
+        "sanmen-road",
+        "sus",
+        "nenjiang-road",
+        "gongqing-forest-park"
+      ]
     },
     {
       "id": "river-crossing",
       "name": "下穿黄浦江段",
       "color": "#00C850",
       "dashed": true,
-      "path": ["gongqing-forest-park", "pudong-north-road"]
+      "path": [
+        "gongqing-forest-park",
+        "pudong-north-road"
+      ]
     },
     {
       "id": "pudong-extension",
       "name": "一期东延伸（浦东）",
       "color": "#00C850",
-      "path": ["pudong-north-road", "zhangyang-north-road", "tainan-west-road", "beixinyuan-road"]
+      "path": [
+        "pudong-north-road",
+        "zhangyang-north-road",
+        "tainan-west-road",
+        "beixinyuan-road"
+      ]
     }
   ]
 }
