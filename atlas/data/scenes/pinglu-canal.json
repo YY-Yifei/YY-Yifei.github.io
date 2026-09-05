@@ -1,0 +1,181 @@
+{
+  "id": "pinglu-canal",
+  "name": "平陆运河",
+  "type": "waterway",
+  "description": "西部陆海新通道骨干工程、新中国成立以来第一条江海连通运河。北起南宁横州市西津库区平塘江口，南至钦州港入海，全长 134.2 公里，按内河Ⅰ级航道标准建设，可通航 5000 吨级船舶，设马道、企石、青年三座梯级枢纽（全线水位落差约 65 米，以省水船闸逐级衔接），设计年单向通过能力 8900 万吨，比绕行珠三角缩短内河航程约 560 公里。2026 年 6 月 3 日全线通水，2026 年 9 月正式通航。本场景自北向南标注 13 个关键节点：起终点、三座梯级枢纽、沿线城镇、入海口与江海联运港区。",
+  "view": {
+    "center": [
+      22.182,
+      108.823
+    ],
+    "zoom": 9
+  },
+  "nodes": [
+    {
+      "id": "pingtang",
+      "name": "平塘江口",
+      "en": "Pingtang River Mouth (Canal Start)",
+      "label": "平塘",
+      "lat": 22.64444,
+      "lng": 109.06806,
+      "type": "terminal",
+      "typeLabel": "运河起点",
+      "description": "2026.09 通航｜运河零起点：郁江（西津库区）与沙坪河交汇处，横州市新福镇平塘村江口街，设零起点标识牌"
+    },
+    {
+      "id": "shaping",
+      "name": "沙坪镇",
+      "en": "Shaping",
+      "label": "沙坪",
+      "lat": 22.520851,
+      "lng": 108.963485,
+      "type": "station",
+      "typeLabel": "沿线城镇",
+      "description": "沙坪河段（20.7km）：运河自平塘江口溯沙坪河而上，灵山县沙坪镇为运河上游门户集镇"
+    },
+    {
+      "id": "madao",
+      "name": "马道枢纽",
+      "en": "Madao Junction",
+      "label": "马道",
+      "lat": 22.447794,
+      "lng": 108.941615,
+      "type": "hub",
+      "typeLabel": "第一梯级枢纽",
+      "description": "K29+300｜灵山县旧州镇上游约7km牛营村：第一梯级，世界最大内河省水船闸，双线5000吨级、最大水头29.6m，三级叠合式省水（省水率最高63.2%），预留三线船闸"
+    },
+    {
+      "id": "jiuzhou",
+      "name": "旧州镇",
+      "en": "Jiuzhou",
+      "label": "旧州",
+      "lat": 22.398731,
+      "lng": 108.937266,
+      "type": "station",
+      "typeLabel": "沿线城镇",
+      "description": "分水岭南侧｜灵山县旧州镇，跨沙坪河/旧州江分水岭段（29.3km），设跨运河动物通道桥"
+    },
+    {
+      "id": "qishi",
+      "name": "企石枢纽",
+      "en": "Qishi Junction",
+      "label": "企石",
+      "lat": 22.317113,
+      "lng": 108.946143,
+      "type": "hub",
+      "typeLabel": "第二梯级枢纽",
+      "description": "K50+500｜灵山县陆屋镇上游约5.5km企石村：第二梯级，三级叠合式省水船闸，双线5000吨级船闸，预留三线"
+    },
+    {
+      "id": "luwu",
+      "name": "陆屋镇",
+      "en": "Luwu",
+      "label": "陆屋",
+      "lat": 22.280509,
+      "lng": 108.94734,
+      "type": "station",
+      "typeLabel": "沿线城镇",
+      "description": "旧州江汇入钦江处｜灵山县陆屋镇，运河自此沿钦江干流南下，进入钦江干流段（48.5km）"
+    },
+    {
+      "id": "qingnian",
+      "name": "青年枢纽",
+      "en": "Qingnian Junction",
+      "label": "青年",
+      "lat": 22.005334,
+      "lng": 108.655478,
+      "type": "hub",
+      "typeLabel": "第三梯级枢纽",
+      "description": "钦州市钦南区水浸洞村南侧（原青年水闸上游约1.5km）：第三梯级，双线互充式船闸，设国内首条洄游鱼道（约480m），兼顾城市防洪供水"
+    },
+    {
+      "id": "old-gate",
+      "name": "原青年水闸",
+      "en": "Former Qingnian Sluice (Site)",
+      "label": "原闸",
+      "lat": 22.002739,
+      "lng": 108.660956,
+      "type": "landmark",
+      "typeLabel": "参照点（旧址）",
+      "description": "参照点｜钦北区长田街道城北村原址（官方文件坐标）：原闸已拆除，上移约1.5km重建为青年枢纽"
+    },
+    {
+      "id": "qinzhou",
+      "name": "钦州市区",
+      "en": "Qinzhou City",
+      "label": "钦州",
+      "lat": 21.9515,
+      "lng": 108.6242,
+      "type": "station",
+      "typeLabel": "钦州城区段",
+      "description": "钦州城区段（21.4km）：钦江穿城段，航道尺度放宽至90m×450m最小弯曲半径，沿线桥梁改建（含金海湾大桥等）"
+    },
+    {
+      "id": "shajing",
+      "name": "沙井港",
+      "en": "Shajing Port",
+      "label": "沙井港",
+      "lat": 21.851306,
+      "lng": 108.590347,
+      "type": "border",
+      "typeLabel": "入海口",
+      "description": "钦江区尖山街道｜钦江出茅尾海口门，运河由内河进入入海口近海段，设钦州水上服务区"
+    },
+    {
+      "id": "maowei",
+      "name": "沙井岛 / 茅尾海",
+      "en": "Shajing Island / Maowei Sea",
+      "label": "茅尾海",
+      "lat": 21.841077,
+      "lng": 108.578578,
+      "type": "landmark",
+      "typeLabel": "入海生态段",
+      "description": "钦江与茅岭江交汇海域：穿越红树林保护区段，航道尺度增至6.5m×130m×540m，通航环境敏感"
+    },
+    {
+      "id": "longmen",
+      "name": "龙门大桥",
+      "en": "Longmen Bridge",
+      "label": "龙门",
+      "lat": 21.758921,
+      "lng": 108.58972,
+      "type": "landmark",
+      "typeLabel": "跨海大桥",
+      "description": "跨茅尾海/运河出海口（主跨1098m）：通航管理水域终点；河海管理分界以G75兰海高速钦江大桥南端垂直投影线为界，以南为沿海水域"
+    },
+    {
+      "id": "dalanping",
+      "name": "钦州港大榄坪作业区",
+      "en": "Qinzhou Port Dalanping Area",
+      "label": "大榄坪",
+      "lat": 21.71964,
+      "lng": 108.63803,
+      "type": "terminal",
+      "typeLabel": "海侧终点·港区",
+      "description": "江海联运衔接港区：大榄坪作业区（另含勒沟作业区，共11个泊位改造）；设计年单向通过能力8900万吨，较绕行珠三角缩短内河航程约560km"
+    }
+  ],
+  "lines": [
+    {
+      "id": "main-canal",
+      "name": "平陆运河主通道",
+      "color": "#e74c3c",
+      "path": [
+        "pingtang",
+        "shaping",
+        "madao",
+        "jiuzhou",
+        "qishi",
+        "luwu",
+        "qingnian",
+        "old-gate",
+        "qinzhou",
+        "shajing",
+        "maowei",
+        "longmen",
+        "dalanping"
+      ],
+      "description": "北→南全长134.2km｜沙坪河段20.7 + 分水岭段29.3 + 钦江干流段48.5 + 钦州城区段21.4 + 入海口近海段14.3（合计134.2），三座梯级枢纽逐级衔接约65m水位落差，2026.09 全线通航"
+    }
+  ]
+}
